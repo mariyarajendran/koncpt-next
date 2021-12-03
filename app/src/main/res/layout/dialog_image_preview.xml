@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorDarkBase"
+    android:layout_gravity="center">
+
+    <ImageView
+        android:id="@+id/img_close_image_dialog"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_margin="@dimen/_10sdp"
+        android:src="@drawable/ic_close_white_24"
+        android:contentDescription="@string/image_description"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?actionBarSize"
+        app:cardBackgroundColor="@color/colorDarkBase"
+        app:cardUseCompatPadding="true">
+
+        <com.github.chrisbanes.photoview.PhotoView
+            android:id="@+id/img_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:contentDescription="@null" />
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</RelativeLayout>

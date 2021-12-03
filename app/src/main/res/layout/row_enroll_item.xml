@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+    <data>
+        <import type="android.view.View" alias="View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_156sdp">
+
+
+        <TextView
+            android:id="@+id/textViewLiveTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:text="Anatomy Module 1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15ssp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewLiveStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:text="OnGoing"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_13ssp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewLiveTitle" />
+
+
+        <TextView
+            android:id="@+id/textViewLiveDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:text="2020-11-29 - 2020-12-08"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13ssp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/textViewLiveStatus"
+            app:layout_constraintTop_toBottomOf="@+id/textViewLiveTitle" />
+
+
+        <LinearLayout
+            android:id="@+id/linearEnrollContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/textViewLiveStatus">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonEnroll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_12sdp"
+                android:layout_weight="1"
+                android:background="@drawable/drawable_button_green_border"
+                android:minHeight="@dimen/_32sdp"
+                android:text="Unenroll"
+                android:textColor="@color/colorPrimary" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonViewDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_12sdp"
+                android:layout_weight="1"
+                android:background="@drawable/drawable_button_gray_border"
+                android:minHeight="@dimen/_32sdp"
+                android:text="View Detail"
+                android:textColor="@color/gray" />
+
+
+        </LinearLayout>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonJoinNow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_8sdp"
+            android:layout_weight="1"
+            android:background="@drawable/drawable_button_green"
+            android:minHeight="@dimen/_32sdp"
+            android:text="Join Now"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearEnrollContainer" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

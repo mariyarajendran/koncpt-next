@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <data>
+
+        <import
+            alias="View"
+            type="android.view.View" />
+
+
+    </data>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:elevation="5dp"
+        android:orientation="vertical"
+        app:cardCornerRadius="10dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_16sdp">
+
+            <TextView
+                android:id="@+id/txt_question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Which of the following vessels are responsible for peripheral vascular resistance?"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_13ssp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <LinearLayout
+                android:id="@+id/linear_option_a"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:background="@drawable/bg_round_edittext"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/txt_question">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/drawable_option_a"
+                    android:gravity="center"
+                    android:text="A" />
+
+
+                <TextView
+                    android:id="@+id/txt_option_a"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:padding="@dimen/_8sdp"
+                    android:text="Internal fixation"
+                    android:textSize="@dimen/_10ssp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/linear_option_b"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:background="@drawable/bg_round_edittext"
+                android:orientation="horizontal"
+
+                app:layout_constraintTop_toBottomOf="@+id/linear_option_a">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/drawable_option_a"
+                    android:gravity="center"
+                    android:text="B" />
+
+
+                <TextView
+                    android:id="@+id/txt_option_b"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:padding="@dimen/_8sdp"
+                    android:text="Application of cast"
+                    android:textSize="@dimen/_10ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/linear_option_a" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/linear_option_c"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:background="@drawable/bg_round_edittext"
+                android:orientation="horizontal"
+
+                app:layout_constraintTop_toBottomOf="@+id/linear_option_b">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/drawable_option_a"
+                    android:gravity="center"
+                    android:text="C" />
+
+                <TextView
+                    android:id="@+id/txt_option_c"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:padding="@dimen/_8sdp"
+                    android:text="External fixation"
+                    android:textSize="@dimen/_10ssp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/linear_option_d"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:background="@drawable/bg_round_edittext"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/linear_option_c">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/drawable_option_a"
+                    android:gravity="center"
+                    android:text="D" />
+
+
+                <TextView
+                    android:id="@+id/txt_option_d"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:padding="@dimen/_8sdp"
+                    android:text="Stabilization and bone grafting"
+                    android:textSize="@dimen/_10ssp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</layout>

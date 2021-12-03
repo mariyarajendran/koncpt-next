@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View" alias="View"/>
+
+        <variable
+            name="changeViewModel"
+            type="app.technotech.koncpt.ui.viewmodels.ChangePhoneViewModel" />
+    </data>
+
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <EditText
+        android:id="@+id/edtPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Phone Number"
+        android:inputType="number"
+        android:textColor="@android:color/black"
+       android:layout_margin="@dimen/_20ssp"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:textColor="@android:color/white"
+        android:layout_below="@+id/edtPhoneNumber"
+        android:background="@color/btn_yellow"
+        android:layout_centerHorizontal="true"
+        />
+
+</RelativeLayout>
+
+</layout>

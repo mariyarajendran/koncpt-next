@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import
+            alias="View"
+            type="android.view.View" />
+
+        <variable
+            name="classViewModel"
+            type="app.technotech.koncpt.ui.viewmodels.LiveNotesViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:id="@+id/relative_video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:keepScreenOn="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.exoplayer2.ui.PlayerView
+                android:id="@+id/video_view"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                app:controller_layout_id="@layout/exo_playback_control_view" />
+
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/relative_video"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="MissingConstraints">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/wrapper"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible">
+
+
+                <TextView
+                    android:id="@+id/txtTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_24sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:hint="Title"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/imgDownload"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <ImageView
+                    android:id="@+id/imgDownload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/_32sdp"
+                    android:layout_marginEnd="@dimen/_32sdp"
+                    android:src="@drawable/ic_download_green"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <RatingBar
+                    android:id="@+id/videoRating"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:isIndicator="true"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+
+
+                <TextView
+                    android:id="@+id/txtName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:hint="Name"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_13sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/videoRating" />
+
+
+                <TextView
+                    android:id="@+id/txtLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
+                    android:hint="Label"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_10sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtName" />
+
+
+                <TextView
+                    android:id="@+id/txtDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
+                    android:hint="Description"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_13sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtLabel" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewSlicing"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_constraintBottom_toTopOf="@+id/btnComplete"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtDescription"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnComplete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_72sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:background="@drawable/complete_button_bg"
+                    android:text="@string/markcomplete"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/lnrPlans"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/nestedScrollView"
+            app:layout_constraintStart_toEndOf="@+id/nestedScrollView"
+            app:layout_constraintTop_toBottomOf="@+id/videoView">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:text="@string/pro_master"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_13ssp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:text="@string/pro_plans"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_13ssp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_empty_master_class" />
+
+
+                <Button
+                    android:id="@+id/btnViewPlans"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_20sdp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@color/btn_yellow"
+                    android:text="@string/view_plans"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/black" />
+
+
+                <Button
+                    android:id="@+id/btnBack"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@android:color/transparent"
+                    android:text="Go Back"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnViewPlans" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/activity_main"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:orientation="vertical"-->
+    <!--        android:visibility="visible">-->
+
+    <!--        <RelativeLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:keepScreenOn="true">-->
+
+    <!--            <com.google.android.exoplayer2.ui.PlayerView-->
+    <!--                android:id="@+id/video_view"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="250dp"-->
+    <!--                app:controller_layout_id="@layout/exo_playback_control_view" />-->
+
+    <!--        </RelativeLayout>-->
+
+    <!--        <ScrollView-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content">-->
+
+    <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--                android:id="@+id/wrapper"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginTop="@dimen/_10sdp"-->
+    <!--                android:gravity="center">-->
+
+    <!--                <RelativeLayout-->
+    <!--                    android:id="@+id/rltTitle"-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_marginLeft="@dimen/_16sdp"-->
+    <!--                    android:layout_marginTop="@dimen/_10sdp"-->
+    <!--                    android:orientation="horizontal"-->
+    <!--                    app:layout_constraintStart_toStartOf="parent"-->
+    <!--                    app:layout_constraintTop_toTopOf="parent">-->
+
+    <!--                    <TextView-->
+    <!--                        android:id="@+id/txtTitle"-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:hint="Title"-->
+    <!--                        android:textColor="@android:color/black"-->
+    <!--                        android:textSize="@dimen/_15sdp" />-->
+
+    <!--                    <ImageView-->
+    <!--                        android:id="@+id/imgDownload"-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_alignParentRight="true"-->
+    <!--                        android:layout_marginEnd="@dimen/_32sdp"-->
+    <!--                        android:src="@drawable/ic_download_green"-->
+
+    <!--                        />-->
+    <!--                </RelativeLayout>-->
+
+    <!--                <RatingBar-->
+    <!--                    android:id="@+id/videoRating"-->
+    <!--                    style="@style/Widget.AppCompat.RatingBar.Small"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_marginLeft="@dimen/_16sdp"-->
+    <!--                    android:isIndicator="true"-->
+    <!--                    android:visibility="invisible"-->
+    <!--                    app:layout_constraintStart_toStartOf="parent"-->
+    <!--                    app:layout_constraintTop_toBottomOf="@+id/rltTitle" />-->
+
+
+    <!--                <TextView-->
+    <!--                    android:id="@+id/txtName"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_marginLeft="@dimen/_16sdp"-->
+    <!--                    android:hint="Name"-->
+    <!--                    android:textColor="@android:color/black"-->
+    <!--                    android:textSize="@dimen/_13sdp"-->
+    <!--                    app:layout_constraintStart_toStartOf="parent"-->
+    <!--                    app:layout_constraintTop_toBottomOf="@+id/videoRating"-->
+
+    <!--                    />-->
+
+    <!--                <TextView-->
+    <!--                    android:id="@+id/txtLabel"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_marginLeft="@dimen/_16sdp"-->
+    <!--                    android:hint="Label"-->
+    <!--                    android:textColor="@android:color/black"-->
+    <!--                    android:textSize="@dimen/_10sdp"-->
+    <!--                    app:layout_constraintStart_toStartOf="parent"-->
+    <!--                    app:layout_constraintTop_toBottomOf="@+id/txtName"-->
+
+    <!--                    />-->
+
+    <!--                <TextView-->
+    <!--                    android:id="@+id/txtDescription"-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_marginLeft="@dimen/_16sdp"-->
+    <!--                    android:layout_marginTop="@dimen/_5sdp"-->
+    <!--                    android:hint="Description"-->
+    <!--                    android:textColor="@android:color/black"-->
+    <!--                    android:textSize="@dimen/_13sdp"-->
+    <!--                    app:layout_constraintStart_toStartOf="parent"-->
+    <!--                    app:layout_constraintTop_toBottomOf="@+id/txtLabel"-->
+
+    <!--                    />-->
+
+
+    <!--                <androidx.recyclerview.widget.RecyclerView-->
+    <!--                    android:id="@+id/recyclerViewSlicing"-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_marginLeft="@dimen/_16sdp"-->
+    <!--                    android:layout_marginTop="@dimen/_5sdp"-->
+    <!--                    app:layout_constraintStart_toStartOf="parent"-->
+
+    <!--                    app:layout_constraintTop_toBottomOf="@+id/txtDescription" />-->
+
+    <!--                <androidx.appcompat.widget.AppCompatButton-->
+    <!--                    android:id="@+id/btnComplete"-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_marginTop="@dimen/_5sdp"-->
+    <!--                    android:layout_marginRight="@dimen/_50sdp"-->
+    <!--                    android:layout_marginBottom="@dimen/_8sdp"-->
+    <!--                    android:background="@drawable/complete_button_bg"-->
+    <!--                    android:text="@string/markcomplete"-->
+    <!--                    android:textColor="@android:color/white"-->
+    <!--                    app:layout_constraintStart_toStartOf="parent"-->
+    <!--                    app:layout_constraintTop_toBottomOf="@+id/recyclerViewSlicing" />-->
+
+    <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+    <!--        </ScrollView>-->
+
+    <!--        <LinearLayout-->
+    <!--            android:id="@+id/lnrPlans"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:orientation="vertical"-->
+    <!--            android:visibility="gone">-->
+
+    <!--            <TextView-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_gravity="center"-->
+    <!--                android:layout_marginTop="@dimen/_20sdp"-->
+    <!--                android:text="@string/pro_master"-->
+    <!--                android:textColor="@android:color/black"-->
+    <!--                android:textSize="@dimen/_13ssp" />-->
+
+    <!--            <TextView-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_gravity="center"-->
+    <!--                android:layout_marginTop="@dimen/_20sdp"-->
+    <!--                android:text="@string/pro_plans"-->
+    <!--                android:textColor="@color/colorPrimary"-->
+    <!--                android:textSize="@dimen/_13ssp"-->
+    <!--                android:textStyle="bold" />-->
+
+    <!--            <ImageView-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:src="@drawable/icon_empty_master_class" />-->
+
+    <!--            <Button-->
+    <!--                android:id="@+id/btnViewPlans"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_margin="@dimen/_20sdp"-->
+    <!--                android:background="@color/btn_yellow"-->
+    <!--                android:text="@string/view_plans"-->
+    <!--                android:textAllCaps="false"-->
+    <!--                android:textColor="@android:color/white" />-->
+
+    <!--            <Button-->
+    <!--                android:id="@+id/btnBack"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginLeft="@dimen/_20sdp"-->
+    <!--                android:layout_marginRight="@dimen/_20sdp"-->
+    <!--                android:background="@android:color/transparent"-->
+    <!--                android:text="Go Back"-->
+    <!--                android:textAllCaps="false"-->
+    <!--                android:textColor="@android:color/black" />-->
+    <!--        </LinearLayout>-->
+    <!--    </LinearLayout>-->
+</layout>

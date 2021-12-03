@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+
+        <import type="android.view.View" alias="View" />
+        <variable
+            name="loginCallback"
+            type="app.technotech.koncpt.ui.callbacks.LoginCallback" />
+
+        <variable
+            name="loginViewModel"
+            type="app.technotech.koncpt.ui.viewmodels.LoginViewModel" />
+        
+    </data>
+
+    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".ui.fragments.user.LoginFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/img_logo"
+                    android:layout_width="@dimen/_94sdp"
+                    android:layout_height="@dimen/_94sdp"
+                    android:contentDescription="@string/image_description"
+                    android:src="@drawable/app_logo"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt_login_now"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:text="Login Now"
+                    android:textColor="@color/txt_welcome_color"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/img_logo" />
+
+                <TextView
+                    android:id="@+id/txt_tag_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:gravity="center_horizontal"
+                    android:text="Please Login to continue using our app."
+                    android:textColor="@color/login_text"
+                    android:textSize="13sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_login_now" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_layout_email"
+                    style="@style/Widget.Design.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_16sdp"
+                    android:hint="@string/login_email"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_tag_line">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edt_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:importantForAutofill="no"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_layout_password"
+                    style="@style/Widget.Design.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_16sdp"
+                    android:hint="@string/login_password"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/input_layout_email">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edt_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:importantForAutofill="no"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/txt_forget_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:gravity="end"
+                    android:text="@string/login_forgot"
+                    android:onClick="@{(v)->loginCallback.onForgotPassword()}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/input_layout_password" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_margin="@dimen/_20sdp"
+                    android:backgroundTint="@color/btn_yellow"
+                    android:padding="0dp"
+                    android:text="Login"
+                    app:elevation="@dimen/_4sdp"
+                    android:onClick="@{(v)->loginCallback.onLogin()}"
+                    android:textSize="@dimen/_15ssp"
+                    app:cornerRadius="4dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_forget_pass" />
+
+                <TextView
+                    android:id="@+id/txt_do_not_have_account"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:text="Don't have account? Create a "
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:onClick="@{(v)->loginCallback.onSignUp()}"
+                    app:layout_constraintEnd_toStartOf="@+id/txt_create_account"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_login"/>
+
+                <TextView
+                    android:id="@+id/txt_create_account"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:text="new account"
+                    android:textColor="@color/colorAccent"
+                    android:gravity="end"
+                    android:onClick="@{(v)->loginCallback.onSignUp()}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_login"/>
+
+                <TextView
+                    android:id="@+id/txt_or_tag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_16sdp"
+                    android:gravity="center"
+                    android:text="---------------------------- OR ----------------------------"
+                    android:textColor="@color/login_or_text"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_create_account" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_face_book"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_margin="@dimen/_16sdp"
+                    android:backgroundTint="@color/btn_facebook"
+                    android:gravity="center"
+                    app:elevation="@dimen/_4sdp"
+                    android:padding="@dimen/_8sdp"
+                    app:icon="@drawable/ic_facebook_icon"
+                    app:iconGravity="textStart"
+                    android:onClick="@{(v)->loginCallback.onFBLogin()}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/btn_email"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_or_tag" />
+
+                <TextView
+                    android:id="@+id/txt_term_tag_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:gravity="end"
+                    android:onClick="@{(v)->loginCallback.onTermCondition()}"
+                    android:text="By signing up, you agree with our"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/txt_term_tag_two"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_face_book" />
+
+
+                <TextView
+                    android:id="@+id/txt_term_tag_two"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:gravity="start"
+                    android:text="@string/txt_welcome_terms_condition"
+                    android:onClick="@{(v)->loginCallback.onTermCondition()}"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_constraintLeft_toRightOf="@+id/txt_term_tag_one"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_face_book" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

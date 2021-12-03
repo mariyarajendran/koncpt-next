@@ -1,0 +1,238 @@
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import
+            alias="View"
+            type="android.view.View" />
+        
+        <variable
+            name="resultCallback"
+            type="app.technotech.koncpt.ui.callbacks.ShowResultCallback" />
+        
+        
+        <variable
+            name="resultViewModel"
+            type="app.technotech.koncpt.ui.viewmodels.ResultShowViewModel" />
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/_16sdp"
+        android:background="@android:color/white"
+        tools:context="app.technotech.koncpt.ui.fragments.testTabs.ResultExamFragment">
+
+
+        <ImageView
+            android:id="@+id/img_close_ratting_dialog"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="@dimen/_10sdp"
+            android:src="@drawable/ic_icon_close_24"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <RelativeLayout
+            android:id="@+id/relative_seek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_close_ratting_dialog">
+
+
+            <io.feeeei.circleseekbar.CircleSeekBar
+                android:id="@+id/seek"
+                android:layout_width="@dimen/_108sdp"
+                android:layout_height="@dimen/_108sdp"
+                app:wheel_cur_process="75"
+                app:wheel_max_process="100"
+                app:wheel_reached_width="8dp"
+                app:wheel_unreached_color="@color/bg_light_gray"
+                app:wheel_unreached_width="8dp" />
+
+            <TextView
+                android:id="@+id/textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="75"
+                android:textSize="@dimen/_24ssp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linear_questions_status"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_90sdp"
+            android:layout_margin="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/relative_seek"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/relative_seek"
+            app:layout_constraintTop_toBottomOf="@+id/img_close_ratting_dialog">
+
+
+            <LinearLayout
+                android:id="@+id/linear_attempted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/_8sdp"
+                    android:layout_height="@dimen/_8sdp"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center_vertical" />
+
+                <TextView
+                    android:id="@+id/textViewCorrect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:gravity="center_vertical"
+                    android:text="15 Correct"
+                    android:textSize="@dimen/_10ssp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/linear_not_correct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/_8sdp"
+                    android:layout_height="@dimen/_8sdp"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@android:color/holo_red_dark"
+                    android:gravity="center_vertical" />
+
+                <TextView
+                    android:id="@+id/textViewNotCorrect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:gravity="center_vertical"
+                    android:text="15 incorrect"
+                    android:textSize="@dimen/_10ssp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_not_attempted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/_8sdp"
+                    android:layout_height="@dimen/_8sdp"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@color/bg_light_gray"
+                    android:gravity="center_vertical" />
+
+                <TextView
+                    android:id="@+id/textViewNotAttemped"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:gravity="center_vertical"
+                    android:text="15 not attempt"
+                    android:textSize="@dimen/_10ssp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/txt_ratting_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:gravity="center"
+            android:text="Congratulation!"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/relative_seek" />
+
+
+        <TextView
+            android:id="@+id/txt_percentage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:gravity="center"
+            android:text="Your score was 75%"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_13ssp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_ratting_text" />
+
+        <TextView
+            android:id="@+id/txt_percentage_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:gravity="center"
+            android:text="You solved 16 high yield MCQs and got 75% Correct"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_13ssp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_percentage" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_20sdp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:padding="@dimen/_10sdp"
+            android:onClick="@{(v)->resultCallback.onReviewQuestions()}"
+            android:text="Review Questions"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"
+            app:cornerRadius="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_percentage_msg" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
