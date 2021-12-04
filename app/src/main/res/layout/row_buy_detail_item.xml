@@ -12,9 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
-        android:orientation="vertical"
-
-        >
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -67,6 +65,17 @@
             android:textColor="@android:color/black"
             android:textSize="@dimen/_10ssp" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnBuyNowItem"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/drawable_button_green"
+            android:text="@string/message_buy"
+            android:textColor="@android:color/white"
+            android:visibility="visible" />
 
         <View
             android:layout_width="match_parent"

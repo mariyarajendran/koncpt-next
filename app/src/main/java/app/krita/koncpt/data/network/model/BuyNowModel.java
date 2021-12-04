@@ -42,8 +42,8 @@ public class BuyNowModel {
         this.data = data;
     }
 
-    public class Datum {
 
+    public class Datum {
         @SerializedName("id")
         @Expose
         private Integer id;
@@ -58,7 +58,7 @@ public class BuyNowModel {
         private String slug;
         @SerializedName("validity")
         @Expose
-        private Integer validity;
+        private String validity;
         @SerializedName("validity_type")
         @Expose
         private String validityType;
@@ -110,11 +110,11 @@ public class BuyNowModel {
             this.slug = slug;
         }
 
-        public Integer getValidity() {
+        public String getValidity() {
             return validity;
         }
 
-        public void setValidity(Integer validity) {
+        public void setValidity(String validity) {
             this.validity = validity;
         }
 

@@ -66,6 +66,84 @@ public class BuyDetailsModel {
         @SerializedName("create_at")
         @Expose
         private String createAt;
+        @SerializedName("validity")
+        @Expose
+        private String validity;
+        @SerializedName("validity_type")
+        @Expose
+        private String validity_type;
+        @SerializedName("subscription_start_date")
+        @Expose
+        private String subscription_start_date;
+        @SerializedName("level_id")
+        @Expose
+        private String level_id;
+        @SerializedName("plan_id")
+        @Expose
+        private String plan_id;
+        @SerializedName("level_active")
+        @Expose
+        private Integer level_active;
+        @SerializedName("amount")
+        @Expose
+        private String amount;
+
+        public String getAmount() {
+            return amount;
+        }
+
+        public void setAmount(String amount) {
+            this.amount = amount;
+        }
+
+        public String getValidity() {
+            return validity;
+        }
+
+        public void setValidity(String validity) {
+            this.validity = validity;
+        }
+
+        public String getValidity_type() {
+            return validity_type;
+        }
+
+        public void setValidity_type(String validity_type) {
+            this.validity_type = validity_type;
+        }
+
+        public String getSubscription_start_date() {
+            return subscription_start_date;
+        }
+
+        public void setSubscription_start_date(String subscription_start_date) {
+            this.subscription_start_date = subscription_start_date;
+        }
+
+        public String getLevel_id() {
+            return level_id;
+        }
+
+        public void setLevel_id(String level_id) {
+            this.level_id = level_id;
+        }
+
+        public String getPlan_id() {
+            return plan_id;
+        }
+
+        public void setPlan_id(String plan_id) {
+            this.plan_id = plan_id;
+        }
+
+        public Integer getLevel_active() {
+            return level_active;
+        }
+
+        public void setLevel_active(Integer level_active) {
+            this.level_active = level_active;
+        }
+
 
         public Integer getId() {
             return id;

@@ -199,4 +199,7 @@
     <string name="download_open_failed">No app to handle file</string>
     <string name="action_download">Download</string>
 
+    <!--Buy plans-->
+    <string name="message_buy">Buy</string>
+
 </resources>

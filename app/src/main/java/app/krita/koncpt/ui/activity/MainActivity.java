@@ -455,7 +455,6 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
 
     public interface passOnData {
         void onSuccess(String s);
-
         void onFailure(int i, String s);
     }
 

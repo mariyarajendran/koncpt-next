@@ -11,5 +11,4 @@
     <padding
         android:left="@dimen/_16sdp"
         android:right="@dimen/_16sdp" />
-
 </shape>

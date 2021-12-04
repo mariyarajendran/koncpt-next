@@ -155,12 +155,9 @@ public class GeneralUtils {
 
 
     public AlertDialog showProgressDialog() {
-
         AlertDialog dialog = new SpotsDialog.Builder().setContext(context).build();
-
         dialog.setMessage("Loading...");
         dialog.setCancelable(false);
-
         return dialog;
     }
 
@@ -418,13 +415,14 @@ public class GeneralUtils {
 
     /**
      * Check if there are sufficient permissions to download a file and otherwise prompt
+     *
      * @param context Context
      * @return True if permission is given
      */
     public static boolean hasPermissionToDownload(final Activity context) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M ||
                 ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                        == PackageManager.PERMISSION_GRANTED )
+                        == PackageManager.PERMISSION_GRANTED)
             return true;
 
         androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(context);
@@ -433,8 +431,8 @@ public class GeneralUtils {
             public void onClick(DialogInterface dialog, int id) {
                 // Fire off an async request to actually get the permission
                 // This will show the standard permission request dialog UI
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-                    context.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                    context.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
             }
         });
         androidx.appcompat.app.AlertDialog dialog = builder.create();
@@ -443,7 +441,7 @@ public class GeneralUtils {
         return false;
     }
 
-    public static int getRemainingDate(String strDate){
+    public static int getRemainingDate(String strDate) {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
@@ -461,11 +459,10 @@ public class GeneralUtils {
             String dayDifference = Long.toString(daysDiff);
 
             return Integer.parseInt(dayDifference);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
 
         }
         return -1;
     }
-
 }

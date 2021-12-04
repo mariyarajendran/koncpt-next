@@ -2,6 +2,7 @@ package app.technotech.koncpt.remote;
 
 import java.util.Map;
 
+import app.krita.koncpt.data.network.model.UserSubscriptionModel;
 import app.technotech.koncpt.data.network.model.AboutusModel;
 import app.technotech.koncpt.data.network.model.AnswerMcqOfTheDayModel;
 import app.technotech.koncpt.data.network.model.BookmarkSaveModel;
@@ -77,6 +78,10 @@ public interface ApiConnections {
     @FormUrlEncoded
     @POST("api.php")
     public Call<WelcomeModel> getOtpResponse(@FieldMap Map<String, String> data);
+
+    @FormUrlEncoded
+    @POST("api.php")
+    public Call<UserSubscriptionModel> getUserSubscriptionResponse(@FieldMap Map<String, String> data);
 
     @FormUrlEncoded
     @POST("api.php")
@@ -228,11 +233,12 @@ public interface ApiConnections {
 //    Call<NotesModel> getNotesModelresponse(@FieldMap Map<String, String> params);
 
 
-    @GET("user/all-plan")
-    public Call<BuyNowModel> getBuyNowModelresponse();
+    @FormUrlEncoded
+    @POST("api.php")
+    public Call<BuyNowModel> getBuyNowModelresponse(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
-    @POST("user/plan_detail")
+    @POST("api.php")
     Call<BuyDetailsModel> getBuyDetailsResponse(@FieldMap Map<String, String> params);
 
 //

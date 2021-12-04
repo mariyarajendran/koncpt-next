@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.Map;
 
+import app.krita.koncpt.data.network.model.UserSubscriptionModel;
 import app.technotech.koncpt.data.network.model.BuyDetailsModel;
 import app.technotech.koncpt.data.network.model.PaymentSuccessModel;
 import app.technotech.koncpt.data.network.model.UserModelLogin;
@@ -24,5 +25,9 @@ public class BuyDetailsViewModel extends ViewModel {
 
     public MutableLiveData<UserModelLogin> getUserData(Map<String, String> params){
         return repository.getUserRepository(params);
+    }
+
+    public MutableLiveData<UserSubscriptionModel> getUserSubscriptionData(Map<String, String> params){
+        return repository.getUserSubscriptionRepository(params);
     }
 }

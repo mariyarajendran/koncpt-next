@@ -36,19 +36,14 @@ public class SplashActivity extends AppCompatActivity {
         binding.setLifecycleOwner(this);
         model = new ViewModelProvider(this).get(SplashViewModel.class);
         binding.setSplashViewModel(model);
-
-
         if (new AppSharedPreference(getApplicationContext()).isLogin()) {
-
             callApi();
-
         } else {
             new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                 @Override
                 public void run() {
-
                     Intent redirect = new Intent(getApplicationContext(), UserAuthanticationActivity.class);
-                    redirect.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                    redirect.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(redirect);
                     finish();
                 }
@@ -71,16 +66,13 @@ public class SplashActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        if (profileModel!= null){
-                            if (profileModel.getStatus() == 1){
-
+                        if (profileModel != null) {
+                            if (profileModel.getStatus() == 1) {
                                 String jsonData = new Gson().toJson(profileModel.getData());
                                 new AppSharedPreference(getApplicationContext()).addUserData(jsonData);
                                 new AppSharedPreference(getApplicationContext()).saveHomeScreenData(null);
-
-
-                                Intent intent=new Intent(getApplicationContext(),MainActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
                                 finish();
                             }

@@ -12,24 +12,23 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import app.krita.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.R;
 import app.technotech.koncpt.data.network.model.BuyNowModel;
 import app.technotech.koncpt.databinding.FragmentBuyNowBinding;
-import app.technotech.koncpt.ui.activity.MainActivity;
 import app.technotech.koncpt.ui.callbacks.PlanCallbacks;
 import app.technotech.koncpt.ui.viewmodels.BuyNowViewModel;
 import app.technotech.koncpt.utils.AppSharedPreference;
@@ -87,10 +86,12 @@ public class BuyNowFragment extends Fragment {
     }
 
     private void callBuyNowApi() {
+        Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.AllPlans.getValue());
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
-        model.getHuntData().observe(getActivity(), new Observer<BuyNowModel>() {
+        model.getHuntData(params).observe(getActivity(), new Observer<BuyNowModel>() {
             @Override
             public void onChanged(BuyNowModel buyNowModel) {
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
@@ -104,18 +105,18 @@ public class BuyNowFragment extends Fragment {
                                 buyNowData = buyNowModel;
                                 String response = new Gson().toJson(buyNowModel);
                                 DebugLog.e("Response : " + response);
-                                for (int i = 0 ; i < buyNowModel.getData().size() ; i++){
-                                    if (buyNowModel.getData().get(i).getStatus() == 1){
-                                        if (buyNowModel.getData().get(i).getId() == 1){
+                                for (int i = 0; i < buyNowModel.getData().size(); i++) {
+                                    if (buyNowModel.getData().get(i).getStatus() == 1) {
+                                        if (buyNowModel.getData().get(i).getId() == 1) {
                                             binding.cardPlanAContainer.setVisibility(View.VISIBLE);
                                         }
-                                        if (buyNowModel.getData().get(i).getId() == 2){
+                                        if (buyNowModel.getData().get(i).getId() == 2) {
                                             binding.cardPlanBContainer.setVisibility(View.VISIBLE);
                                         }
-                                        if (buyNowModel.getData().get(i).getId() == 3){
+                                        if (buyNowModel.getData().get(i).getId() == 3) {
                                             binding.cardPlanCContainer.setVisibility(View.VISIBLE);
                                         }
-                                        if (buyNowModel.getData().get(i).getId() == 4){
+                                        if (buyNowModel.getData().get(i).getId() == 4) {
                                             binding.cardPlanDContainer.setVisibility(View.VISIBLE);
                                         }
                                     }
@@ -129,26 +130,26 @@ public class BuyNowFragment extends Fragment {
                                 binding.txtHeadingThree.setText(buyNowModel.getData().get(2).getPlanHeading());
                                 binding.txtHeadingFour.setText(buyNowModel.getData().get(3).getPlanHeading());
                                 String plantType = new AppSharedPreference(getActivity()).getUserResponse().getPlan();
-                                int unicode = U+2705;
-                                switch (plantType){
-                                    case "a" :
-                                    case "A" :
-                                        binding.btnA.setText(buyNowModel.getData().get(0).getName()+"   ✔");
+                                int unicode = U + 2705;
+                                switch (plantType) {
+                                    case "a":
+                                    case "A":
+                                        binding.btnA.setText(buyNowModel.getData().get(0).getName() + "   ✔");
                                         binding.txtHeadingOne.setText("Current Plan");
                                         break;
-                                    case "b" :
-                                    case "B" :
-                                        binding.btnB.setText(buyNowModel.getData().get(1).getName()+"   ✔");
+                                    case "b":
+                                    case "B":
+                                        binding.btnB.setText(buyNowModel.getData().get(1).getName() + "   ✔");
                                         binding.txtHeadingTwo.setText("Current Plan");
                                         break;
-                                    case "c" :
-                                    case "C" :
-                                        binding.btnC.setText(buyNowModel.getData().get(2).getName()+"   ✔");
+                                    case "c":
+                                    case "C":
+                                        binding.btnC.setText(buyNowModel.getData().get(2).getName() + "   ✔");
                                         binding.txtHeadingThree.setText("Current Plan");
                                         break;
-                                    case "d" :
-                                    case "D" :
-                                        binding.btnD.setText(buyNowModel.getData().get(3).getName()+"   ✔");
+                                    case "d":
+                                    case "D":
+                                        binding.btnD.setText(buyNowModel.getData().get(3).getName() + "   ✔");
                                         binding.txtHeadingFour.setText("Current Plan");
                                         break;
                                 }
@@ -161,8 +162,6 @@ public class BuyNowFragment extends Fragment {
 
             }
         });
-
-
     }
 
     private void clickListener() {
@@ -172,8 +171,9 @@ public class BuyNowFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putInt("id", buyNowData.getData().get(0).getId());
                 bundle.putString("name", buyNowData.getData().get(0).getName());
+                bundle.putString("heading", buyNowData.getData().get(0).getPlanHeading());
                 bundle.putString("package", buyNowData.getData().get(0).getAmount());
-                bundle.putInt("validity", buyNowData.getData().get(0).getValidity());
+                bundle.putString("validity", buyNowData.getData().get(0).getValidity());
                 bundle.putString("type", "A");
                 Navigation.findNavController(binding.getRoot()).navigate(R.id.buyDetailsFragment, bundle);
             }
@@ -183,8 +183,9 @@ public class BuyNowFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putInt("id", buyNowData.getData().get(1).getId());
                 bundle.putString("name", buyNowData.getData().get(1).getName());
+                bundle.putString("heading", buyNowData.getData().get(1).getPlanHeading());
                 bundle.putString("package", buyNowData.getData().get(1).getAmount());
-                bundle.putInt("validity", buyNowData.getData().get(1).getValidity());
+                bundle.putString("validity", buyNowData.getData().get(1).getValidity());
                 bundle.putString("type", "B");
                 Navigation.findNavController(binding.getRoot()).navigate(R.id.buyDetailsFragment, bundle);
             }
@@ -194,8 +195,9 @@ public class BuyNowFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putInt("id", buyNowData.getData().get(2).getId());
                 bundle.putString("name", buyNowData.getData().get(2).getName());
+                bundle.putString("heading", buyNowData.getData().get(2).getPlanHeading());
                 bundle.putString("package", buyNowData.getData().get(2).getAmount());
-                bundle.putInt("validity", buyNowData.getData().get(2).getValidity());
+                bundle.putString("validity", buyNowData.getData().get(2).getValidity());
                 bundle.putString("type", "C");
                 Navigation.findNavController(binding.getRoot()).navigate(R.id.buyDetailsFragment, bundle);
             }
@@ -205,8 +207,9 @@ public class BuyNowFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putInt("id", buyNowData.getData().get(3).getId());
                 bundle.putString("name", buyNowData.getData().get(3).getName());
+                bundle.putString("heading", buyNowData.getData().get(3).getPlanHeading());
                 bundle.putString("package", buyNowData.getData().get(3).getAmount());
-                bundle.putInt("validity", buyNowData.getData().get(3).getValidity());
+                bundle.putString("validity", buyNowData.getData().get(3).getValidity());
                 bundle.putString("type", "D");
                 Navigation.findNavController(binding.getRoot()).navigate(R.id.buyDetailsFragment, bundle);
             }

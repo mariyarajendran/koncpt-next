@@ -37,7 +37,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import app.krita.koncpt.utils.DateUtil;
 import app.krita.koncpt.utils.EnumApiAction;
+import app.krita.koncpt.utils.TextUtil;
 import app.technotech.koncpt.R;
 import app.technotech.koncpt.data.network.model.BuyDetailsModel;
 import app.technotech.koncpt.data.network.model.PaymentFailureResponse;
@@ -60,11 +62,12 @@ public class BuyNowDetailFragment extends Fragment implements MainActivity.passO
     private BuyDetailsAdapter buyDetailsAdapter;
     int id, validaty;
     String idValue, type;
-    String name, amount;
+    String name, amount, heading;
     TextView txtAmount, txtPlanName, txtValidaty, txtHeading;
     private AlertDialog progressDialog;
     private MainActivity mainActivity;
     MainActivity.passOnData listener;
+    DateUtil dateUtils;
 
     public BuyNowDetailFragment() {
         // Required empty public constructor
@@ -75,6 +78,7 @@ public class BuyNowDetailFragment extends Fragment implements MainActivity.passO
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             name = getArguments().getString("name");
+            heading = getArguments().getString("heading");
             id = getArguments().getInt("id");
             idValue = String.valueOf(id);
             amount = getArguments().getString("package");
@@ -105,10 +109,12 @@ public class BuyNowDetailFragment extends Fragment implements MainActivity.passO
         if (getActivity() instanceof MainActivity) {
             ((MainActivity) getActivity()).setSendData(this);
         }
+        dateUtils = new DateUtil();
         generalUtils = new GeneralUtils(getActivity());
         sharedPreference = new AppSharedPreference(getActivity());
         progressDialog = generalUtils.showProgressDialog();
         binding.txtPlanName.setText(name);
+        binding.txtHeading.setText(heading);
         binding.txtAmount.setText("\u20B9" + amount);
         binding.txtValidaty.setText("(" + String.valueOf(validaty) + "year" + ")");
         String currentPlan = sharedPreference.getUserResponse().getPlan().toUpperCase();
@@ -126,7 +132,6 @@ public class BuyNowDetailFragment extends Fragment implements MainActivity.passO
             @Override
             public void onClick(View v) {
                 try {
-
                     Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("9428190633"));
                     startActivity(intent);
                 } catch (Exception ex) {
@@ -163,13 +168,44 @@ public class BuyNowDetailFragment extends Fragment implements MainActivity.passO
         menu.findItem(R.id.action_search).setVisible(false);
         menu.findItem(R.id.action_index).setVisible(false);
         super.onPrepareOptionsMenu(menu);
+    }
 
+    private void onApiCallUserSubscription(BuyDetailsModel.Data data) {
+        Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.UserSubscription.getValue());
+        params.put("user_id", Integer.toString(new AppSharedPreference(getActivity()).getUserResponse().getId()));
+        params.put("plan_id", TextUtil.cutNull(data.getPlan_id()));
+        params.put("level_id", TextUtil.cutNull(data.getLevel_id()));
+        params.put("validity", TextUtil.cutNull(data.getValidity()));
+        params.put("validity_type", TextUtil.cutNull(data.getValidity_type()));
+        params.put("subscription_start_date", TextUtil.cutNull(dateUtils.getCurrentDate()));
+        if (!progressDialog.isShowing()) {
+            progressDialog.show();
+        }
+        model.getUserSubscriptionData(params).observe(getActivity(), userSubscription -> new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                }
+                if (userSubscription != null) {
+                    if (userSubscription.getStatus() == 1) {
+                        navigateToHomeFragment();
+                        Toasty.success(getActivity(), userSubscription.getMessage()).show();
+                    } else {
+                        Toasty.error(getActivity(), userSubscription.getMessage()).show();
+                    }
+                }
+            }
+        }, 500));
     }
 
 
     private void onApiCall() {
         Map<String, String> params = new HashMap<>();
-        params.put("package_id", idValue);
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.PlanWiseLevel.getValue());
+        params.put("user_id", Integer.toString(new AppSharedPreference(getActivity()).getUserResponse().getId()));
+        params.put("plan_id", idValue);
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
@@ -201,7 +237,9 @@ public class BuyNowDetailFragment extends Fragment implements MainActivity.passO
     private void loadData(BuyDetailsModel notesModel) {
         binding.recyclerViewDetails.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.recyclerViewDetails.setItemAnimator(new DefaultItemAnimator());
-        buyDetailsAdapter = new BuyDetailsAdapter(getActivity(), notesModel.getData());
+        buyDetailsAdapter = new BuyDetailsAdapter(getActivity(), notesModel.getData(), (int position) -> {
+            onApiCallUserSubscription(notesModel.getData().get(position));
+        });
         binding.recyclerViewDetails.setAdapter(buyDetailsAdapter);
     }
 
@@ -336,6 +374,11 @@ public class BuyNowDetailFragment extends Fragment implements MainActivity.passO
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    private void navigateToHomeFragment() {
+        NavController navController = ((MainActivity) requireActivity()).getmNavController();
+        navController.navigate(R.id.homeFragment);
     }
 
     @Override

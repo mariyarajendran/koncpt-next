@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 
 import java.util.Map;
 
+import app.krita.koncpt.data.network.model.UserSubscriptionModel;
 import app.krita.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.data.network.model.AboutusModel;
 import app.technotech.koncpt.data.network.model.AnswerMcqOfTheDayModel;
@@ -135,6 +136,31 @@ public class Repository {
             }
         });
 
+        return data;
+    }
+
+
+    public MutableLiveData<UserSubscriptionModel> getUserSubscriptionRepository(Map<String, String> params) {
+        final MutableLiveData<UserSubscriptionModel> data = new MutableLiveData<UserSubscriptionModel>();
+        connection.getUserSubscriptionResponse(params).enqueue(new Callback<UserSubscriptionModel>() {
+            @Override
+            public void onResponse(Call<UserSubscriptionModel> call, retrofit2.Response<UserSubscriptionModel> response) {
+                try {
+                    data.setValue(response.body());
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserSubscriptionModel> call, Throwable t) {
+                try {
+                    data.setValue(null);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
         return data;
     }
 
@@ -978,7 +1004,6 @@ public class Repository {
     }
 
 
-
     public MutableLiveData<String> getCustomExamQuestionsRepositoryString(Map<String, String> params) {
 
         final MutableLiveData<String> data = new MutableLiveData<String>();
@@ -1151,11 +1176,11 @@ public class Repository {
     }
 
 
-    public MutableLiveData<BuyNowModel> getBuyModelRespository() {
+    public MutableLiveData<BuyNowModel> getBuyModelRespository(Map<String, String> params) {
 
         final MutableLiveData<BuyNowModel> data = new MutableLiveData<>();
 
-        connection.getBuyNowModelresponse().enqueue(new Callback<BuyNowModel>() {
+        connection.getBuyNowModelresponse(params).enqueue(new Callback<BuyNowModel>() {
             @Override
             public void onResponse(Call<BuyNowModel> call, retrofit2.Response<BuyNowModel> response) {
 

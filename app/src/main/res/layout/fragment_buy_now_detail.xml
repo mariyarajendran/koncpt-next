@@ -50,10 +50,11 @@
 
                         <TextView
                             android:id="@+id/txtPlanName"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="@dimen/_20sdp"
+                            android:gravity="center"
                             android:hint="Plan Name"
                             android:textColor="@color/colorPrimary"
                             android:textSize="@dimen/_16ssp"
@@ -105,10 +106,11 @@
 
                         <TextView
                             android:id="@+id/txtHeading"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="@dimen/_20sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:gravity="center_horizontal"
                             android:hint="@string/plan_heading"
                             android:textColor="@android:color/black"
                             android:textSize="@dimen/_14ssp"
@@ -118,8 +120,7 @@
                             android:id="@+id/recyclerViewDetails"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/_20sdp"
-                            android:nestedScrollingEnabled="false" />
+                            android:layout_margin="@dimen/_20sdp" />
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/btnBuyNow"
@@ -128,7 +129,8 @@
                             android:layout_margin="@dimen/_20sdp"
                             android:background="@color/btn_yellow"
                             android:text="Buy Now"
-                            android:textColor="@android:color/white" />
+                            android:textColor="@android:color/white"
+                            android:visibility="gone" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
