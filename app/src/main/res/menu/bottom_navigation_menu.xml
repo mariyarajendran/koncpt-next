@@ -5,15 +5,16 @@
         android:id="@+id/homeFragment"
         android:icon="@drawable/icon_bottom_menu_home"
         android:title="@string/title_bottom_menu_home" />
-    <item
-        android:id="@+id/dailyHuntFragment"
-        android:icon="@drawable/icon_bottom_menu_daily_hunt"
-        android:title="@string/title_bottom_menu_daily_hunt" />
 
     <item
-        android:id="@+id/questionBankFragment"
+        android:id="@+id/questionBankLevelFragment"
         android:icon="@drawable/icon_bottom_menu_q_bank"
         android:title="@string/title_bottom_menu_qbank" />
+
+    <item
+        android:id="@+id/liveClassesFragment"
+        android:icon="@drawable/icon_bottom_menu_live_class"
+        android:title="@string/title_bottom_menu_classes" />
 
     <item
         android:id="@+id/testFragment"
@@ -21,8 +22,9 @@
         android:title="@string/title_bottom_menu_test" />
 
     <item
-        android:id="@+id/liveClassesFragment"
-        android:icon="@drawable/icon_bottom_menu_live_class"
-        android:title="@string/title_bottom_menu_classes" />
+        android:id="@+id/dailyHuntFragment"
+        android:icon="@drawable/icon_bottom_menu_daily_hunt"
+        android:title="@string/title_bottom_menu_daily_hunt" />
+
 
 </menu>
