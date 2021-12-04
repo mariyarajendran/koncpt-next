@@ -2,6 +2,7 @@ package app.technotech.koncpt.utils;
 
 public class AppConstants {
 
+    //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 git token
     //App
     public static final String PACKAGE_NAME = "app.technotech.koncpt";
 
