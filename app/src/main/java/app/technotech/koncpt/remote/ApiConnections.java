@@ -115,12 +115,12 @@ public interface ApiConnections {
     public Call<SubjectModel> getTopicsBySubject(@FieldMap Map<String, String> data);
 
     @FormUrlEncoded
-    @POST("topic_bookmark_user")
+    @POST("api.php")
     public Call<UserBookmarkTopicModel> getUserTopicModelResponse(@FieldMap Map<String, String> data);
 
 
     @FormUrlEncoded
-    @POST("bookmark_single_question")
+    @POST("api.php")
     public Call<BookmarkSingleQuestionModel> getSingleAnswerBookmarkResponse(@FieldMap Map<String, String> data);
 
 
@@ -134,12 +134,12 @@ public interface ApiConnections {
 
 
     @FormUrlEncoded
-    @POST("qbank-result")
+    @POST("api.php")
     public Call<QuestionsResultResponse> getQuestionBankResult(@FieldMap Map<String, String> data);
 
 
     @FormUrlEncoded
-    @POST("topic-ratting")
+    @POST("api.php")
     public Call<RatingResponse> getRatingResponse(@FieldMap Map<String, String> data);
 
     @FormUrlEncoded
@@ -163,19 +163,19 @@ public interface ApiConnections {
     public Call<ResultShowModel> getShowResultResponse(@FieldMap Map<String, String> data);
 
     @FormUrlEncoded
-    @POST("bookmarks/save")
+    @POST("api.php")
     public Call<BookmarkSaveModel> getBookmarkSavedResponse(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
-    @POST("user/subjectbookmarks")
+    @POST("api.php")
     public Call<SubjectBookmarkModel> getSubjectBookmarkResponse(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
-    @POST("user/bookmarks-subject-question")
+    @POST("api.php")
     public Call<QuestionBookmarkModel> getQuestionsBookmarkResponse(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
-    @POST("user/bookmarks")
+    @POST("api.php")
     public Call<QuestionBookmarkModel> getAllBookmarks(@FieldMap Map<String, String> params);
 
 
@@ -183,11 +183,11 @@ public interface ApiConnections {
     @POST("bookmarks/delete")
     public Call<DeleteBookmarkModel> getDeleteBookmarkResponse(@FieldMap Map<String, String> params);
 
-    @GET("subject_list")
-    public Call<SubjectListModel> getSubjectListResponse();
+    @GET("api.php")
+    public Call<SubjectListModel> getSubjectListResponse(@Query("action") String subjectList);
 
-    @GET("question-tags")
-    public Call<TagsModel> getQuestionTagsResponse();
+    @GET("api.php")
+    public Call<TagsModel> getQuestionTagsResponse(@Query("action") String questionTags);
 
     @FormUrlEncoded
     @POST("filter-qbank")
@@ -212,7 +212,7 @@ public interface ApiConnections {
     public Call<SubjectListDataModel> getSubjectListDataResponse(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
-    @POST("bookmarks/save")
+    @POST("api.php")
     public Call<MessageModel> getSaveBookmarkResponse(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
@@ -326,14 +326,14 @@ public interface ApiConnections {
     Call<ProfileModel> getProfileModelResponse(@FieldMap Map<String, String> params);
 
 
-    @GET("about-faculty")
-    public Call<FacultyModel> getFacultyResponse();
+    @GET("api.php")
+    public Call<FacultyModel> getFacultyResponse(@Query("action") String facultyList);
 
     @GET("about-us")
     public Call<AboutusModel> getAboutusResponse();
 
-    @GET("faqs-details")
-    public Call<FaqModel> getFaqResponse();
+    @GET("api.php")
+    public Call<FaqModel> getFaqResponse(@Query("action") String faqs);
 
     @GET("pages/terms-conditions")
     public Call<TNCModel> getTermsNConditionResponse();

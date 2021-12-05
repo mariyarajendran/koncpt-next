@@ -42,7 +42,7 @@ import app.technotech.koncpt.utils.GeneralUtils;
 import es.dmoral.toasty.Toasty;
 
 
-public class FreeClassesFragment extends Fragment implements AllTestRecyclerAdapter.OnItemClickListener , CustomBuyNowDialogFragment.OnNavigateToScreen {
+public class FreeClassesFragment extends Fragment implements AllTestRecyclerAdapter.OnItemClickListener, CustomBuyNowDialogFragment.OnNavigateToScreen {
 
     private FragmentFreeClassesBinding binding;
     private GeneralUtils utils;
@@ -56,16 +56,17 @@ public class FreeClassesFragment extends Fragment implements AllTestRecyclerAdap
 
     private String subject_id;
     private String subject_name;
+    private String levelId;
     private int destination = 0;
 
 
-
-    public static FreeClassesFragment getInstance(String params1, String params2){
+    public static FreeClassesFragment getInstance(String params1, String params2, String params3) {
 
         FreeClassesFragment fragment = new FreeClassesFragment();
         Bundle bundle = new Bundle();
         bundle.putString("subject_id", params1);
         bundle.putString("subject_name", params2);
+        bundle.putString("level_id", params3);
         fragment.setArguments(bundle);
         return fragment;
 
@@ -83,9 +84,10 @@ public class FreeClassesFragment extends Fragment implements AllTestRecyclerAdap
 
         Bundle bundle = getArguments();
 
-        if (bundle != null){
+        if (bundle != null) {
             subject_id = bundle.getString("subject_id");
             subject_name = bundle.getString("subject_name");
+            levelId = bundle.getString("level_id");
             destination = bundle.getInt("destination", 0);
         }
     }
@@ -116,13 +118,13 @@ public class FreeClassesFragment extends Fragment implements AllTestRecyclerAdap
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        if(getActivity()!=null){
+        if (getActivity() != null) {
 
         }
 
     }
 
-    private void init(){
+    private void init() {
 
         utils = new GeneralUtils(getActivity());
         progressDialog = utils.showProgressDialog();
@@ -133,8 +135,9 @@ public class FreeClassesFragment extends Fragment implements AllTestRecyclerAdap
 
         Map<String, String> params = new HashMap<>();
         params.put(EnumApiAction.action.getValue(), EnumApiAction.Topics.getValue());
-        params.put("subjectid", subject_id);
+        params.put("subject_id", subject_id);
         params.put("type", "3");
+        params.put("level_id", new AppSharedPreference(getActivity()).getLevelId());
         params.put("user_id", String.valueOf(new AppSharedPreference(getActivity()).getUserResponse().getId()));
 
 
@@ -219,7 +222,7 @@ public class FreeClassesFragment extends Fragment implements AllTestRecyclerAdap
     private void LoadLoginFragment(SubjectModel.ModuleDatum data) {
         String plantType = new AppSharedPreference(getActivity()).getUserResponse().getPlan();
 
-        if (plantType.equals("f")){
+        if (plantType.equals("f")) {
 
             if (data.getIsPaid() == 0) {
                 Bundle bundle = new Bundle();

@@ -39,9 +39,10 @@ import app.technotech.koncpt.ui.dialogs.CustomBuyNowDialogFragment;
 import app.technotech.koncpt.ui.viewmodels.SubjectViewModel;
 import app.technotech.koncpt.utils.AppSharedPreference;
 import app.technotech.koncpt.utils.GeneralUtils;
+import app.technotech.koncpt.utils.TextUtil;
 import es.dmoral.toasty.Toasty;
 
-public class CompleteClassesFragment extends Fragment  implements AllTestRecyclerAdapter.OnItemClickListener , CustomBuyNowDialogFragment.OnNavigateToScreen {
+public class CompleteClassesFragment extends Fragment implements AllTestRecyclerAdapter.OnItemClickListener, CustomBuyNowDialogFragment.OnNavigateToScreen {
 
 //    @BindView(R.id.rev_subject_chapter)
 //    RecyclerView mRevChapter;
@@ -56,7 +57,7 @@ public class CompleteClassesFragment extends Fragment  implements AllTestRecycle
 
     private String subject_id;
     private String subject_name;
-
+    private String levelId;
     private FragmentCompleteClassesBinding binding;
     private GeneralUtils utils;
     private SubjectViewModel model;
@@ -68,12 +69,13 @@ public class CompleteClassesFragment extends Fragment  implements AllTestRecycle
     private int destination = 0;
 
 
-    public static CompleteClassesFragment getInstance(String params1, String params2) {
+    public static CompleteClassesFragment getInstance(String params1, String params2, String params3) {
 
         CompleteClassesFragment fragment = new CompleteClassesFragment();
         Bundle bundle = new Bundle();
         bundle.putString("subject_id", params1);
         bundle.putString("subject_name", params2);
+        bundle.putString("level_id", params3);
         fragment.setArguments(bundle);
         return fragment;
 
@@ -93,6 +95,7 @@ public class CompleteClassesFragment extends Fragment  implements AllTestRecycle
         if (bundle != null) {
             subject_id = bundle.getString("subject_id");
             subject_name = bundle.getString("subject_name");
+            levelId = bundle.getString("level_id");
             destination = bundle.getInt("destination", 0);
         }
     }
@@ -134,35 +137,27 @@ public class CompleteClassesFragment extends Fragment  implements AllTestRecycle
     }
 
     private void callApi() {
-
         Map<String, String> params = new HashMap<>();
         params.put(EnumApiAction.action.getValue(), EnumApiAction.Topics.getValue());
-        params.put("subjectid", subject_id);
+        params.put("subject_id", TextUtil.cutNull(subject_id));
+        params.put("level_id", new AppSharedPreference(getActivity()).getLevelId());
         params.put("type", "1");
         params.put("user_id", String.valueOf(new AppSharedPreference(getActivity()).getUserResponse().getId()));
-
-
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
-
         model.getSubjectModel(params).observe(getActivity(), new Observer<SubjectModel>() {
             @Override
             public void onChanged(SubjectModel subjectModel) {
-
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
                         if (progressDialog.isShowing()) {
                             progressDialog.dismiss();
                         }
-
                         try {
-
                             if (subjectModel != null) {
                                 if (subjectModel.getStatus() == 1) {
-
                                     questionBankGroups = new ArrayList<>();
                                     for (int i = 0; i < subjectModel.getData().getModuleName().size(); i++) {
                                         String moduleName = subjectModel.getData().getModuleName().get(i).getModuleName();
@@ -172,26 +167,20 @@ public class CompleteClassesFragment extends Fragment  implements AllTestRecycle
                                                 datumList.add(subjectModel.getData().getModuleData().get(j));
                                             }
                                         }
-
                                         questionBankGroups.add(new SubjectQuestionBankGroup(moduleName, datumList));
                                         loadData();
                                     }
                                 } else {
                                     Toasty.info(getActivity(), subjectModel.getMessage()).show();
                                 }
-
                             }
-
                         } catch (Exception ex) {
                             ex.printStackTrace();
                         }
-
                     }
                 }, 500);
-
             }
         });
-
     }
 
 
@@ -221,7 +210,7 @@ public class CompleteClassesFragment extends Fragment  implements AllTestRecycle
     private void LoadLoginFragment(SubjectModel.ModuleDatum data) {
         String plantType = new AppSharedPreference(getActivity()).getUserResponse().getPlan();
 
-        if (plantType.equals("f")){
+        if (plantType.equals("f")) {
 
             if (data.getIsPaid() == 0) {
                 Bundle bundle = new Bundle();

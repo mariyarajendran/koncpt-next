@@ -38,9 +38,10 @@ import app.technotech.koncpt.ui.dialogs.CustomBuyNowDialogFragment;
 import app.technotech.koncpt.ui.viewmodels.SubjectViewModel;
 import app.technotech.koncpt.utils.AppSharedPreference;
 import app.technotech.koncpt.utils.GeneralUtils;
+import app.technotech.koncpt.utils.TextUtil;
 import es.dmoral.toasty.Toasty;
 
-public class PauseClassesFragment extends Fragment implements AllTestRecyclerAdapter.OnItemClickListener , CustomBuyNowDialogFragment.OnNavigateToScreen {
+public class PauseClassesFragment extends Fragment implements AllTestRecyclerAdapter.OnItemClickListener, CustomBuyNowDialogFragment.OnNavigateToScreen {
 
     private Context mContext;
 //    private View mView;
@@ -50,7 +51,7 @@ public class PauseClassesFragment extends Fragment implements AllTestRecyclerAda
 
     private String subject_id;
     private String subject_name;
-
+    private String levelId;
     private GeneralUtils utils;
     private SubjectViewModel model;
     private AlertDialog progressDialog;
@@ -62,12 +63,13 @@ public class PauseClassesFragment extends Fragment implements AllTestRecyclerAda
 
     private FragmentPauseClassesBinding binding;
 
-    public static PauseClassesFragment getInstance(String params1, String params2){
+    public static PauseClassesFragment getInstance(String params1, String params2, String params3) {
 
         PauseClassesFragment fragment = new PauseClassesFragment();
         Bundle bundle = new Bundle();
         bundle.putString("subject_id", params1);
         bundle.putString("subject_name", params2);
+        bundle.putString("level_id", params3);
         fragment.setArguments(bundle);
         return fragment;
 
@@ -86,9 +88,10 @@ public class PauseClassesFragment extends Fragment implements AllTestRecyclerAda
 
         Bundle bundle = getArguments();
 
-        if (bundle != null){
+        if (bundle != null) {
             subject_id = bundle.getString("subject_id");
             subject_name = bundle.getString("subject_name");
+            levelId = bundle.getString("level_id");
             destination = bundle.getInt("destination", 0);
         }
 
@@ -136,8 +139,9 @@ public class PauseClassesFragment extends Fragment implements AllTestRecyclerAda
 
         Map<String, String> params = new HashMap<>();
         params.put(EnumApiAction.action.getValue(), EnumApiAction.Topics.getValue());
-        params.put("subjectid", subject_id);
-        params.put("type", "0");
+        params.put("level_id", new AppSharedPreference(getActivity()).getLevelId());
+        params.put("subject_id", TextUtil.cutNull(subject_id));
+        params.put("type", "");
         params.put("user_id", String.valueOf(new AppSharedPreference(getActivity()).getUserResponse().getId()));
 
 
@@ -225,7 +229,7 @@ public class PauseClassesFragment extends Fragment implements AllTestRecyclerAda
     private void LoadLoginFragment(SubjectModel.ModuleDatum data) {
         String plantType = new AppSharedPreference(getActivity()).getUserResponse().getPlan();
 
-        if (plantType.equals("f")){
+        if (plantType.equals("f")) {
 
             if (data.getIsPaid() == 0) {
                 Bundle bundle = new Bundle();

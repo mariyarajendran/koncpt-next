@@ -32,6 +32,7 @@ import app.technotech.koncpt.databinding.FragmentBlookMarkBinding;
 import app.technotech.koncpt.ui.adapter.BookmarkRecyclerAdapter;
 import app.technotech.koncpt.ui.viewmodels.BookmarkViewModel;
 import app.technotech.koncpt.utils.AppSharedPreference;
+import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.utils.GeneralUtils;
 import es.dmoral.toasty.Toasty;
 
@@ -105,6 +106,8 @@ public class BlookMarkFragment extends Fragment implements BookmarkRecyclerAdapt
     private void onCallApi() {
 
         Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.SubjectBookmarks.getValue());
+        params.put("level_id", new AppSharedPreference(getActivity()).getLevelId());
         params.put("user_id", Integer.toString(new AppSharedPreference(getActivity()).getUserResponse().getId()));
 
 

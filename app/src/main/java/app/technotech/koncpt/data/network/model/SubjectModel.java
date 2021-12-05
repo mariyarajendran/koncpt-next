@@ -286,8 +286,6 @@ public class SubjectModel {
         }
 
 
-
-
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeValue(id);
             dest.writeValue(moduleId);
@@ -394,8 +392,6 @@ public class SubjectModel {
         @Expose
         private List<ModuleDatum> moduleData = null;
         public final Parcelable.Creator<Data> CREATOR = new Creator<Data>() {
-
-
             @SuppressWarnings({
                     "unchecked"
             })
@@ -406,7 +402,6 @@ public class SubjectModel {
             public Data[] newArray(int size) {
                 return (new Data[size]);
             }
-
         };
 
         protected Data(Parcel in) {

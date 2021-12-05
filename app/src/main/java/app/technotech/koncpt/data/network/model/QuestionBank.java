@@ -7,11 +7,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class QuestionBank implements Parcelable {
-
-
-    @SerializedName("id")
+    @SerializedName("subject_id")
     @Expose
-    private String id;
+    private String subject_id;
     @SerializedName("course_id")
     @Expose
     private String courseId;
@@ -68,11 +66,10 @@ public class QuestionBank implements Parcelable {
             return (new QuestionBank[size]);
         }
 
-    }
-            ;
+    };
 
     public QuestionBank(Parcel in) {
-        this.id = ((String) in.readValue((String.class.getClassLoader())));
+        this.subject_id = ((String) in.readValue((String.class.getClassLoader())));
         this.courseId = ((String) in.readValue((String.class.getClassLoader())));
         this.subjectTitle = ((String) in.readValue((String.class.getClassLoader())));
         this.subjectCode = ((String) in.readValue((String.class.getClassLoader())));
@@ -92,12 +89,13 @@ public class QuestionBank implements Parcelable {
     public QuestionBank() {
     }
 
-    public String getId() {
-        return id;
+
+    public String getSubject_id() {
+        return subject_id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setSubject_id(String subject_id) {
+        this.subject_id = subject_id;
     }
 
     public String getCourseId() {
@@ -213,7 +211,7 @@ public class QuestionBank implements Parcelable {
     }
 
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(id);
+        dest.writeValue(subject_id);
         dest.writeValue(courseId);
         dest.writeValue(subjectTitle);
         dest.writeValue(subjectCode);

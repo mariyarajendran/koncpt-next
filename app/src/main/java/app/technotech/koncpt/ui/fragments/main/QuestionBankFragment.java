@@ -50,12 +50,10 @@ import app.technotech.koncpt.utils.DebugLog;
 import app.technotech.koncpt.utils.GeneralUtils;
 
 public class QuestionBankFragment extends Fragment {
-
     private FragmentQuestionBankBinding binding;
     private QuestionsBankViewModel model;
     private GeneralUtils utils;
     private AlertDialog progressDialog;
-
     private QBankAdapter mAdapter;
     List<QuestionBankGroup> bankGroups = new ArrayList<>();
     private Context mContext;
@@ -109,16 +107,11 @@ public class QuestionBankFragment extends Fragment {
 
             @Override
             public void onClickTwo() {
-
-                //   new AppSharedPreference(getActivity()).saveCustomModule("null");
-
                 if (!new AppSharedPreference(getActivity()).isCustomModuleGenerated()) {
                     Navigation.findNavController(binding.getRoot()).navigate(R.id.action_questionBankFragment_to_customModuleFragment);
                 } else {
                     Navigation.findNavController(binding.getRoot()).navigate(R.id.action_questionBankFragment_to_customModuleStatus);
                 }
-
-
             }
 
             @Override
@@ -148,7 +141,6 @@ public class QuestionBankFragment extends Fragment {
     }
 
     private void init() {
-
         utils = new GeneralUtils(getActivity());
         progressDialog = utils.showProgressDialog();
         callSubjectApi();
@@ -160,7 +152,7 @@ public class QuestionBankFragment extends Fragment {
         Map<String, String> params = new HashMap<>();
         params.put(EnumApiAction.action.getValue(), EnumApiAction.AllSubject.getValue());
         params.put("user_id", userId);
-        params.put("level_id", levelId);
+        params.put("level_id", new AppSharedPreference(getActivity()).getLevelId());
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
@@ -246,7 +238,7 @@ public class QuestionBankFragment extends Fragment {
             ((DefaultItemAnimator) animator).setSupportsChangeAnimations(false);
         }
         AppCompatActivity activity = (AppCompatActivity) getContext();
-        mAdapter = new QBankAdapter(activity, bankGroups);
+        mAdapter = new QBankAdapter(activity, bankGroups, levelId);
         binding.revQBank.setLayoutManager(new LinearLayoutManager(mContext));
         binding.revQBank.setAdapter(mAdapter);
         mAdapter.expandAllGroups();

@@ -16,8 +16,19 @@ public enum EnumApiAction {
     AllPlans("all_plans"),
     PlanWiseLevel("plan_wise_level"),
     UserSubscription("user_level_subscription"),
+    SaveBookMark("save_bookmark"),
+    SubjectBookmarks("subject_bookmarks"),
+    Bookmarks("bookmarks"),
+    BookmarkSingleQuestion("bookmark_single_question"),
+    BookmarkQuesSubWise("bookmarks_ques_sub_wise"),
+    TopicBookMarkUser("topic_bookmark_user"),
+    QBankResult("qbank_result"),
+    TopicRatting("topic_ratting"),
+    FAQS("faqs"),
+    FacultyList("faculty_list"),
+    QuestionTags("question_tags"),
+    AllSubjectList("all_subject_list"),
     ProfileDetail("profile_detail");
-
     private String strValue;
 
     public String getValue() {
@@ -31,20 +42,21 @@ public enum EnumApiAction {
     EnumApiAction(String value) {
         this.strValue = value;
     }
-
-
 }
-
 /*
-* menu
-* Home
-* Qank
-* Classes
-* Test
-* Daily Hunt
-*
-* QBank
-* Iyear 2Year Subject  --  previous load
-* add new screen before -- based on levels subject --> hit plan level api (default plan A list id 1)
-* Display plan a levels --> and remove add lock symbole --> please subscribe level.
-* */
+ * menu
+ * Home
+ * Qank
+ * Classes
+ * Test
+ * Daily Hunt
+ *no need module name , need only module data ,, hide free
+ *
+ * issue all and pause
+ * need to add button
+ * level design to buy now
+ *
+ * label-- level name bind --- completed
+ * amount and buy now space  ---- completed
+ * book mark pre fill
+ * */

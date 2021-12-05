@@ -18,14 +18,15 @@ import app.technotech.koncpt.ui.adapter.viewholder.QuestionBankChildViewHolder;
 import app.technotech.koncpt.ui.adapter.viewholder.QuestionBankGroupViewHolder;
 
 public class QBankAdapter extends ExpandableRecyclerViewAdapter<QuestionBankGroupViewHolder, QuestionBankChildViewHolder> {
-
     final List<? extends ExpandableGroup> groups;
     final AppCompatActivity context;
+    final String levelId;
 
-    public QBankAdapter(AppCompatActivity context, List<? extends ExpandableGroup> groups) {
+    public QBankAdapter(AppCompatActivity context, List<? extends ExpandableGroup> groups, String levelId) {
         super(groups);
         this.context = context;
         this.groups = groups;
+        this.levelId = levelId;
     }
 
     @Override
@@ -39,7 +40,7 @@ public class QBankAdapter extends ExpandableRecyclerViewAdapter<QuestionBankGrou
     public QuestionBankChildViewHolder onCreateChildViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.layout_question_bank_list_item, parent, false);
-        return new QuestionBankChildViewHolder(view);
+        return new QuestionBankChildViewHolder(view, levelId);
     }
 
     @Override
@@ -57,12 +58,10 @@ public class QBankAdapter extends ExpandableRecyclerViewAdapter<QuestionBankGrou
     }
 
     public void expandAllGroups() {
-
         for (int i = 0; i < groups.size(); i++) {
             if (!isGroupExpanded(groups.get(i))) {
                 onGroupClick(expandableList.getFlattenedGroupIndex(i));
             }
         }
     }
-
 }

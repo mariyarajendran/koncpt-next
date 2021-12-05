@@ -423,12 +423,9 @@ public class Repository {
             @Override
             public void onResponse(Call<SubjectModel> call, retrofit2.Response<SubjectModel> response) {
                 try {
-
-
                     String jsondata = new Gson().toJson(response.body());
                     DebugLog.e("Response Status => " + jsondata);
                     data.setValue(response.body());
-
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -921,7 +918,7 @@ public class Repository {
 
         final MutableLiveData<SubjectListModel> data = new MutableLiveData<SubjectListModel>();
 
-        connection.getSubjectListResponse().enqueue(new Callback<SubjectListModel>() {
+        connection.getSubjectListResponse(EnumApiAction.AllSubjectList.getValue()).enqueue(new Callback<SubjectListModel>() {
             @Override
             public void onResponse(Call<SubjectListModel> call, retrofit2.Response<SubjectListModel> response) {
                 try {
@@ -949,7 +946,7 @@ public class Repository {
 
         final MutableLiveData<TagsModel> data = new MutableLiveData<TagsModel>();
 
-        connection.getQuestionTagsResponse().enqueue(new Callback<TagsModel>() {
+        connection.getQuestionTagsResponse(EnumApiAction.QuestionTags.getValue()).enqueue(new Callback<TagsModel>() {
             @Override
             public void onResponse(Call<TagsModel> call, retrofit2.Response<TagsModel> response) {
                 try {
@@ -1849,7 +1846,7 @@ public class Repository {
 
         final MutableLiveData<FacultyModel> data = new MutableLiveData<>();
 
-        connection.getFacultyResponse().enqueue(new Callback<FacultyModel>() {
+        connection.getFacultyResponse(EnumApiAction.FacultyList.getValue()).enqueue(new Callback<FacultyModel>() {
             @Override
             public void onResponse(Call<FacultyModel> call, retrofit2.Response<FacultyModel> response) {
 
@@ -1914,7 +1911,7 @@ public class Repository {
 
         final MutableLiveData<FaqModel> data = new MutableLiveData<>();
 
-        connection.getFaqResponse().enqueue(new Callback<FaqModel>() {
+        connection.getFaqResponse(EnumApiAction.FAQS.getValue()).enqueue(new Callback<FaqModel>() {
             @Override
             public void onResponse(Call<FaqModel> call, retrofit2.Response<FaqModel> response) {
 

@@ -37,6 +37,7 @@ import app.technotech.koncpt.ui.callbacks.ExplanationCallbacks;
 import app.technotech.koncpt.ui.viewmodels.BookmarkViewModel;
 import app.technotech.koncpt.utils.AppSharedPreference;
 import app.technotech.koncpt.utils.DebugLog;
+import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.utils.GeneralUtils;
 import es.dmoral.toasty.Toasty;
 
@@ -145,12 +146,11 @@ public class QuestionExplanationBottomFragment extends BottomSheetDialogFragment
         binding.txtOptionD.setText(quesItem.getAnswers().get(3).getOptionValue());
 
 
-        if(!TextUtils.isEmpty(quesItem.getRefrenceFrom()) && !quesItem.getRefrenceFrom().equals("NA")){
+        if (!TextUtils.isEmpty(quesItem.getRefrenceFrom()) && !quesItem.getRefrenceFrom().equals("NA")) {
             binding.revReferenceBook.setVisibility(View.VISIBLE);
             binding.txtReferenceLabel.setVisibility(View.VISIBLE);
             binding.revReferenceBook.setText(quesItem.getRefrenceFrom());
         }
-
 
 
         if (!TextUtils.isEmpty(quesItem.getQuestionFile()) && !quesItem.getQuestionFile().equals("NA")) {
@@ -164,7 +164,7 @@ public class QuestionExplanationBottomFragment extends BottomSheetDialogFragment
 
         }
 
-        binding.txtMcqId.setText("MCQ ID : " +quesItem.getId());
+        binding.txtMcqId.setText("MCQ ID : " + quesItem.getId());
 
 
         binding.setExplainCallback(new ExplanationCallbacks() {
@@ -215,8 +215,10 @@ public class QuestionExplanationBottomFragment extends BottomSheetDialogFragment
     private void callBookMarkApi() {
 
         Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.SaveBookMark.getValue());
         params.put("user_id", Integer.toString(new AppSharedPreference(mContext).getUserResponse().getId()));
         params.put("item_id", Integer.toString(quesItem.getId()));
+
 
         if (!progressDialog.isShowing()) {
             progressDialog.show();

@@ -93,10 +93,9 @@ public class QBankModel {
 
 
     public class FirstYearSubject {
-
-        @SerializedName("id")
+        @SerializedName("subject_id")
         @Expose
-        private Integer id;
+        private String subject_id;
         @SerializedName("course_id")
         @Expose
         private Integer courseId;
@@ -143,12 +142,12 @@ public class QBankModel {
         @Expose
         private Integer totalModule;
 
-        public Integer getId() {
-            return id;
+        public String getSubject_id() {
+            return subject_id;
         }
 
-        public void setId(Integer id) {
-            this.id = id;
+        public void setSubject_id(String subject_id) {
+            this.subject_id = subject_id;
         }
 
         public Integer getCourseId() {
@@ -274,10 +273,9 @@ public class QBankModel {
     }
 
     public class SecondYearSubject {
-
-        @SerializedName("id")
+        @SerializedName("subject_id")
         @Expose
-        private Integer id;
+        private String subject_id;
         @SerializedName("course_id")
         @Expose
         private Integer courseId;
@@ -321,12 +319,12 @@ public class QBankModel {
         @Expose
         private Integer showInFront;
 
-        public Integer getId() {
-            return id;
+        public String getSubject_id() {
+            return subject_id;
         }
 
-        public void setId(Integer id) {
-            this.id = id;
+        public void setSubject_id(String subject_id) {
+            this.subject_id = subject_id;
         }
 
         public Integer getCourseId() {
@@ -444,10 +442,9 @@ public class QBankModel {
     }
 
     public class ThirdYearSubject {
-
-        @SerializedName("id")
+        @SerializedName("subject_id")
         @Expose
-        private Integer id;
+        private String subject_id;
         @SerializedName("course_id")
         @Expose
         private Integer courseId;
@@ -491,12 +488,12 @@ public class QBankModel {
         @Expose
         private Integer showInFront;
 
-        public Integer getId() {
-            return id;
+        public String getSubject_id() {
+            return subject_id;
         }
 
-        public void setId(Integer id) {
-            this.id = id;
+        public void setSubject_id(String subject_id) {
+            this.subject_id = subject_id;
         }
 
         public Integer getCourseId() {
@@ -615,10 +612,9 @@ public class QBankModel {
 
 
     public class FourthYearSubject {
-
-        @SerializedName("id")
+        @SerializedName("subject_id")
         @Expose
-        private Integer id;
+        private String subject_id;
         @SerializedName("course_id")
         @Expose
         private Integer courseId;
@@ -662,12 +658,12 @@ public class QBankModel {
         @Expose
         private Integer showInFront;
 
-        public Integer getId() {
-            return id;
+        public String getSubject_id() {
+            return subject_id;
         }
 
-        public void setId(Integer id) {
-            this.id = id;
+        public void setSubject_id(String subject_id) {
+            this.subject_id = subject_id;
         }
 
         public Integer getCourseId() {

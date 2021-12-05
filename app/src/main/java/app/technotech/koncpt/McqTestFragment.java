@@ -49,7 +49,6 @@ import es.dmoral.toasty.Toasty;
 public class McqTestFragment extends Fragment implements View.OnTouchListener, QuestionFragment.OnUpdateMarks, FinishExamDialogFragment.onDialogFinish {
 
 
-
     private FragmentMcqTestBinding binding;
     private GeneralUtils utils;
     private AlertDialog progressDialog;
@@ -265,17 +264,16 @@ public class McqTestFragment extends Fragment implements View.OnTouchListener, Q
         unAttempt = TextUtils.join(",", arr_unAttemptQuestion);
         correct = TextUtils.join(",", arr_correctAnswers);
         incorrect = TextUtils.join(",", arr_inCorrectAnswer);
-
         PauseMCQs();
-
     }
 
 
     private void callSubmitMCQs() {
-
         Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.QBankResult.getValue());
         params.put("user_id", String.valueOf(new AppSharedPreference(getActivity()).getUserResponse().getId()));
         params.put("module_id", data.getModuleId());
+        params.put("level_id", new AppSharedPreference(getActivity()).getLevelId());
         params.put("topic_id", data.getId());
         params.put("correct_answer_questions[]", correct);
         params.put("wrong_answer_questions[]", incorrect);
@@ -284,13 +282,9 @@ public class McqTestFragment extends Fragment implements View.OnTouchListener, Q
         params.put("total_exam_marks", String.valueOf(mCQSData.getTotal()));
         params.put("user_total_marks", String.valueOf(couuntMarks));
         params.put("pushed_question", "");
-
-
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
-
-
         model.submiMCQResult(params).observe(getActivity(), new Observer<QuestionsResultResponse>() {
             @Override
             public void onChanged(QuestionsResultResponse questionsResultResponse) {
@@ -329,10 +323,11 @@ public class McqTestFragment extends Fragment implements View.OnTouchListener, Q
 
 
     private void PauseMCQs() {
-
         Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.QBankResult.getValue());
         params.put("user_id", String.valueOf(new AppSharedPreference(getActivity()).getUserResponse().getId()));
         params.put("module_id", data.getModuleId());
+        params.put("level_id", new AppSharedPreference(getActivity()).getLevelId());
         params.put("topic_id", data.getId());
         params.put("correct_answer_questions[]", correct);
         params.put("wrong_answer_questions[]", incorrect);
@@ -341,16 +336,10 @@ public class McqTestFragment extends Fragment implements View.OnTouchListener, Q
         params.put("total_exam_marks", String.valueOf(mCQSData.getTotal()));
         params.put("user_total_marks", String.valueOf(couuntMarks));
         params.put("pushed_question", questionEntities.get(binding.viewPagerQuestion.getCurrentItem()).getQuestionId() + "");
-
-
         DebugLog.e("Data => " + params.toString());
-
-
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
-
-
         model.submiMCQResult(params).observe(getActivity(), new Observer<QuestionsResultResponse>() {
             @Override
             public void onChanged(QuestionsResultResponse questionsResultResponse) {
@@ -411,19 +400,13 @@ public class McqTestFragment extends Fragment implements View.OnTouchListener, Q
         return true;
     }
 
-
     private void callApi() {
-
         Map<String, String> params = new HashMap<>();
         params.put(EnumApiAction.action.getValue(), EnumApiAction.QbankModuleQuestion.getValue());
         params.put("topic_id", data.getId());
-
-        DebugLog.e("Topics ID => " + data.getId());
-
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
-
         model.getMCQs(params).observe(getActivity(), new Observer<MCQQuestionResponse>() {
             @Override
             public void onChanged(MCQQuestionResponse mcqQuestionResponse) {
@@ -538,6 +521,7 @@ public class McqTestFragment extends Fragment implements View.OnTouchListener, Q
     private void apiBookmark(String questionId) {
 
         Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.SaveBookMark.getValue());
         params.put("user_id", Integer.toString(new AppSharedPreference(getActivity()).getUserResponse().getId()));
         params.put("item_id", questionId);
 
@@ -589,7 +573,6 @@ public class McqTestFragment extends Fragment implements View.OnTouchListener, Q
 
     @Override
     public void onDestroyView() {
-
         if ((binding.viewPagerQuestion.getCurrentItem() + 1) < questionEntities.size()) {
             pauseExamQbank();
         }
@@ -599,6 +582,5 @@ public class McqTestFragment extends Fragment implements View.OnTouchListener, Q
     @Override
     public void onDestroy() {
         super.onDestroy();
-
     }
 }

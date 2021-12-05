@@ -48,24 +48,17 @@ public class AllTestRecyclerAdapter extends ExpandableRecyclerViewAdapter<AllTes
 
     @Override
     public void onBindChildViewHolder(ChildrenViewholder holder, int flatPosition, ExpandableGroup group, int childIndex) {
-
         final SubjectModel.ModuleDatum data = ((SubjectQuestionBankGroup) group).getItems().get(childIndex);
-
         holder.binding.txtChapterName.setText(data.getTopicName());
         String mcqs = data.getTotalMcq() + "MCQs";
         holder.binding.txtNoOfMcq.setText(mcqs);
         holder.binding.txtChapterCount.setText((childIndex + 1) + "");
-
-
         Glide.with(context)
                 .load(R.drawable.app_logo)
                 .placeholder(R.drawable.dummy_img)
                 .error(R.drawable.ic_image_placeholder)
                 .into(holder.binding.imgSubject);
-
-
         String plantType = new AppSharedPreference(context).getUserResponse().getPlan();
-
         if (plantType.equals("f")) {
             if (data.getIsPaid() == 0) {
                 //free
@@ -83,19 +76,14 @@ public class AllTestRecyclerAdapter extends ExpandableRecyclerViewAdapter<AllTes
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 listener.onItemClick(data, childIndex);
-
             }
         });
     }
 
     @Override
     public void onBindGroupViewHolder(ParentViewHolder holder, int flatPosition, ExpandableGroup group) {
-
-        holder.binding.textHeaderItem.setText(group.getTitle());
-
+        //holder.binding.textHeaderItem.setText(group.getTitle());
     }
 
 
@@ -110,7 +98,6 @@ public class AllTestRecyclerAdapter extends ExpandableRecyclerViewAdapter<AllTes
 
 
     public class ChildrenViewholder extends ChildViewHolder {
-
         private LayoutSubjectDetailsItemBinding binding;
 
         public ChildrenViewholder(@NonNull View itemView) {

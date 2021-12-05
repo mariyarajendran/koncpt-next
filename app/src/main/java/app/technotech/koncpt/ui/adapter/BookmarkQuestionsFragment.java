@@ -32,19 +32,18 @@ import app.technotech.koncpt.data.network.model.QuestionBookmarkModel;
 import app.technotech.koncpt.databinding.FragmentBookmarkQuestionsBinding;
 import app.technotech.koncpt.ui.viewmodels.BookmarkViewModel;
 import app.technotech.koncpt.utils.AppSharedPreference;
+import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.utils.GeneralUtils;
 import es.dmoral.toasty.Toasty;
 
 
 public class BookmarkQuestionsFragment extends Fragment implements QuestionsBookmarkRecyclerAdapter.OnItemClickListener {
-
     private FragmentBookmarkQuestionsBinding binding;
     private GeneralUtils utils;
     private AlertDialog progressDialog;
     private View mView;
     private Context mContext;
     private BookmarkViewModel model;
-
     private QuestionsBookmarkRecyclerAdapter adapter;
     private String bookmark_id;
     private String subject_id;
@@ -52,16 +51,12 @@ public class BookmarkQuestionsFragment extends Fragment implements QuestionsBook
     private int position;
     private int type;
     private int destination;
-
-
     private QuestionBookmarkModel modelData;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-
             if (getArguments().getInt("type") == 0) {
                 type = getArguments().getInt("type");
                 user_id = getArguments().getString("user_id");
@@ -103,13 +98,11 @@ public class BookmarkQuestionsFragment extends Fragment implements QuestionsBook
         setHasOptionsMenu(true);
         utils = new GeneralUtils(mContext);
         progressDialog = utils.showProgressDialog();
-
         if (type == 0) {
             onAllDataApi();
         } else {
             onCallApi();
         }
-
     }
 
     @Override
@@ -118,32 +111,24 @@ public class BookmarkQuestionsFragment extends Fragment implements QuestionsBook
         menu.findItem(R.id.action_search).setVisible(false);
         menu.findItem(R.id.action_index).setVisible(false);
         super.onPrepareOptionsMenu(menu);
-
     }
 
     private void onCallApi() {
-
         Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.BookmarkQuesSubWise.getValue());
+        params.put("level_id", new AppSharedPreference(getActivity()).getLevelId());
         params.put("user_id", user_id);
         params.put("subject_id", subject_id);
-
-
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
-
-
         model.getBookmarkedQuestions(params).observe((AppCompatActivity) mContext, new Observer<QuestionBookmarkModel>() {
             @Override
             public void onChanged(QuestionBookmarkModel questionBookmarkModel) {
-
                 if (progressDialog.isShowing()) {
                     progressDialog.dismiss();
                 }
-
-
                 try {
-
                     if (questionBookmarkModel != null) {
                         if (questionBookmarkModel.getStatus() == 1) {
                             modelData = questionBookmarkModel;
@@ -152,43 +137,31 @@ public class BookmarkQuestionsFragment extends Fragment implements QuestionsBook
                             Toasty.error(mContext, "Failure").show();
                         }
                     }
-
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-
             }
         });
-
-
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
-
     }
 
-
     private void onAllDataApi() {
-
         Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.Bookmarks.getValue());
         params.put("user_id", user_id);
-
+        params.put("level_id", new AppSharedPreference(getActivity()).getLevelId());
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
-
-
         model.getAllBookmarks(params).observe((AppCompatActivity) mContext, new Observer<QuestionBookmarkModel>() {
             @Override
             public void onChanged(QuestionBookmarkModel questionBookmarkModel) {
-
                 if (progressDialog.isShowing()) {
                     progressDialog.dismiss();
                 }
-
-
                 try {
-
                     if (questionBookmarkModel != null) {
                         if (questionBookmarkModel.getStatus() == 1) {
                             modelData = questionBookmarkModel;
@@ -197,11 +170,9 @@ public class BookmarkQuestionsFragment extends Fragment implements QuestionsBook
                             Toasty.error(mContext, "Failure").show();
                         }
                     }
-
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-
             }
         });
 
@@ -227,12 +198,12 @@ public class BookmarkQuestionsFragment extends Fragment implements QuestionsBook
     @Override
     public void onItemClick(QuestionBookmarkModel.Datum datum, int position) {
 
-        if (destination == 0){
+        if (destination == 0) {
             String jsonData = new Gson().toJson(modelData.getData().get(position));
             Bundle bundle = new Bundle();
             bundle.putString("data", jsonData);
             bundle.putInt("destination", 0);
-            bundle.putString("question_id", datum.getQuestionId()+"");
+            bundle.putString("question_id", datum.getQuestionId() + "");
             Navigation.findNavController(mView).navigate(R.id.action_bookmarkQuestionFragment_to_bookmarkDetailFragment, bundle);
 
 
@@ -241,10 +212,9 @@ public class BookmarkQuestionsFragment extends Fragment implements QuestionsBook
             Bundle bundle = new Bundle();
             bundle.putString("data", jsonData);
             bundle.putInt("destination", 1);
-            bundle.putString("question_id", datum.getQuestionId()+"");
+            bundle.putString("question_id", datum.getQuestionId() + "");
             Navigation.findNavController(mView).navigate(R.id.action_bookmarkTopicFragment_to_bookmarkDetailFragment, bundle);
         }
-
 
 
     }

@@ -42,6 +42,7 @@ import app.technotech.koncpt.ui.dialogs.CustomResultExamFragment;
 import app.technotech.koncpt.ui.dialogs.FinishExamDialogFragment;
 import app.technotech.koncpt.ui.viewmodels.CustomExamViewModel;
 import app.technotech.koncpt.utils.AppSharedPreference;
+import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.utils.GeneralUtils;
 import es.dmoral.toasty.Toasty;
 
@@ -262,6 +263,7 @@ public class CustomExamFragment extends Fragment implements CustomResultExamFrag
     private void apiBookmark(String questionId) {
 
         Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.SaveBookMark.getValue());
         params.put("user_id", Integer.toString(new AppSharedPreference(getActivity()).getUserResponse().getId()));
         params.put("item_id", questionId);
 

@@ -39,34 +39,31 @@ import app.technotech.koncpt.ui.dialogs.CustomBuyNowDialogFragment;
 import app.technotech.koncpt.ui.viewmodels.SubjectViewModel;
 import app.technotech.koncpt.utils.AppSharedPreference;
 import app.technotech.koncpt.utils.GeneralUtils;
+import app.technotech.koncpt.utils.TextUtil;
 import es.dmoral.toasty.Toasty;
 
-public class UnAttemptedClassesFragment extends Fragment implements AllTestRecyclerAdapter.OnItemClickListener , CustomBuyNowDialogFragment.OnNavigateToScreen {
+public class UnAttemptedClassesFragment extends Fragment implements AllTestRecyclerAdapter.OnItemClickListener, CustomBuyNowDialogFragment.OnNavigateToScreen {
     private FragmentUattemptedClassesBinding binding;
     private GeneralUtils utils;
     private SubjectViewModel model;
     private AlertDialog progressDialog;
     private AllTestRecyclerAdapter mAdapter;
     List<SubjectQuestionBankGroup> questionBankGroups = new ArrayList<>();
-
     private Context mContext;
-
-
     private String subject_id;
     private String subject_name;
+    private String levelId;
     private int destination = 0;
 
 
-
-    public static UnAttemptedClassesFragment getInstance(String params1, String params2){
-
+    public static UnAttemptedClassesFragment getInstance(String params1, String params2, String params3) {
         UnAttemptedClassesFragment fragment = new UnAttemptedClassesFragment();
         Bundle bundle = new Bundle();
         bundle.putString("subject_id", params1);
         bundle.putString("subject_name", params2);
+        bundle.putString("level_id", params3);
         fragment.setArguments(bundle);
         return fragment;
-
     }
 
 
@@ -82,9 +79,10 @@ public class UnAttemptedClassesFragment extends Fragment implements AllTestRecyc
 
         Bundle bundle = getArguments();
 
-        if (bundle != null){
+        if (bundle != null) {
             subject_id = bundle.getString("subject_id");
             subject_name = bundle.getString("subject_name");
+            levelId = bundle.getString("level_id");
             destination = bundle.getInt("destination", 0);
         }
     }
@@ -112,34 +110,30 @@ public class UnAttemptedClassesFragment extends Fragment implements AllTestRecyc
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        if(getActivity()!=null){
+        if (getActivity() != null) {
 
 
         }
 
     }
 
-    private void init(){
+    private void init() {
         utils = new GeneralUtils(getActivity());
         progressDialog = utils.showProgressDialog();
 
     }
 
 
-
     private void callApi() {
-
         Map<String, String> params = new HashMap<>();
         params.put(EnumApiAction.action.getValue(), EnumApiAction.Topics.getValue());
-        params.put("subjectid", subject_id);
+        params.put("level_id", new AppSharedPreference(getActivity()).getLevelId());
+        params.put("subject_id", TextUtil.cutNull(subject_id));
         params.put("type", "2");
         params.put("user_id", String.valueOf(new AppSharedPreference(getActivity()).getUserResponse().getId()));
-
-
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
-
         model.getSubjectModel(params).observe(getActivity(), new Observer<SubjectModel>() {
             @Override
             public void onChanged(SubjectModel subjectModel) {
@@ -189,14 +183,11 @@ public class UnAttemptedClassesFragment extends Fragment implements AllTestRecyc
 
 
     private void loadData() {
-
         RecyclerView.ItemAnimator animator = binding.revSubjectChapter.getItemAnimator();
         if (animator instanceof DefaultItemAnimator) {
             ((DefaultItemAnimator) animator).setSupportsChangeAnimations(false);
         }
-
         AppCompatActivity activity = (AppCompatActivity) getContext();
-
         mAdapter = new AllTestRecyclerAdapter(activity, questionBankGroups, this);
         binding.revSubjectChapter.setLayoutManager(new LinearLayoutManager(mContext));
         binding.revSubjectChapter.setAdapter(mAdapter);
@@ -213,7 +204,7 @@ public class UnAttemptedClassesFragment extends Fragment implements AllTestRecyc
     private void LoadLoginFragment(SubjectModel.ModuleDatum data) {
         String plantType = new AppSharedPreference(getActivity()).getUserResponse().getPlan();
 
-        if (plantType.equals("f")){
+        if (plantType.equals("f")) {
 
             if (data.getIsPaid() == 0) {
                 Bundle bundle = new Bundle();

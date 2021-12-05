@@ -200,6 +200,6 @@
     <string name="action_download">Download</string>
 
     <!--Buy plans-->
-    <string name="message_buy">Buy</string>
+    <string name="message_buy"> Buy</string>
 
 </resources>

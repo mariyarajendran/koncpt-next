@@ -37,12 +37,12 @@ import app.technotech.koncpt.data.network.model.QuestionBookmarkModel;
 import app.technotech.koncpt.databinding.FragmentBookmarkDetailBinding;
 import app.technotech.koncpt.ui.activity.MainActivity;
 import app.technotech.koncpt.ui.viewmodels.MCQsViewModel;
+import app.technotech.koncpt.utils.AppSharedPreference;
+import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.utils.GeneralUtils;
 import es.dmoral.toasty.Toasty;
 
-
 public class BookmarkDetailFragment extends Fragment {
-
     private FragmentBookmarkDetailBinding binding;
     private Context mContext;
     private View mView;
@@ -53,23 +53,18 @@ public class BookmarkDetailFragment extends Fragment {
     private AlertDialog progressDialog;
     private QuestionBookmarkModel.Datum questionItem;
 
-
-
-
     public BookmarkDetailFragment() {
         // Required empty public constructor
     }
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             data = getArguments().getString("data");
-            questionItem = new Gson().fromJson(data, new TypeToken<QuestionBookmarkModel.Datum>(){}.getType());
+            questionItem = new Gson().fromJson(data, new TypeToken<QuestionBookmarkModel.Datum>() {
+            }.getType());
         }
-
     }
 
     @Override
@@ -80,7 +75,6 @@ public class BookmarkDetailFragment extends Fragment {
         binding.setLifecycleOwner(this);
         model = new ViewModelProvider(this).get(MCQsViewModel.class);
         binding.setMcqModelView(model);
-
         return binding.getRoot();
     }
 
@@ -93,23 +87,17 @@ public class BookmarkDetailFragment extends Fragment {
         progressDialog = generalUtils.showProgressDialog();
 //        binding.txtQuestion.setText(Html.fromHtml(questionItem.getQuestion()));
         setHasOptionsMenu(true);
-
-
         onApiCall();
-
     }
 
     private void onApiCall() {
-
         Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.BookmarkSingleQuestion.getValue());
         params.put("question_id", Integer.toString(questionItem.getQuestionId()));
-
-
-        if (!progressDialog.isShowing()){
+        params.put("level_id",new AppSharedPreference(getActivity()).getLevelId());
+        if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
-
-
         model.getSingleAnswerBookmark(params).observe(getActivity(), new Observer<BookmarkSingleQuestionModel>() {
             @Override
             public void onChanged(BookmarkSingleQuestionModel bookmarkSingleQuestionModel) {
@@ -118,23 +106,23 @@ public class BookmarkDetailFragment extends Fragment {
                     @Override
                     public void run() {
 
-                        if (progressDialog.isShowing()){
+                        if (progressDialog.isShowing()) {
                             progressDialog.dismiss();
                         }
 
-                        try{
+                        try {
 
-                            if (bookmarkSingleQuestionModel!= null){
-                                 if (bookmarkSingleQuestionModel.getStatus() == 1 ){
+                            if (bookmarkSingleQuestionModel != null) {
+                                if (bookmarkSingleQuestionModel.getStatus() == 1) {
 
-                                     loadData(bookmarkSingleQuestionModel);
+                                    loadData(bookmarkSingleQuestionModel);
 
-                                 } else{
-                                     Toasty.error(getActivity(), bookmarkSingleQuestionModel.getMessage()).show();
-                                 }
+                                } else {
+                                    Toasty.error(getActivity(), bookmarkSingleQuestionModel.getMessage()).show();
+                                }
                             }
 
-                        } catch (Exception ex){
+                        } catch (Exception ex) {
                             ex.printStackTrace();
                         }
 
@@ -160,7 +148,7 @@ public class BookmarkDetailFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
 
         }
 

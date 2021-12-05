@@ -15,18 +15,17 @@ import app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.PauseClassesFr
 import app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.UnAttemptedClassesFragment;
 
 public class SubjectDetailsViewPagerAdapter extends FragmentPagerAdapter {
-
     private Context myContext;
     int totalTabs;
     String subjectId;
     String subjectTitle;
+    String levelId;
 
-    public SubjectDetailsViewPagerAdapter(Context context, FragmentManager fm,
-                                          int totalTabs, String subjectId, String subjectTitle) {
+    public SubjectDetailsViewPagerAdapter(Context context, FragmentManager fm, int totalTabs, String subjectId, String subjectTitle, String levelId) {
         super(fm);
-
         this.subjectId = subjectId;
         this.subjectTitle = subjectTitle;
+        this.levelId = levelId;
         myContext = context;
         this.totalTabs = totalTabs;
     }
@@ -35,20 +34,18 @@ public class SubjectDetailsViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position) {
-
             case 0:
-                return AllClassFragment.getInstance(subjectId, subjectTitle);
+                return AllClassFragment.getInstance(subjectId, subjectTitle, levelId);
             case 1:
-                return PauseClassesFragment.getInstance(subjectId, subjectTitle);
+                return PauseClassesFragment.getInstance(subjectId, subjectTitle, levelId);
             case 2:
-                return CompleteClassesFragment.getInstance(subjectId, subjectTitle);
+                return CompleteClassesFragment.getInstance(subjectId, subjectTitle, levelId);
             case 3:
-                return UnAttemptedClassesFragment.getInstance(subjectId, subjectTitle);
-            case 4:
-                return FreeClassesFragment.getInstance(subjectId, subjectTitle);
+                return UnAttemptedClassesFragment.getInstance(subjectId, subjectTitle, levelId);
+            /*case 4:
+                return FreeClassesFragment.getInstance(subjectId, subjectTitle, levelId);*/
             default:
                 return null;
-
         }
     }
 

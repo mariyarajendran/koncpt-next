@@ -128,7 +128,8 @@ public class QuestionBankLevelFragment extends Fragment {
         binding.revQBankLevel.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.revQBankLevel.setItemAnimator(new DefaultItemAnimator());
         qBankLevelAdapter = new QBankLevelAdapter(getActivity(), notesModel.getData(), (int position) -> {
-            navigateToQBankFragment(TextUtil.cutNull(notesModel.getData().get(position).getLevel_id()));
+            if (notesModel.getData().get(position).getLevel_active() == 1)
+                navigateToQBankFragment(TextUtil.cutNull(notesModel.getData().get(position).getLevel_id()));
         });
         binding.revQBankLevel.setAdapter(qBankLevelAdapter);
     }
@@ -136,6 +137,7 @@ public class QuestionBankLevelFragment extends Fragment {
     private void navigateToQBankFragment(String levelId) {
         Bundle bundle = new Bundle();
         bundle.putString("level_id", levelId);
+        new AppSharedPreference(getActivity()).setLevelId(levelId);
         Navigation.findNavController(binding.getRoot()).navigate(R.id.questionBankFragment, bundle);
     }
 }

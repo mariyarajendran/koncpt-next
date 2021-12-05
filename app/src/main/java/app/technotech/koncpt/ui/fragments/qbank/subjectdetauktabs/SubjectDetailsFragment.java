@@ -20,18 +20,14 @@ import app.technotech.koncpt.ui.activity.MainActivity;
 import app.technotech.koncpt.ui.adapter.viewpageradapter.SubjectDetailsViewPagerAdapter;
 
 
-
-
 public class SubjectDetailsFragment extends Fragment implements TabLayout.OnTabSelectedListener {
-
     private FragmentTestDetailsBinding binding;
     private SubjectDetailsViewPagerAdapter mPagerAdapter;
-
     private View mView;
     private Context mContext;
-
     public static String subjectId;
     public static String subjectTitle;
+    public static String levelId;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -42,10 +38,10 @@ public class SubjectDetailsFragment extends Fragment implements TabLayout.OnTabS
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (getArguments() != null) {
             subjectId = getArguments().getString("subject_id");
             subjectTitle = getArguments().getString("subject_name");
+            levelId = getArguments().getString("level_id");
         }
 
     }
@@ -53,7 +49,6 @@ public class SubjectDetailsFragment extends Fragment implements TabLayout.OnTabS
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_test_details, container, false);
         binding.setLifecycleOwner(this);
         return binding.getRoot();
@@ -63,12 +58,9 @@ public class SubjectDetailsFragment extends Fragment implements TabLayout.OnTabS
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.mView = view;
-//        ButterKnife.bind(this, mView);
         setHasOptionsMenu(true);
         setTabLayout();
-
         ((MainActivity) requireActivity()).setToolBarTitle(subjectTitle);
-
     }
 
     @Override
@@ -79,26 +71,19 @@ public class SubjectDetailsFragment extends Fragment implements TabLayout.OnTabS
         super.onPrepareOptionsMenu(menu);
 
     }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-//        if (getActivity() != null) {
-////            if (getArguments() != null) {
-////                Bundle bundle = getArguments();
-////                ((MainActivity) requireActivity()).setToolBarTitle("Anatomy");
-////            }
-//        }
     }
 
     private void setTabLayout() {
-
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_all)));
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_paused)));
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_completed)));
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_unattempted)));
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_free)));
-
-        mPagerAdapter = new SubjectDetailsViewPagerAdapter(getActivity(), getChildFragmentManager(), binding.tabLayout.getTabCount(), subjectId, subjectTitle);
+        /*binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_free)));*/
+        mPagerAdapter = new SubjectDetailsViewPagerAdapter(getActivity(), getChildFragmentManager(), binding.tabLayout.getTabCount(), subjectId, subjectTitle, levelId);
         binding.viewPager.setAdapter(mPagerAdapter);
         binding.tabLayout.addOnTabSelectedListener(this);
         binding.viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(binding.tabLayout));

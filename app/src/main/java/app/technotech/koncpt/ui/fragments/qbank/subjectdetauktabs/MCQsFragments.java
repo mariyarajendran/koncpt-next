@@ -34,6 +34,7 @@ import app.technotech.koncpt.ui.callbacks.MCQsCallbacks;
 import app.technotech.koncpt.ui.viewmodels.MCQsViewModel;
 import app.technotech.koncpt.utils.AppSharedPreference;
 import app.technotech.koncpt.utils.DebugLog;
+import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.utils.GeneralUtils;
 
 public class MCQsFragments extends Fragment {
@@ -60,9 +61,7 @@ public class MCQsFragments extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         Bundle bundle = getArguments();
-
         if (bundle != null) {
             data = bundle.getParcelable("data");
             topicId = bundle.getString("topic_id");
@@ -73,7 +72,6 @@ public class MCQsFragments extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         binding = DataBindingUtil.inflate(inflater, R.layout.layout_screen_23, container, false);
         binding.setLifecycleOwner(this);
         model = new ViewModelProvider(this).get(MCQsViewModel.class);
@@ -91,7 +89,6 @@ public class MCQsFragments extends Fragment {
         progressDialog = utils.showProgressDialog();
         loadData();
         buttonClickListener();
-
         bottomNavigationView = ((MainActivity) requireActivity()).getBottomNavigationView();
         if (bottomNavigationView.getVisibility() == View.VISIBLE) {
             bottomNavigationView.setVisibility(View.GONE);
@@ -111,42 +108,34 @@ public class MCQsFragments extends Fragment {
     }
 
     private void onApiCall() {
-
         Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.TopicBookMarkUser.getValue());
         params.put("user_id", Integer.toString(new AppSharedPreference(getActivity()).getUserResponse().getId()));
         params.put("topic_id", topicId);
-
+        params.put("level_id", new AppSharedPreference(getActivity()).getLevelId());
         DebugLog.e("Topic : " + Integer.toString(new AppSharedPreference(getActivity()).getUserResponse().getId()) + " == " + topicId);
-
-        if (!progressDialog.isShowing()){
+        if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
-
-
         model.getBookmarkTopicData(params).observe(getActivity(), new Observer<UserBookmarkTopicModel>() {
             @Override
             public void onChanged(UserBookmarkTopicModel userBookmarkTopicModel) {
-
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
                         try {
-
-                            if (progressDialog.isShowing()){
+                            if (progressDialog.isShowing()) {
                                 progressDialog.dismiss();
                             }
-
-                            if (userBookmarkTopicModel!= null){
-                                if (userBookmarkTopicModel.getStatus() == 1){
+                            if (userBookmarkTopicModel != null) {
+                                if (userBookmarkTopicModel.getStatus() == 1) {
 
                                     binding.txtTotalBookmark.setText(userBookmarkTopicModel.getData().get(0).getTotalBookmark() + " Bookmarks");
                                     subjectId = String.valueOf(userBookmarkTopicModel.getData().get(0).getSubjectId());
                                     totalBookmark = userBookmarkTopicModel.getData().get(0).getTotalBookmark();
                                 }
                             }
-
-                        } catch (Exception ex){
+                        } catch (Exception ex) {
                             ex.printStackTrace();
                         }
 
@@ -170,7 +159,7 @@ public class MCQsFragments extends Fragment {
             @Override
             public void onBookmarks() {
 
-                if (totalBookmark != 0){
+                if (totalBookmark != 0) {
 
                     Bundle bundle = new Bundle();
                     bundle.putString("subject_id", subjectId);

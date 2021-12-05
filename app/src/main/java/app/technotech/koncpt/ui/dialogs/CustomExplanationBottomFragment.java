@@ -34,6 +34,7 @@ import app.technotech.koncpt.databinding.BottomSheetCustomExaplanationBinding;
 import app.technotech.koncpt.ui.callbacks.ExplanationCallbacks;
 import app.technotech.koncpt.ui.viewmodels.BookmarkViewModel;
 import app.technotech.koncpt.utils.AppSharedPreference;
+import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.utils.GeneralUtils;
 import es.dmoral.toasty.Toasty;
 
@@ -152,6 +153,7 @@ public class CustomExplanationBottomFragment extends BottomSheetDialogFragment {
     private void callBookMarkApi() {
 
         Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.SaveBookMark.getValue());
         params.put("user_id", Integer.toString(new AppSharedPreference(mContext).getUserResponse().getId()));
         params.put("item_id", Integer.toString(quesItem.getId()));
 

@@ -38,7 +38,6 @@ public class AppSharedPreference {
 
 
     public UserModelLogin.Data getUserResponse() {
-
         String response = preferences.getString("userData", null);
         Gson gson = new Gson();
         UserModelLogin.Data user = gson.fromJson(response, new TypeToken<UserModelLogin.Data>() {
@@ -56,46 +55,50 @@ public class AppSharedPreference {
     }
 
 
-    public void setLogin(boolean b){
-
+    public void setLogin(boolean b) {
         openEditor();
         editor.putBoolean("login", b);
         editor.commit();
-
     }
 
 
-    public boolean isLogin(){
+    public boolean isLogin() {
         return preferences.getBoolean("login", false);
     }
 
 
-
-    public void setSubjectId(String subjectId){
+    public void setSubjectId(String subjectId) {
         openEditor();
         editor.putString("subject_id", subjectId);
         editor.commit();
     }
 
-
-    public String getSubjectId(){
+    public String getSubjectId() {
         return preferences.getString("subject_id", null);
     }
 
+    public void setLevelId(String levelId) {
+        openEditor();
+        editor.putString("level_id", levelId);
+        editor.commit();
+    }
 
+    public String getLevelId() {
+        return preferences.getString("level_id", null);
+    }
 
-    public void setMcqOfTheDayId(String id){
+    public void setMcqOfTheDayId(String id) {
         openEditor();
         editor.putString("mcq_of_the_day", id);
         editor.commit();
     }
 
-    public String getMcqOfTheDay(){
+    public String getMcqOfTheDay() {
         return preferences.getString("mcq_of_the_day", "0");
     }
 
 
-    public void clearAllData(){
+    public void clearAllData() {
 
         openEditor();
         editor.clear();
@@ -104,22 +107,22 @@ public class AppSharedPreference {
     }
 
 
-
-    public void saveCustomModule(String response){
+    public void saveCustomModule(String response) {
         openEditor();
         editor.putString("custom_module", response);
         editor.commit();
     }
 
 
-    public CustomExamModel retrieveCustomModule(){
-        CustomExamModel examModel = new Gson().fromJson(preferences.getString("custom_module", null), new TypeToken<CustomExamModel>(){}.getType());
+    public CustomExamModel retrieveCustomModule() {
+        CustomExamModel examModel = new Gson().fromJson(preferences.getString("custom_module", null), new TypeToken<CustomExamModel>() {
+        }.getType());
         return examModel;
     }
 
 
-    public boolean isCustomModuleGenerated(){
-        if (retrieveCustomModule() != null){
+    public boolean isCustomModuleGenerated() {
+        if (retrieveCustomModule() != null) {
             return true;
         } else {
             return false;
@@ -127,33 +130,31 @@ public class AppSharedPreference {
     }
 
 
-    public void saveSubjectIdName(String id, String name){
+    public void saveSubjectIdName(String id, String name) {
         openEditor();
         editor.putString("mcq_subject_id", id);
         editor.putString("mcq_subject_name", name);
         editor.commit();
     }
 
-    public String getMcqSubjectId(){
+    public String getMcqSubjectId() {
         return preferences.getString("mcq_subject_id", null);
     }
 
 
-    public String getMcqSubjectName(){
+    public String getMcqSubjectName() {
         return preferences.getString("mcq_subject_name", null);
     }
 
 
-    public void clearCustomModule(){
+    public void clearCustomModule() {
         openEditor();
         editor.putString("custom_module", null);
         editor.commit();
     }
 
 
-
-
-    public void saveHomeScreenData(String response){
+    public void saveHomeScreenData(String response) {
 
         openEditor();
         editor.putString("HomeData", response);
@@ -162,8 +163,9 @@ public class AppSharedPreference {
     }
 
 
-    public HomeScreenModel getHomeScreenData(){
-        return new Gson().fromJson(preferences.getString("HomeData", null), new TypeToken<HomeScreenModel>(){}.getType());
+    public HomeScreenModel getHomeScreenData() {
+        return new Gson().fromJson(preferences.getString("HomeData", null), new TypeToken<HomeScreenModel>() {
+        }.getType());
     }
 
     public void saveFcmToken(String token) {

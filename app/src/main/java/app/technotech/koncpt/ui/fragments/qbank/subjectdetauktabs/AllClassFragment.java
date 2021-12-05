@@ -43,36 +43,30 @@ import app.technotech.koncpt.ui.viewmodels.SubjectViewModel;
 import app.technotech.koncpt.utils.AppSharedPreference;
 import app.technotech.koncpt.utils.DebugLog;
 import app.technotech.koncpt.utils.GeneralUtils;
+import app.technotech.koncpt.utils.TextUtil;
 import es.dmoral.toasty.Toasty;
 
-
 public class AllClassFragment extends Fragment implements AllTestRecyclerAdapter.OnItemClickListener, CustomBuyNowDialogFragment.OnNavigateToScreen {
-
     private FragmentAllClassBinding binding;
     private GeneralUtils utils;
     private SubjectViewModel model;
     private AlertDialog progressDialog;
     private AllTestRecyclerAdapter mAdapter;
     private Context mContext;
-//    private View mView;
-
     private String subject_id;
     private String subject_name;
+    private String levelId;
     private int destination = 0;
-
-
     List<SubjectQuestionBankGroup> questionBankGroups = new ArrayList<>();
 
-
-    public static AllClassFragment getInstance(String params1, String params2) {
-
+    public static AllClassFragment getInstance(String params1, String params2, String params3) {
         AllClassFragment fragment = new AllClassFragment();
         Bundle bundle = new Bundle();
         bundle.putString("subject_id", params1);
         bundle.putString("subject_name", params2);
+        bundle.putString("level_id", params3);
         fragment.setArguments(bundle);
         return fragment;
-
     }
 
     @Override
@@ -84,21 +78,18 @@ public class AllClassFragment extends Fragment implements AllTestRecyclerAdapter
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         Bundle bundle = getArguments();
-
         if (bundle != null) {
             subject_id = bundle.getString("subject_id");
             subject_name = bundle.getString("subject_name");
+            levelId = bundle.getString("level_id");
             destination = bundle.getInt("destination", 0);
         }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_all_class, container, false);
         binding.setLifecycleOwner(this);
         model = new ViewModelProvider(getActivity()).get(SubjectViewModel.class);
@@ -110,7 +101,6 @@ public class AllClassFragment extends Fragment implements AllTestRecyclerAdapter
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init();
-
         callApi();
     }
 
@@ -118,39 +108,25 @@ public class AllClassFragment extends Fragment implements AllTestRecyclerAdapter
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        if (getActivity() != null) {
-
-        }
-
     }
 
     private void init() {
         utils = new GeneralUtils(getActivity());
         progressDialog = utils.showProgressDialog();
-
-
-            Toolbar mToolbar = ((MainActivity) requireActivity()).getToolbar();
-            mToolbar.setTitle(subject_name);
-
-
+        Toolbar mToolbar = ((MainActivity) requireActivity()).getToolbar();
+        mToolbar.setTitle(subject_name);
     }
 
-
     private void callApi() {
-
         Map<String, String> params = new HashMap<>();
         params.put(EnumApiAction.action.getValue(), EnumApiAction.Topics.getValue());
-        params.put("subjectid", subject_id);
+        params.put("type", "");
+        params.put("subject_id", TextUtil.cutNull(subject_id));
+        params.put("level_id", new AppSharedPreference(getActivity()).getLevelId());
         params.put("user_id", String.valueOf(new AppSharedPreference(getActivity()).getUserResponse().getId()));
-
-
-
-
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
-
         model.getSubjectModel(params).observe(getActivity(), new Observer<SubjectModel>() {
             @Override
             public void onChanged(SubjectModel subjectModel) {
@@ -158,15 +134,11 @@ public class AllClassFragment extends Fragment implements AllTestRecyclerAdapter
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
                         if (progressDialog.isShowing()) {
                             progressDialog.dismiss();
                         }
-
                         try {
-
                             if (subjectModel != null) {
-
                                 if (subjectModel.getStatus() == 1) {
                                     String json = new Gson().toJson(subjectModel);
                                     DebugLog.e("JsonAllQuestionBank ==> " + json);
@@ -231,7 +203,7 @@ public class AllClassFragment extends Fragment implements AllTestRecyclerAdapter
 
         String plantType = new AppSharedPreference(getActivity()).getUserResponse().getPlan();
 
-        if (plantType.equals("f")){
+        if (plantType.equals("f")) {
 
             if (data.getIsPaid() == 0) {
                 Bundle bundle = new Bundle();
@@ -245,18 +217,12 @@ public class AllClassFragment extends Fragment implements AllTestRecyclerAdapter
             }
 
         } else {
-
             Bundle bundle = new Bundle();
             bundle.putParcelable("data", data);
             bundle.putString("topic_id", data.getId());
             bundle.putInt("destination", destination);
             Navigation.findNavController(binding.getRoot()).navigate(R.id.mcqsFragment, bundle);
-
         }
-
-
-
-
     }
 
     private void CallBuyNowFragment() {

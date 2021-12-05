@@ -35,6 +35,7 @@ import app.technotech.koncpt.databinding.BottomSheetCustomExaplanationBinding;
 import app.technotech.koncpt.ui.callbacks.ExplanationCallbacks;
 import app.technotech.koncpt.ui.viewmodels.BookmarkViewModel;
 import app.technotech.koncpt.utils.AppSharedPreference;
+import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.utils.GeneralUtils;
 import es.dmoral.toasty.Toasty;
 
@@ -141,7 +142,7 @@ public class MCQExplanationBottomSheet extends BottomSheetDialogFragment {
 
             @Override
             public void onQuestionMSQs() {
-                if (quesItem.getRefrence_file() != null && quesItem.getRefrence_file().contains("NA")){
+                if (quesItem.getRefrence_file() != null && quesItem.getRefrence_file().contains("NA")) {
                     GeneralUtils.openImageDialog(mContext, "imagePath");
                 }
 
@@ -153,6 +154,7 @@ public class MCQExplanationBottomSheet extends BottomSheetDialogFragment {
     private void callBookMarkApi() {
 
         Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.SaveBookMark.getValue());
         params.put("user_id", Integer.toString(new AppSharedPreference(mContext).getUserResponse().getId()));
         params.put("item_id", Long.toString(quesItem.getQuestionId()));
 

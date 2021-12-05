@@ -27,6 +27,7 @@ import app.technotech.koncpt.data.network.model.RatingResponse;
 import app.technotech.koncpt.databinding.LayoutRattingDialogBinding;
 import app.technotech.koncpt.ui.activity.MainActivity;
 import app.technotech.koncpt.ui.viewmodels.MCQsViewModel;
+import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.utils.GeneralUtils;
 
 public class RatingDialogFragment extends DialogFragment {
@@ -129,6 +130,7 @@ public class RatingDialogFragment extends DialogFragment {
     private void callRatingApi() {
 
         Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.TopicRatting.getValue());
         params.put("topic_id", params1);
         params.put("user_id", params2);
         params.put("ratting", String.valueOf(rating));

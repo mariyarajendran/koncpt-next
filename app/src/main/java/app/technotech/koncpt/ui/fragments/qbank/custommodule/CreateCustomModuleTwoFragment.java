@@ -128,7 +128,6 @@ public class CreateCustomModuleTwoFragment extends Fragment {
         utils = new GeneralUtils(mContext);
         progressDialog = utils.showProgressDialog();
         buttonClickListener();
-
         onApiCall();
     }
 
@@ -167,10 +166,8 @@ public class CreateCustomModuleTwoFragment extends Fragment {
     }
 
     private void loadData() {
-
         String[] data = new String[tagsData.getData().size()];
         data = tagsData.getData().toArray(data);
-
         String[] finalData = data;
         new ChipCloud.Configure()
                 .chipCloud(binding.chipTags)
@@ -195,7 +192,6 @@ public class CreateCustomModuleTwoFragment extends Fragment {
                         chip.setSelected(true);
 
                     }
-
                     @Override
                     public void chipDeselected(int index) {
 
