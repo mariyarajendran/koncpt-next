@@ -40,6 +40,7 @@ import app.technotech.koncpt.databinding.ActivityMainBinding;
 import app.technotech.koncpt.ui.fragments.main.DailyHuntFragment;
 import app.technotech.koncpt.ui.fragments.main.HomeFragment;
 import app.technotech.koncpt.ui.fragments.main.LiveClassesFragment;
+import app.technotech.koncpt.ui.fragments.main.LiveClassesHomeFragment;
 import app.technotech.koncpt.ui.fragments.main.QuestionBankFragment;
 import app.technotech.koncpt.ui.fragments.main.QuestionBankLevelFragment;
 import app.technotech.koncpt.ui.fragments.main.TestFragment;
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
     private Fragment qbankLevelFragment = new QuestionBankLevelFragment();
     private Fragment testFragment = new TestFragment();
     private Fragment liveFragment = new LiveClassesFragment();
+    private Fragment liveHomeFragment = new LiveClassesHomeFragment();
     public Fragment activeFragment = homeFragment;
 
     @Override
@@ -110,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.homeFragment, R.id.questionBankLevelFragment,
                 R.id.testFragment, R.id.dailyHuntFragment,
-                R.id.liveClassesFragment)
+                R.id.liveClassesHomeFragment)
                 .setOpenableLayout(binding.drawerLayout)
                 .build();
         // mNavHostFragment
@@ -129,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
         ids.add(R.id.dailyHuntFragment);
         ids.add(R.id.questionBankLevelFragment);
         ids.add(R.id.testFragment);
-        ids.add(R.id.liveClassesFragment);
+        ids.add(R.id.liveClassesHomeFragment);
         binding.appBarMain.bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @SuppressLint("NonConstantResourceId")
             @Override
@@ -317,7 +319,5 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
     @Override
     protected void onResume() {
         super.onResume();
-
-
     }
 }

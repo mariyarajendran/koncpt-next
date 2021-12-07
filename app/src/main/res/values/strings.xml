@@ -202,4 +202,12 @@
     <!--Buy plans-->
     <string name="message_buy"> Buy</string>
 
+    <!--Qbank-->
+    <string name="hint_qbank_levels">QBank levels</string>
+
+    <!--Live Classes-->
+    <string name="hint_video_levels">Video levels</string>
+    <string name="hint_video_class">Video Class</string>
+    <string name="hint_video">Video</string>
+    <string name="hint_subjects">Subjects</string>
 </resources>

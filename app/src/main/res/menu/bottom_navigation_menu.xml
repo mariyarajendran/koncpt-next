@@ -12,7 +12,7 @@
         android:title="@string/title_bottom_menu_qbank" />
 
     <item
-        android:id="@+id/liveClassesFragment"
+        android:id="@+id/liveClassesHomeFragment"
         android:icon="@drawable/icon_bottom_menu_live_class"
         android:title="@string/title_bottom_menu_classes" />
 

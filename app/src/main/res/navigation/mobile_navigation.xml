@@ -51,8 +51,8 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
         <action
-            android:id="@+id/action_homeFragment_To_liveClassesFragment"
-            app:destination="@+id/liveClassesFragment"
+            android:id="@+id/action_homeFragment_To_liveClassesHomeFragment"
+            app:destination="@+id/liveClassesHomeFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -117,12 +117,31 @@
     <fragment
         android:id="@+id/questionBankLevelFragment"
         android:name="app.technotech.koncpt.ui.fragments.main.QuestionBankLevelFragment"
-        android:label="@string/title_bottom_menu_qbank">
+        android:label="@string/hint_qbank_levels">
         <action
             android:id="@+id/action_buyNowFragment_to_homeFragment"
             app:destination="@+id/homeFragment"
             app:popUpTo="@+id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/liveClassesLevelFragment"
+        android:name="app.technotech.koncpt.ui.fragments.liveclass.LiveClassesLevelFragment"
+        android:label="@string/hint_video_levels">
+        <action
+            android:id="@+id/action_liveClassesLevelFragment_to_homeFragment"
+            app:destination="@+id/homeFragment"
+            app:popUpTo="@+id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/LiveClassesFragment"
+        android:name="app.technotech.koncpt.ui.fragments.main.LiveClassesFragment"
+        android:label="@string/hint_subjects">
+        <action
+            android:id="@+id/action_LiveClassesFragment_to_liveClassesLevelFragment"
+            app:destination="@+id/liveClassesLevelFragment"
+            app:popUpTo="@+id/liveClassesLevelFragment" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/testFragment"
@@ -144,11 +163,11 @@
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
-        android:id="@+id/liveClassesFragment"
-        android:name="app.technotech.koncpt.ui.fragments.main.LiveClassesFragment"
+        android:id="@+id/liveClassesHomeFragment"
+        android:name="app.technotech.koncpt.ui.fragments.main.LiveClassesHomeFragment"
         android:label="@string/title_bottom_menu_classes">
         <action
-            android:id="@+id/action_liveClassesFragment_to_subjectDetailsFragment"
+            android:id="@+id/action_liveClassesHomeFragment_to_subjectDetailsFragment"
             app:destination="@+id/subjectDetailsFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"

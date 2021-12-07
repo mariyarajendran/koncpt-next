@@ -208,7 +208,7 @@ public interface ApiConnections {
     public Call<AnswerMcqOfTheDayModel> getMcqOfTheDayAnswerResponse(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
-    @POST("video_subject")
+    @POST("api.php")
     public Call<SubjectListDataModel> getSubjectListDataResponse(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
@@ -322,7 +322,7 @@ public interface ApiConnections {
     Call<VideoCompleteModel> getVideoModeResponse(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
-    @POST("user/profile_detail")
+    @POST("api.php")
     Call<ProfileModel> getProfileModelResponse(@FieldMap Map<String, String> params);
 
 

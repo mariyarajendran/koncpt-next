@@ -1030,9 +1030,8 @@ public class HomeFragment extends Fragment implements SuggestedCourseAdapter.OnT
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-
         if (v.getId() == R.id.web_live_class){
-            navController.navigate(R.id.liveClassesFragment);
+            navController.navigate(R.id.liveClassesHomeFragment);
         }
         return true;
     }

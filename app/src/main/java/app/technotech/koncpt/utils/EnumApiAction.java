@@ -28,6 +28,7 @@ public enum EnumApiAction {
     FacultyList("faculty_list"),
     QuestionTags("question_tags"),
     AllSubjectList("all_subject_list"),
+    VideoSubject("video_subject"),
     ProfileDetail("profile_detail");
     private String strValue;
 
@@ -59,4 +60,10 @@ public enum EnumApiAction {
  * label-- level name bind --- completed
  * amount and buy now space  ---- completed
  * book mark pre fill
+ *
+ * add video grid
+ * plan id 2 with level list
+ * new grid add video
+ * hide below buttons
+ *
  * */

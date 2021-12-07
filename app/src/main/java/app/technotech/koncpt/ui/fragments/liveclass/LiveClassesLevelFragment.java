@@ -1,4 +1,4 @@
-package app.technotech.koncpt.ui.fragments.main;
+package app.technotech.koncpt.ui.fragments.liveclass;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -27,7 +27,7 @@ import java.util.Map;
 
 import app.technotech.koncpt.R;
 import app.technotech.koncpt.data.network.model.BuyDetailsModel;
-import app.technotech.koncpt.databinding.FragmentQuestionBankLevelBinding;
+import app.technotech.koncpt.databinding.FragmentLiveClassessLevelBinding;
 import app.technotech.koncpt.ui.activity.MainActivity;
 import app.technotech.koncpt.ui.adapter.QBankLevelAdapter;
 import app.technotech.koncpt.ui.viewmodels.BuyDetailsViewModel;
@@ -36,15 +36,14 @@ import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.utils.GeneralUtils;
 import app.technotech.koncpt.utils.TextUtil;
 
-public class QuestionBankLevelFragment extends Fragment {
+public class LiveClassesLevelFragment extends Fragment {
     private Context mContext;
-    private FragmentQuestionBankLevelBinding binding;
+    private FragmentLiveClassessLevelBinding binding;
     private BuyDetailsViewModel model;
     private GeneralUtils utils;
     private AlertDialog progressDialog;
     private BottomNavigationView navigationView;
     private QBankLevelAdapter qBankLevelAdapter;
-
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -60,7 +59,7 @@ public class QuestionBankLevelFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_question_bank_level, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_live_classess_level, container, false);
         binding.setLifecycleOwner(this);
         model = new ViewModelProvider(getActivity()).get(BuyDetailsViewModel.class);
         binding.setLevelViewModel(model);
@@ -125,19 +124,18 @@ public class QuestionBankLevelFragment extends Fragment {
     }
 
     private void loadData(BuyDetailsModel notesModel) {
-        binding.revQBankLevel.setLayoutManager(new LinearLayoutManager(getActivity()));
-        binding.revQBankLevel.setItemAnimator(new DefaultItemAnimator());
+        binding.revLiveClassesLevel.setLayoutManager(new LinearLayoutManager(getActivity()));
+        binding.revLiveClassesLevel.setItemAnimator(new DefaultItemAnimator());
         qBankLevelAdapter = new QBankLevelAdapter(getActivity(), notesModel.getData(), (int position) -> {
-            if (notesModel.getData().get(position).getLevel_active() == 1)
-                navigateToQBankFragment(TextUtil.cutNull(notesModel.getData().get(position).getLevel_id()));
+            //if (notesModel.getData().get(position).getLevel_active() == 1)
+            navigateToQBankFragment(TextUtil.cutNull(notesModel.getData().get(position).getLevel_id()));
         });
-        binding.revQBankLevel.setAdapter(qBankLevelAdapter);
+        binding.revLiveClassesLevel.setAdapter(qBankLevelAdapter);
     }
 
     private void navigateToQBankFragment(String levelId) {
-        Bundle bundle = new Bundle();
-        bundle.putString("level_id", levelId);
         new AppSharedPreference(getActivity()).setLevelId(levelId);
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.questionBankFragment, bundle);
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.LiveClassesFragment);
     }
 }
+
