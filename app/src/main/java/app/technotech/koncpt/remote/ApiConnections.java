@@ -265,29 +265,29 @@ public interface ApiConnections {
     Call<UserModelLogin> getUpdateUserProfile3(@Body RequestBody file);
 
     @FormUrlEncoded
-    @POST("topic_video")
+    @POST("api.php")
     Call<NotesModel> getNotesModelresponse(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
-    @POST("video_class_pdffile")
+    @POST("api.php")
     Call<SlidesModel> getModelSlideresponse(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
-    @POST("video_class_pdffile")
+    @POST("api.php")
     Call<ModelNotes> getModelNotesresponse(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
-    @POST("video_topic_list")
+    @POST("api.php")
     Call<VideoModel> getCompleteModelresponse(@FieldMap Map<String, String> params);
 
 
     @FormUrlEncoded
-    @POST("video_topic_list")
+    @POST("api.php")
     Call<VideoModel> getVideoModelresponse(@FieldMap Map<String, String> params);
 
 
     @FormUrlEncoded
-    @POST("video_action")
+    @POST("api.php")
     Call<CompleteVideoModel> getCompleteResponse(@FieldMap Map<String, String> params);
 
 
@@ -314,11 +314,11 @@ public interface ApiConnections {
 
 
     @FormUrlEncoded
-    @POST("video_ratting")
+    @POST("api.php")
     Call<RatingModel> getRatingModelResponse(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
-    @POST("video_action")
+    @POST("api.php")
     Call<VideoCompleteModel> getVideoModeResponse(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded

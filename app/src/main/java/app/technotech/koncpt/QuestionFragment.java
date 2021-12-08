@@ -87,8 +87,6 @@ public class QuestionFragment extends Fragment {
             mDetailsEntity = (QuestionDetailsEntity) getArguments().getSerializable(ARG_PARAM);
             datum = new Gson().fromJson(mDetailsEntity.getmQuestionData(), new TypeToken<MCQQuestionResponse.Datum>() {
             }.getType());
-
-
         }
     }
 
@@ -129,7 +127,6 @@ public class QuestionFragment extends Fragment {
 
             binding.imageViewQuestion.setVisibility(View.VISIBLE);
         }
-
 
 
         if (mDetailsEntity.getCorrectAnswer().equals("1")) {
@@ -391,6 +388,7 @@ public class QuestionFragment extends Fragment {
         void updateWrongQuestions(String question);
 
         void updateUnAttemptQuestions(String question);
+
     }
 
 
@@ -416,20 +414,14 @@ public class QuestionFragment extends Fragment {
     }
 
     private void explanation() {
-
-
         if (SystemClock.elapsedRealtime() - mLastClickTime < 3000) {
             return;
         }
         mLastClickTime = SystemClock.elapsedRealtime();
-
         String jsonData = new Gson().toJson(datum);
         Bundle bundle = new Bundle();
         bundle.putString("Data", jsonData);
-
         Navigation.findNavController(mView).navigate(R.id.questionExplanationBottomFragment, bundle);
-
-
     }
 
 

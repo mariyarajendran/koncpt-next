@@ -29,6 +29,11 @@ public enum EnumApiAction {
     QuestionTags("question_tags"),
     AllSubjectList("all_subject_list"),
     VideoSubject("video_subject"),
+    VideoTopicList("video_topic_list"),
+    TopicVideo("topic_video"),
+    VideoAction("video_action"),
+    VideoClassFile("video_class_file"),
+    VideoRatting("video_ratting"),
     ProfileDetail("profile_detail");
     private String strValue;
 

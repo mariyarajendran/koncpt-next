@@ -23,6 +23,7 @@ import androidx.navigation.Navigation;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -78,7 +79,7 @@ public class McqTestFragment extends Fragment implements View.OnTouchListener, Q
 
     public QuestionViewPagerAdapter mPagerAdapter;
     private int couuntMarks = 0;
-
+    private int questionPosition = 1;
 
     public static McqTestFragment getInstance() {
         return instance;
@@ -102,12 +103,10 @@ public class McqTestFragment extends Fragment implements View.OnTouchListener, Q
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_mcq_test, container, false);
         binding.setLifecycleOwner(this);
         model = new ViewModelProvider(getActivity()).get(MCQsViewModel.class);
         binding.setMcqViewModel(model);
-
         return binding.getRoot();
     }
 
@@ -120,7 +119,6 @@ public class McqTestFragment extends Fragment implements View.OnTouchListener, Q
         super.onPrepareOptionsMenu(menu);
 
     }
-
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -187,13 +185,9 @@ public class McqTestFragment extends Fragment implements View.OnTouchListener, Q
         });
 
 
-        binding.imageButtonBookmark.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                apiBookmark(Long.toString(questionEntities.get(binding.viewPagerQuestion.getCurrentItem()).getQuestionId()));
-            }
-        });
+        binding.imageButtonBookmark.setOnClickListener(view12 -> apiBookmark(Long.toString(questionEntities.get(binding.viewPagerQuestion.getCurrentItem()).getQuestionId())));
 
+        binding.imageAnswer.setOnClickListener(view1 -> questionWithAnswerExplaination(questionPosition));
 
     }
 
@@ -376,14 +370,11 @@ public class McqTestFragment extends Fragment implements View.OnTouchListener, Q
 
 
     private void ratingDialog() {
-
         Bundle bundle = new Bundle();
         bundle.putString("topic_id", data.getId());
         bundle.putString("user_id", String.valueOf(new AppSharedPreference(getActivity()).getUserResponse().getId()));
         bundle.putInt("destination", destination);
-
         Navigation.findNavController(mView).navigate(R.id.ratingDialogFragment, bundle);
-
     }
 
     @SuppressLint("SetTextI18n")
@@ -463,7 +454,15 @@ public class McqTestFragment extends Fragment implements View.OnTouchListener, Q
 
         }
 
-        mPagerAdapter = new QuestionViewPagerAdapter(getParentFragmentManager(), questionEntities);
+        mPagerAdapter = new QuestionViewPagerAdapter(getParentFragmentManager(), questionEntities, new QuestionViewPagerAdapter.AnswerListener() {
+            @Override
+            public void onAnswerClicked(int position) {
+                questionPosition = position;
+                if (position != 0) {
+                    questionPosition -= 1;
+                }
+            }
+        });
         binding.viewPagerQuestion.setAdapter(mPagerAdapter);
         binding.viewPagerQuestion.setPagingEnabled(false);
 
@@ -482,8 +481,6 @@ public class McqTestFragment extends Fragment implements View.OnTouchListener, Q
 
             binding.imageButtonBookmark.setImageResource(R.drawable.bookmark);
         }
-
-
     }
 
     @Override
@@ -582,5 +579,16 @@ public class McqTestFragment extends Fragment implements View.OnTouchListener, Q
     @Override
     public void onDestroy() {
         super.onDestroy();
+    }
+
+    private void questionWithAnswerExplaination(int position) {
+        MCQQuestionResponse.Datum datum;
+        datum = new Gson().fromJson(questionEntities.get(position).getmQuestionData(), new TypeToken<MCQQuestionResponse.Datum>() {
+        }.getType());
+        String jsonData = new Gson().toJson(datum);
+        Bundle bundle = new Bundle();
+        bundle.putString("Data", jsonData);
+        Navigation.findNavController(mView).navigate(R.id.questionExplanationBottomFragment, bundle);
+
     }
 }

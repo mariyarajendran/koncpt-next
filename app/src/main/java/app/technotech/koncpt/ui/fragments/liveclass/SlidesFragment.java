@@ -32,6 +32,7 @@ import app.technotech.koncpt.databinding.FragmentSlidesClassBinding;
 import app.technotech.koncpt.ui.adapter.SliderAdapterExample;
 import app.technotech.koncpt.ui.viewmodels.SlidesModelViewModel;
 import app.technotech.koncpt.utils.DebugLog;
+import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.utils.GeneralUtils;
 import es.dmoral.toasty.Toasty;
 
@@ -95,6 +96,7 @@ public class SlidesFragment extends Fragment {
     private void sendPost() {
 
         Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.VideoClassFile.getValue());
         params.put("video_id", video_id);
         params.put("type", "1");
 

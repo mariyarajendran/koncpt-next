@@ -12,14 +12,17 @@ import app.technotech.koncpt.data.local.entites.QuestionDetailsEntity;
 public class QuestionViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private List<QuestionDetailsEntity> mQuestionDetailsEntities;
+    private AnswerListener answerListener;
 
-    public QuestionViewPagerAdapter(FragmentManager fm, List<QuestionDetailsEntity> questionDetailsEntities) {
+    public QuestionViewPagerAdapter(FragmentManager fm, List<QuestionDetailsEntity> questionDetailsEntities, AnswerListener answerListener) {
         super(fm);
         this.mQuestionDetailsEntities = questionDetailsEntities;
+        this.answerListener = answerListener;
     }
 
     @Override
     public Fragment getItem(int position) {
+        answerListener.onAnswerClicked(position);
         return QuestionFragment.newInstance(mQuestionDetailsEntities.get(position));
     }
 
@@ -27,4 +30,9 @@ public class QuestionViewPagerAdapter extends FragmentStatePagerAdapter {
     public int getCount() {
         return mQuestionDetailsEntities.size();
     }
+
+    public interface AnswerListener {
+        void onAnswerClicked(int position);
+    }
 }
+

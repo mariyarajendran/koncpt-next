@@ -67,50 +67,7 @@ public class CompletedAdapter extends RecyclerView.Adapter<CompletedAdapter.View
                 listener.onVideoItemClick(data, position);
             }
         });
-//        if (data.getType().equals("")) {
-//            holder.binding.lnrType.setVisibility(View.INVISIBLE);
-//        } else if (data.getType().matches("1")) {
-//            holder.binding.lnrType.setVisibility(View.VISIBLE);
-//
-//        } else {
-            holder.binding.lnrType.setVisibility(View.INVISIBLE);
-
-//        }
-
-        if (data.getIsFreeForUsers().equals("1")) {
-            Log.d("freeForAll", "freeForAll");
-            holder.binding.lnrPro.setVisibility(View.INVISIBLE);
-
-        } else if (data.getIsFreeForUsers().equals("0")) {
-            holder.binding.lnrPro.setVisibility(View.VISIBLE);
-        } else if (plan.matches("f") || plan.matches("F")) {
-            if (data.getIsFreeForUsers().equals("1")) {
-                holder.binding.lnrPro.setVisibility(View.INVISIBLE);
-            } else if (data.getIsFreeForUsers().equals("0")) {
-                holder.binding.lnrPro.setVisibility(View.VISIBLE);
-            }
-        } else if (plan.matches("b") || plan.matches("B")) {
-            Log.d("planB", "planB");
-            if (data.getIsVideoForPlanB().equals("1")) {
-                holder.binding.lnrPro.setVisibility(View.INVISIBLE);
-            } else if (data.getIsVideoForPlanB().equals("0")) {
-                holder.binding.lnrPro.setVisibility(View.VISIBLE);
-
-            }
-
-        } else if (plan.matches("c") || plan.matches("C")) {
-
-            holder.binding.lnrPro.setVisibility(View.INVISIBLE);
-
-
-        } else if (plan.matches("d") || plan.matches("D")) {
-
-            holder.binding.lnrPro.setVisibility(View.INVISIBLE);
-
-
-        }
-
-
+        holder.binding.lnrType.setVisibility(View.INVISIBLE);
     }
 
     @Override

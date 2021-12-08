@@ -32,27 +32,22 @@ import app.technotech.koncpt.ui.adapter.PausedAdapter;
 import app.technotech.koncpt.ui.viewmodels.LiveVideoViewModel;
 import app.technotech.koncpt.utils.AppSharedPreference;
 import app.technotech.koncpt.utils.DebugLog;
+import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.utils.GeneralUtils;
 
 public class PausedFragment extends Fragment implements PausedAdapter.OnVideoItemSelectedListener {
     private String subject_id;
-    RecyclerView recyclerViewTopic;
     PausedAdapter pausedAdapter;
     private FragmentAllBinding binding;
     private LiveVideoViewModel model;
     private GeneralUtils generalUtils;
     private AlertDialog progressDialog;
     String plan;
-    View view;
-
-    // please run atonce
 
     public static PausedFragment getInstance(String params) {
-
         Bundle bundle = new Bundle();
         PausedFragment allFragment = new PausedFragment();
         bundle.putString("subject_id", params);
-
         allFragment.setArguments(bundle);
         return allFragment;
     }
@@ -66,11 +61,8 @@ public class PausedFragment extends Fragment implements PausedAdapter.OnVideoIte
         }
     }
 
-    View rootView;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle savedInstanceState) {
-
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_all, viewGroup, false);
         binding.setLifecycleOwner(this);
         model = new ViewModelProvider(this).get(LiveVideoViewModel.class);
@@ -90,11 +82,12 @@ public class PausedFragment extends Fragment implements PausedAdapter.OnVideoIte
     }
 
     private void sendPost() {
-
         Map<String, String> params = new HashMap<>();
         params.put("user_id", Integer.toString(new AppSharedPreference(getActivity()).getUserResponse().getId()));
         params.put("subject_id", subject_id);
         params.put("type", "2");
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.VideoTopicList.getValue());
+        params.put("level_id", new AppSharedPreference(getActivity()).getLevelId());
 
         if (!progressDialog.isShowing()) {
             progressDialog.show();
@@ -129,93 +122,26 @@ public class PausedFragment extends Fragment implements PausedAdapter.OnVideoIte
                 }, 500);
             }
         });
-
-
     }
 
     private void loadData(VideoModel videoModel) {
-
         binding.recyclerViewTopic.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.recyclerViewTopic.setItemAnimator(new DefaultItemAnimator());
-
         pausedAdapter = new PausedAdapter(getActivity(), videoModel.getData().getModuleData(), this);
         binding.recyclerViewTopic.setAdapter(pausedAdapter);
-
-
     }
 
     public void onStart() {
         super.onStart();
-//        myViewModel.name = subject_id;
-        // You can Set your Value anywhere, Let Set the Value at onStart as an Example
-        // Set your Name Data to "Pritham Bnr"
-
     }
 
     @Override
     public void onVideoItemClick(VideoModel.ModuleDatum data, int position) {
-
-
-        if (plan.matches("f")) {
-            if (data.getIsFreeForUsers().equals("1")) {
-                Bundle bundle = new Bundle();
-                bundle.putString("video_id", Integer.toString(data.getId()));
-                bundle.putString("subject_id", subject_id);
-                bundle.putString("topic_name", data.getClassTitle());
-                bundle.putString("pause_time", data.getPaushedTime());
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.mainTabFragment, bundle);
-            } else if (data.getIsFreeForUsers().equals("0")) {
-                Log.d("noAccess", "noAccess");
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.proUsers);
-
-            }
-        } else if (plan.matches("b")) {
-            if (data.getIsVideoForPlanB().equals("1")) {
-                Log.d("Access", "Access");
-                Log.d("idAll", Integer.toString(data.getId()) + "");
-                Bundle bundle = new Bundle();
-                bundle.putString("video_id", Integer.toString(data.getId()));
-                bundle.putString("subject_id", subject_id);
-                bundle.putString("topic_name", data.getClassTitle());
-                bundle.putString("pause_time", data.getPaushedTime());
-
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.mainTabFragment, bundle);
-
-            } else if (data.getIsVideoForPlanB().equals("0")) {
-                Log.d("noAccess", "noAccess");
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.proUsers);
-
-            }
-        } else if (plan.matches("c")) {
-            Log.d("Access", "Access");
-            Navigation.findNavController(binding.getRoot()).navigate(R.id.proUsers);
-
-        } else if (plan.matches("d")) {
-            Log.d("Access", "Access");
-            Bundle bundle = new Bundle();
-            bundle.putString("video_id", Integer.toString(data.getId()));
-            bundle.putString("subject_id", subject_id);
-            bundle.putString("topic_name", data.getClassTitle());
-            bundle.putString("pause_time", data.getPaushedTime());
-
-            Navigation.findNavController(binding.getRoot()).navigate(R.id.mainTabFragment, bundle);
-
-        } else {
-            if (data.getIsFreeForUsers().equals("1")) {
-                Bundle bundle = new Bundle();
-                bundle.putString("video_id", Integer.toString(data.getId()));
-                bundle.putString("subject_id", subject_id);
-                bundle.putString("topic_name", data.getClassTitle());
-                bundle.putString("pause_time", data.getPaushedTime());
-
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.mainTabFragment, bundle);
-            } else {
-                Log.d("noAccess", "noAccess");
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.proUsers);
-            }
-
-        }
-
-
+        Bundle bundle = new Bundle();
+        bundle.putString("video_id", Integer.toString(data.getId()));
+        bundle.putString("subject_id", subject_id);
+        bundle.putString("topic_name", data.getClassTitle());
+        bundle.putString("pause_time", data.getPaushedTime());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.mainTabFragment, bundle);
     }
 }

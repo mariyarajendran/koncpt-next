@@ -32,10 +32,8 @@ public class MainTabAdapter extends FragmentStatePagerAdapter {
             case 2:
                 NotesFragment about = NotesFragment.getInstance(id);
                 return about;
-
             default:
                 return null;
         }
     }
-
 }

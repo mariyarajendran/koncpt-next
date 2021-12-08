@@ -36,10 +36,11 @@ import app.technotech.koncpt.ui.viewmodels.LiveUnattemptedViewModel;
 
 import app.technotech.koncpt.utils.AppSharedPreference;
 import app.technotech.koncpt.utils.DebugLog;
+import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.utils.GeneralUtils;
 import es.dmoral.toasty.Toasty;
 
-public class UnattemptedFragment extends Fragment implements UnattemptedAdapter.OnVideoItemSelectedListener  {
+public class UnattemptedFragment extends Fragment implements UnattemptedAdapter.OnVideoItemSelectedListener {
     private String subject_id;
     UnattemptedAdapter completedAdapter;
     private FragmentUnattemptedfragmentBinding binding;
@@ -73,10 +74,8 @@ public class UnattemptedFragment extends Fragment implements UnattemptedAdapter.
     }
 
 
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_unattemptedfragment, viewGroup, false);
         binding.setLifecycleOwner(this);
         model = new ViewModelProvider(this).get(LiveUnattemptedViewModel.class);
@@ -92,7 +91,7 @@ public class UnattemptedFragment extends Fragment implements UnattemptedAdapter.
 
         SharedPreferences prfs = getActivity().getSharedPreferences("plan", Context.MODE_PRIVATE);
         plan = prfs.getString("plan", "");
-        Log.d("planInUnattempted",plan+"");
+        Log.d("planInUnattempted", plan + "");
         sendPost();
     }
 
@@ -101,10 +100,8 @@ public class UnattemptedFragment extends Fragment implements UnattemptedAdapter.
         params.put("user_id", Integer.toString(new AppSharedPreference(getActivity()).getUserResponse().getId()));
         params.put("subject_id", subject_id);
         params.put("type", "4");
-
-        DebugLog.e("params Unattempted==> " + params.toString());
-
-
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.VideoTopicList.getValue());
+        params.put("level_id", new AppSharedPreference(getActivity()).getLevelId());
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
@@ -153,103 +150,19 @@ public class UnattemptedFragment extends Fragment implements UnattemptedAdapter.
     private void loadData(VideoModel data) {
         binding.recyclerViewTopic.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.recyclerViewTopic.setItemAnimator(new DefaultItemAnimator());
-
         completedAdapter = new UnattemptedAdapter(getActivity(), data.getData().getModuleData(), this);
         binding.recyclerViewTopic.setAdapter(completedAdapter);
-
-
     }
 
 
     @Override
     public void onVideoItemClick(VideoModel.ModuleDatum data, int position) {
-
-
-        if(plan.matches("f"))
-        {
-            if(data.getIsFreeForUsers().equals("1"))
-            {
-                Log.d("Access","Access" );
-
-                Log.d("idAll", Integer.toString(data.getId())+"");
-
-                Bundle bundle = new Bundle();
-                bundle.putString("video_id",Integer.toString(data.getId()));
-                bundle.putString("subject_id",subject_id);
-                bundle.putString("topic_name",data.getClassTitle());
-                bundle.putString("pause_time",data.getPaushedTime());
-
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.mainTabFragment,bundle);
-            }
-            else if(data.getIsFreeForUsers().equals("0"))
-            {
-                Log.d("noAccess","noAccess" );
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.proUsers);
-
-            }
-        }
-        else  if(plan.matches("b"))
-        {
-            if(data.getIsVideoForPlanB().equals("1"))
-            {
-                Log.d("Access","Access" );
-                Log.d("idAll", Integer.toString(data.getId())+"");
-                Bundle bundle = new Bundle();
-                bundle.putString("video_id",Integer.toString(data.getId()));
-                bundle.putString("subject_id",subject_id);
-                bundle.putString("topic_name",data.getClassTitle());
-                bundle.putString("pause_time",data.getPaushedTime());
-
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.mainTabFragment,bundle);
-
-            }
-            else if(data.getIsVideoForPlanB().equals("0"))
-            {
-                Log.d("noAccess","noAccess" );
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.proUsers);
-
-            }
-        }
-        else if(plan.matches("c"))
-        {
-            Log.d("Access","Access" );
-            Navigation.findNavController(binding.getRoot()).navigate(R.id.proUsers);
-
-        }
-        else if(plan.matches("d"))
-        {
-            Log.d("Access","Access" );
-            Bundle bundle = new Bundle();
-            bundle.putString("video_id",Integer.toString(data.getId()));
-            bundle.putString("subject_id",subject_id);
-            bundle.putString("topic_name",data.getClassTitle());
-            bundle.putString("pause_time",data.getPaushedTime());
-
-            Navigation.findNavController(binding.getRoot()).navigate(R.id.mainTabFragment,bundle);
-
-        }
-        else
-        {
-            if(data.getIsFreeForUsers().equals("1"))
-            {
-                Bundle bundle = new Bundle();
-                bundle.putString("video_id",Integer.toString(data.getId()));
-                bundle.putString("subject_id",subject_id);
-                bundle.putString("topic_name",data.getClassTitle());
-                bundle.putString("pause_time",data.getPaushedTime());
-
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.mainTabFragment,bundle);
-            }
-            else
-            {
-                Log.d("noAccess","noAccess" );
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.proUsers);
-            }
-
-        }
-
-
-
+        Bundle bundle = new Bundle();
+        bundle.putString("video_id", Integer.toString(data.getId()));
+        bundle.putString("subject_id", subject_id);
+        bundle.putString("topic_name", data.getClassTitle());
+        bundle.putString("pause_time", data.getPaushedTime());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.mainTabFragment, bundle);
     }
 }
 

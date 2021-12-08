@@ -129,11 +129,9 @@ public class CustomReviewExamModelFragment extends Fragment implements CustomRev
             return;
         }
         mLastClickTime = SystemClock.elapsedRealtime();
-
         String jsonData = new Gson().toJson(dataList.get(position));
         Bundle bundle = new Bundle();
         bundle.putString("Data", jsonData);
-
         Navigation.findNavController(binding.getRoot()).navigate(R.id.questionExplanationBottomFragment, bundle);
     }
 }

@@ -45,7 +45,6 @@ public class QuestionBankLevelFragment extends Fragment {
     private BottomNavigationView navigationView;
     private QBankLevelAdapter qBankLevelAdapter;
 
-
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -100,7 +99,7 @@ public class QuestionBankLevelFragment extends Fragment {
         Map<String, String> params = new HashMap<>();
         params.put(EnumApiAction.action.getValue(), EnumApiAction.PlanWiseLevel.getValue());
         params.put("user_id", Integer.toString(new AppSharedPreference(getActivity()).getUserResponse().getId()));
-        params.put("plan_id", "2");
+        params.put("plan_id", "1");
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }

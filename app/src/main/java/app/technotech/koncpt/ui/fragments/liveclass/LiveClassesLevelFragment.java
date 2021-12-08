@@ -127,8 +127,8 @@ public class LiveClassesLevelFragment extends Fragment {
         binding.revLiveClassesLevel.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.revLiveClassesLevel.setItemAnimator(new DefaultItemAnimator());
         qBankLevelAdapter = new QBankLevelAdapter(getActivity(), notesModel.getData(), (int position) -> {
-            //if (notesModel.getData().get(position).getLevel_active() == 1)
-            navigateToQBankFragment(TextUtil.cutNull(notesModel.getData().get(position).getLevel_id()));
+            if (notesModel.getData().get(position).getLevel_active() == 1)
+                navigateToQBankFragment(TextUtil.cutNull(notesModel.getData().get(position).getLevel_id()));
         });
         binding.revLiveClassesLevel.setAdapter(qBankLevelAdapter);
     }

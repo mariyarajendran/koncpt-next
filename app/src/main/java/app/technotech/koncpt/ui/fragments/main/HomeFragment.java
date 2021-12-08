@@ -841,7 +841,6 @@ public class HomeFragment extends Fragment implements SuggestedCourseAdapter.OnT
         String jsonData = new Gson().toJson(homeScreenData.getData().getMcqOfTheDay().get(0));
         Bundle bundle = new Bundle();
         bundle.putString("Data", jsonData);
-
         Navigation.findNavController(binding.getRoot()).navigate(R.id.questionExplanationBottomFragment, bundle);
     }
 

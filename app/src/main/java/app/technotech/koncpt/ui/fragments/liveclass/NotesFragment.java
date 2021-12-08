@@ -39,6 +39,7 @@ import app.technotech.koncpt.data.network.model.ModelNotes;
 import app.technotech.koncpt.databinding.FragmentNotesViewBinding;
 import app.technotech.koncpt.ui.viewmodels.ModelNotesViewModel;
 import app.technotech.koncpt.utils.DebugLog;
+import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.utils.GeneralUtils;
 import es.dmoral.toasty.Toasty;
 
@@ -122,6 +123,7 @@ public class NotesFragment extends Fragment {
 
     private void sendPost() {
         Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.VideoClassFile.getValue());
         params.put("video_id",video_id);
         params.put("type","0");
         DebugLog.e("params All==> " + params.toString()); //this values are not displayed..check

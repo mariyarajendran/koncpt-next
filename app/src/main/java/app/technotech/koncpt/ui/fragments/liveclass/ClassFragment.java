@@ -71,6 +71,7 @@ import app.technotech.koncpt.ui.viewmodels.LiveNotesViewModel;
 import app.technotech.koncpt.utils.AppSharedPreference;
 import app.technotech.koncpt.utils.DebugLog;
 import app.technotech.koncpt.utils.DownloadAsync;
+import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.utils.GeneralUtils;
 import es.dmoral.toasty.Toasty;
 
@@ -163,12 +164,9 @@ public class ClassFragment extends Fragment implements ClassAdapter.OnVideoItemS
         navigationView = ((MainActivity) requireActivity()).getBottomNavigationView();
         toolbar = ((MainActivity) requireActivity()).getToolbar();
         db = new DBHelper(getActivity());
-
-
         if (navigationView.getVisibility() == View.VISIBLE) {
             navigationView.setVisibility(View.GONE);
         }
-
         createPlayer(view);
         setHasOptionsMenu(true);
         sendPost();
@@ -182,7 +180,7 @@ public class ClassFragment extends Fragment implements ClassAdapter.OnVideoItemS
 
                     Activity activity = getActivity();
 
-                    if (GeneralUtils.hasPermissionToDownload(activity)){
+                    if (GeneralUtils.hasPermissionToDownload(activity)) {
                         new DownloadAsync(getActivity(), 0, videoId, title, description, class_video, db).execute();
                     }
 
@@ -205,10 +203,9 @@ public class ClassFragment extends Fragment implements ClassAdapter.OnVideoItemS
 
                 try {
                     try {
-
                         long lastPlayedPosition = (binding.videoView.getPlayer().getCurrentPosition() + 1000) / 1000;
                         String lastPosition = DateUtils.formatElapsedTime(lastPlayedPosition);
-                        Log.i("TAG", "onClick: "+lastPosition);
+                        Log.i("TAG", "onClick: " + lastPosition);
                         Log.d("completedVideo", lastPosition + "");
                         type = "1";
                         progressDialog.show();
@@ -232,6 +229,7 @@ public class ClassFragment extends Fragment implements ClassAdapter.OnVideoItemS
     private void completePost(String type, String lastPosition, View v) {
 
         Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.VideoAction.getValue());
         params.put("type", type);
         params.put("paushed_time", lastPosition);
         params.put("user_id", Integer.toString(new AppSharedPreference(getActivity()).getUserResponse().getId()));
@@ -454,6 +452,7 @@ public class ClassFragment extends Fragment implements ClassAdapter.OnVideoItemS
 
     private void updateRating(String rating) {
         Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.VideoRatting.getValue());
         params.put("user_id", Integer.toString(new AppSharedPreference(getActivity()).getUserResponse().getId()));
         params.put("video_id", video_id);
         params.put("ratting", rating);
@@ -544,28 +543,22 @@ public class ClassFragment extends Fragment implements ClassAdapter.OnVideoItemS
 
 
     private void sendPost() {
-
         Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.TopicVideo.getValue());
         params.put("video_id", video_id);
-
+        params.put("user_id", Integer.toString(new AppSharedPreference(getActivity()).getUserResponse().getId()));
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
-
-
         model.getNoteData(params).observe(getActivity(), new Observer<NotesModel>() {
             @Override
             public void onChanged(NotesModel notesModel) {
-
-
                 if (progressDialog.isShowing()) {
                     progressDialog.dismiss();
                 }
-
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
                         if (notesModel != null) {
                             binding.activityMain.setVisibility(View.VISIBLE);
                             if (notesModel.getStatus() == 1) {
@@ -634,37 +627,28 @@ public class ClassFragment extends Fragment implements ClassAdapter.OnVideoItemS
     }
 
 
-
     @Override
     public void onPause() {
         super.onPause();
-
         try {
-
             if (DateUtils.formatElapsedTime(binding.videoView.getPlayer().getCurrentPosition()) != null) {
-
-                String valuePause ;
+                String valuePause;
                 long millis = binding.videoView.getPlayer().getCurrentPosition();
-
                 valuePause = String.format("%02d:%02d:%02d",
                         TimeUnit.MILLISECONDS.toHours(millis),
                         TimeUnit.MILLISECONDS.toMinutes(millis) -
                                 TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)), // The change is in this line
                         TimeUnit.MILLISECONDS.toSeconds(millis) -
                                 TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
-
-                Log.i("TAG", "onPause: "+valuePause);
+                Log.i("TAG", "onPause: " + valuePause);
                 if (video_type.equals("")) {
                     pauseVideo(valuePause);
                 } else if (video_type.equals("1")) {
-
                 } else {
                     pauseVideo(valuePause);
                 }
             }
-
             releasePlayer();
-
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -674,12 +658,11 @@ public class ClassFragment extends Fragment implements ClassAdapter.OnVideoItemS
     private void pauseVideo(String valuePause) {
 
         Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.VideoAction.getValue());
         params.put("type", "2");
         params.put("paushed_time", valuePause);
         params.put("user_id", Integer.toString(new AppSharedPreference(getActivity()).getUserResponse().getId()));
         params.put("video_id", video_id);
-
-
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }

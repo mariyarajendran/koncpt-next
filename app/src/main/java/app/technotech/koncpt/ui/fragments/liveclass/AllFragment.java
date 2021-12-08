@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +32,7 @@ import app.technotech.koncpt.ui.adapter.AllAdapter;
 import app.technotech.koncpt.ui.viewmodels.LiveAllViewModel;
 import app.technotech.koncpt.utils.AppSharedPreference;
 import app.technotech.koncpt.utils.DebugLog;
+import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.utils.GeneralUtils;
 import es.dmoral.toasty.Toasty;
 
@@ -81,23 +81,19 @@ public class AllFragment extends Fragment implements AllAdapter.OnVideoItemSelec
         progressDialog = generalUtils.showProgressDialog();
         SharedPreferences prfs = getActivity().getSharedPreferences("plan", Context.MODE_PRIVATE);
         plan = new AppSharedPreference(getActivity()).getUserResponse().getPlan();
-        Log.d("planInAll", plan + "cxcxc");
         sendPost();
     }
 
     private void sendPost() {
         Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.VideoTopicList.getValue());
+        params.put("level_id", new AppSharedPreference(getActivity()).getLevelId());
         params.put("user_id", Integer.toString(new AppSharedPreference(getActivity()).getUserResponse().getId()));
         params.put("subject_id", subject_id);
         params.put("type", "3");
-
-        DebugLog.e("params All==> " + params.toString());
-
-
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
-
         model.getCompleteData(params).observe(getActivity(), new Observer<VideoModel>() {
             @Override
             public void onChanged(VideoModel completeModel) {
@@ -110,12 +106,9 @@ public class AllFragment extends Fragment implements AllAdapter.OnVideoItemSelec
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
                         if (completeModel != null) {
                             if (completeModel.getStatus() == 1) {
-
                                 if (completeModel.getData().getModuleData().size() > 0) {
-
                                     String json = new Gson().toJson(completeModel);
                                     DebugLog.e("JsonAll ==> " + json);
                                     binding.rltNoVideo.setVisibility(View.GONE);
@@ -146,87 +139,18 @@ public class AllFragment extends Fragment implements AllAdapter.OnVideoItemSelec
     private void loadData(VideoModel data) {
         binding.recyclerViewTopic.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.recyclerViewTopic.setItemAnimator(new DefaultItemAnimator());
-
         completedAdapter = new AllAdapter(getActivity(), data.getData().getModuleData(), this);
         binding.recyclerViewTopic.setAdapter(completedAdapter);
-
-
     }
 
 
     @Override
     public void onVideoItemClick(VideoModel.ModuleDatum data, int position, String status) {
-
-        if (plan.matches("f")||plan.matches("F")) {
-            if (data.getIsFreeForUsers().equals("1")) {
-                Log.d("Access", "Access");
-
-                Log.d("idAll", Integer.toString(data.getId()) + "");
-
-                Bundle bundle = new Bundle();
-                bundle.putString("video_id", Integer.toString(data.getId()));
-                bundle.putString("subject_id", subject_id);
-                bundle.putString("topic_name", data.getClassTitle());
-                bundle.putString("pause_time", data.getPaushedTime());
-
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.mainTabFragment, bundle);
-            } else if (data.getIsFreeForUsers().equals("0")) {
-                Log.d("noAccess", "noAccess");
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.proUsers);
-
-            }
-        } else if (plan.matches("b")||plan.matches("B")) {
-            if (data.getIsVideoForPlanB().equals("1")) {
-                Log.d("Access", "Access");
-                Log.d("idAll", Integer.toString(data.getId()) + "");
-                Bundle bundle = new Bundle();
-                bundle.putString("video_id", Integer.toString(data.getId()));
-                bundle.putString("subject_id", subject_id);
-                bundle.putString("topic_name", data.getClassTitle());
-                bundle.putString("pause_time", data.getPaushedTime());
-
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.mainTabFragment, bundle);
-
-            } else if (data.getIsVideoForPlanB().equals("0")) {
-                Log.d("noAccess", "noAccess");
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.proUsers);
-
-            }
-        } else if (plan.matches("c")||plan.matches("C")) {
-            Log.d("Access", "Access");
-            Bundle bundle = new Bundle();
-            bundle.putString("video_id", Integer.toString(data.getId()));
-            bundle.putString("subject_id", subject_id);
-            bundle.putString("topic_name", data.getClassTitle());
-            bundle.putString("pause_time", data.getPaushedTime());
-            Navigation.findNavController(binding.getRoot()).navigate(R.id.mainTabFragment,bundle);
-
-        } else if (plan.matches("d")||plan.matches("D")) {
-            Log.d("Access", "Access");
-            Bundle bundle = new Bundle();
-            bundle.putString("video_id", Integer.toString(data.getId()));
-            bundle.putString("subject_id", subject_id);
-            bundle.putString("topic_name", data.getClassTitle());
-            bundle.putString("pause_time", data.getPaushedTime());
-
-            Navigation.findNavController(binding.getRoot()).navigate(R.id.mainTabFragment, bundle);
-
-        } else {
-            if (data.getIsFreeForUsers().equals("1")) {
-                Bundle bundle = new Bundle();
-                bundle.putString("video_id", Integer.toString(data.getId()));
-                bundle.putString("subject_id", subject_id);
-                bundle.putString("topic_name", data.getClassTitle());
-                bundle.putString("pause_time", data.getPaushedTime());
-
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.mainTabFragment, bundle);
-            } else {
-                Log.d("noAccess", "noAccess");
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.proUsers);
-            }
-
-        }
-
-
+        Bundle bundle = new Bundle();
+        bundle.putString("video_id", Integer.toString(data.getId()));
+        bundle.putString("subject_id", subject_id);
+        bundle.putString("topic_name", data.getClassTitle());
+        bundle.putString("pause_time", data.getPaushedTime());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.mainTabFragment, bundle);
     }
 }

@@ -22,18 +22,11 @@ import app.technotech.koncpt.databinding.FragmentSubjectMainBinding;
 import app.technotech.koncpt.ui.activity.MainActivity;
 
 public class MainFragment extends Fragment implements TabLayout.OnTabSelectedListener {
-
     private FragmentSubjectMainBinding binding;
     private String video_id, topic_name;
     MainTabAdapter mPagerAdapter;
-
-    // 1 minute
-
-//    public SlidesFragment.OnSliderListener setSliderLisener(SlidesFragment.OnSliderListener listener){
-//        this.listener = listener;
-//    }
-
     public static MainFragment mInstnce;
+
     public static MainFragment getInstance() {
         return mInstnce;
     }
@@ -41,7 +34,6 @@ public class MainFragment extends Fragment implements TabLayout.OnTabSelectedLis
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mInstnce = this;
         if (getArguments() != null) {
             video_id = getArguments().getString("video_id");
@@ -52,12 +44,9 @@ public class MainFragment extends Fragment implements TabLayout.OnTabSelectedLis
         }
     }
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_subject_main, container, false);
         binding.setLifecycleOwner(this);
         return binding.getRoot();
@@ -71,13 +60,9 @@ public class MainFragment extends Fragment implements TabLayout.OnTabSelectedLis
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
         setHasOptionsMenu(true);
         setTabLayout();
-
         ((MainActivity) requireActivity()).setToolBarTitle(topic_name);
-
     }
 
     @Override
@@ -86,21 +71,17 @@ public class MainFragment extends Fragment implements TabLayout.OnTabSelectedLis
         menu.findItem(R.id.action_index).setVisible(false);
         menu.findItem(R.id.action_notification).setVisible(false);
         super.onPrepareOptionsMenu(menu);
-
     }
 
     private void setTabLayout() {
-
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_class)));
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_slides)));
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_notes)));
-
         mPagerAdapter = new MainTabAdapter(getChildFragmentManager(), binding.tabLayout.getTabCount(), video_id);
         binding.viewPager.setAdapter(mPagerAdapter);
         binding.tabLayout.addOnTabSelectedListener(this);
         binding.viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(binding.tabLayout));
     }
-
 
     public void UpdateMyCount(String count, int tab) {
         switch (tab) {
@@ -115,32 +96,23 @@ public class MainFragment extends Fragment implements TabLayout.OnTabSelectedLis
                 break;
 
         }
-
-
         //1 minn   it works :..>)but it shows 1st tab name...i have to update tab name at 0 and 2 position
-
     }
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         binding.viewPager.setCurrentItem(tab.getPosition());
-
     }
 
     @Override
     public void onTabUnselected(TabLayout.Tab tab) {
-
     }
 
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
-
     }
 
-
-    public TabLayout getTabLayoutView(){
+    public TabLayout getTabLayoutView() {
         return binding.tabLayout;
     }
-
-
 }

@@ -1440,9 +1440,7 @@ public class Repository {
     }
 
     public MutableLiveData<VideoModel> getCompleteModelRepository(Map<String, String> params) {
-
         final MutableLiveData<VideoModel> data = new MutableLiveData<>();
-
         connection.getCompleteModelresponse(params).enqueue(new Callback<VideoModel>() {
 
             @Override
@@ -1664,7 +1662,6 @@ public class Repository {
                 }
             }
         });
-
         return data;
     }
 
