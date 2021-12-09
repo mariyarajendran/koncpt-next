@@ -136,19 +136,15 @@ public class PauseClassesFragment extends Fragment implements AllTestRecyclerAda
 
 
     private void callApi() {
-
         Map<String, String> params = new HashMap<>();
         params.put(EnumApiAction.action.getValue(), EnumApiAction.Topics.getValue());
         params.put("level_id", new AppSharedPreference(getActivity()).getLevelId());
         params.put("subject_id", TextUtil.cutNull(subject_id));
-        params.put("type", "");
+        params.put("type", "1");
         params.put("user_id", String.valueOf(new AppSharedPreference(getActivity()).getUserResponse().getId()));
-
-
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
-
         model.getSubjectModel(params).observe(getActivity(), new Observer<SubjectModel>() {
             @Override
             public void onChanged(SubjectModel subjectModel) {

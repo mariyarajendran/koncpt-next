@@ -85,7 +85,22 @@ public class SubjectDetailsFragment extends Fragment implements TabLayout.OnTabS
         /*binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_free)));*/
         mPagerAdapter = new SubjectDetailsViewPagerAdapter(getActivity(), getChildFragmentManager(), binding.tabLayout.getTabCount(), subjectId, subjectTitle, levelId);
         binding.viewPager.setAdapter(mPagerAdapter);
-        binding.tabLayout.addOnTabSelectedListener(this);
+        binding.tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
         binding.viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(binding.tabLayout));
     }
 

@@ -19,7 +19,6 @@ import app.technotech.koncpt.ui.callbacks.BuyNowCallbacks;
 import app.technotech.koncpt.utils.TextUtil;
 
 public class QBankLevelAdapter extends RecyclerView.Adapter<QBankLevelAdapter.ViewHolder> {
-
     final Context context;
     final List<BuyDetailsModel.Data> moduleDatumList;
     BuyNowCallbacks buyNowCallbacks;
@@ -43,9 +42,9 @@ public class QBankLevelAdapter extends RecyclerView.Adapter<QBankLevelAdapter.Vi
         holder.binding.txtSubjectName.setText(TextUtil.cutNull(data.getLevel_name()));
         holder.binding.cardQbankLevel.setOnClickListener(view -> buyNowCallbacks.onBuy(position));
         if (data.getLevel_active() == 1) {
-            holder.binding.imgPro.setVisibility(View.GONE);
+            holder.binding.txtPro.setVisibility(View.GONE);
         } else {
-            holder.binding.imgPro.setVisibility(View.VISIBLE);
+            holder.binding.txtPro.setVisibility(View.VISIBLE);
         }
     }
 

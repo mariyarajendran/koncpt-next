@@ -50,13 +50,6 @@ public enum EnumApiAction {
     }
 }
 /*
- * menu
- * Home
- * Qank
- * Classes
- * Test
- * Daily Hunt
- *no need module name , need only module data ,, hide free
  *
  * issue all and pause
  * need to add button
@@ -64,11 +57,9 @@ public enum EnumApiAction {
  *
  * label-- level name bind --- completed
  * amount and buy now space  ---- completed
- * book mark pre fill
+ * book mark pre fill  ----  completed
  *
- * add video grid
- * plan id 2 with level list
- * new grid add video
- * hide below buttons
  *
  * */
+
+

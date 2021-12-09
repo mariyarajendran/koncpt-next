@@ -29,9 +29,7 @@ public class SubjectDetailActivity extends AppCompatActivity implements TabLayou
         binding = DataBindingUtil.setContentView(SubjectDetailActivity.this, R.layout.activity_subject_detail);
         binding.setLifecycleOwner(this);
         setSupportActionBar(binding.toolbar);
-
         Intent getdata = getIntent();
-
         if (getdata != null) {
             subjectId = getdata.getStringExtra("subject_id");
             subjectTitle = getdata.getStringExtra("subject_name");

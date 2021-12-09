@@ -13,7 +13,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -30,13 +32,14 @@ import app.technotech.koncpt.data.network.model.BuyDetailsModel;
 import app.technotech.koncpt.databinding.FragmentLiveClassessLevelBinding;
 import app.technotech.koncpt.ui.activity.MainActivity;
 import app.technotech.koncpt.ui.adapter.QBankLevelAdapter;
+import app.technotech.koncpt.ui.dialogs.CustomBuyNowDialogFragment;
 import app.technotech.koncpt.ui.viewmodels.BuyDetailsViewModel;
 import app.technotech.koncpt.utils.AppSharedPreference;
 import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.utils.GeneralUtils;
 import app.technotech.koncpt.utils.TextUtil;
 
-public class LiveClassesLevelFragment extends Fragment {
+public class LiveClassesLevelFragment extends Fragment implements CustomBuyNowDialogFragment.OnNavigateToScreen {
     private Context mContext;
     private FragmentLiveClassessLevelBinding binding;
     private BuyDetailsViewModel model;
@@ -129,6 +132,8 @@ public class LiveClassesLevelFragment extends Fragment {
         qBankLevelAdapter = new QBankLevelAdapter(getActivity(), notesModel.getData(), (int position) -> {
             if (notesModel.getData().get(position).getLevel_active() == 1)
                 navigateToQBankFragment(TextUtil.cutNull(notesModel.getData().get(position).getLevel_id()));
+            else
+                callBuyNowFragment();
         });
         binding.revLiveClassesLevel.setAdapter(qBankLevelAdapter);
     }
@@ -136,6 +141,23 @@ public class LiveClassesLevelFragment extends Fragment {
     private void navigateToQBankFragment(String levelId) {
         new AppSharedPreference(getActivity()).setLevelId(levelId);
         Navigation.findNavController(binding.getRoot()).navigate(R.id.LiveClassesFragment);
+    }
+
+    private void callBuyNowFragment() {
+        FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
+        Fragment prev = requireActivity().getSupportFragmentManager().findFragmentByTag("dialog");
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+        DialogFragment dialogFragment = new CustomBuyNowDialogFragment(this);
+        dialogFragment.setCancelable(false);
+        dialogFragment.show(ft, "dialog");
+    }
+
+    @Override
+    public void onItemNavigation() {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.buyNowFragment);
     }
 }
 

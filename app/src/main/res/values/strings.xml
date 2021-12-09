@@ -210,4 +210,5 @@
     <string name="hint_video_class">Video Class</string>
     <string name="hint_video">Video</string>
     <string name="hint_subjects">Subjects</string>
+    <string name="lable_pro">Pro</string>
 </resources>

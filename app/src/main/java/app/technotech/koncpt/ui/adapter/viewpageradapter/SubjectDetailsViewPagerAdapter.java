@@ -10,7 +10,6 @@ import org.jetbrains.annotations.NotNull;
 
 import app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.AllClassFragment;
 import app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.CompleteClassesFragment;
-import app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.FreeClassesFragment;
 import app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.PauseClassesFragment;
 import app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.UnAttemptedClassesFragment;
 
@@ -33,20 +32,26 @@ public class SubjectDetailsViewPagerAdapter extends FragmentPagerAdapter {
     @NotNull
     @Override
     public Fragment getItem(int position) {
+        Fragment fragment;
         switch (position) {
             case 0:
-                return AllClassFragment.getInstance(subjectId, subjectTitle, levelId);
+                fragment = AllClassFragment.getInstance(subjectId, subjectTitle, levelId);
+                break;
             case 1:
-                return PauseClassesFragment.getInstance(subjectId, subjectTitle, levelId);
+                fragment = PauseClassesFragment.getInstance(subjectId, subjectTitle, levelId);
+                break;
             case 2:
-                return CompleteClassesFragment.getInstance(subjectId, subjectTitle, levelId);
+                fragment = CompleteClassesFragment.getInstance(subjectId, subjectTitle, levelId);
+                break;
             case 3:
-                return UnAttemptedClassesFragment.getInstance(subjectId, subjectTitle, levelId);
+                fragment = UnAttemptedClassesFragment.getInstance(subjectId, subjectTitle, levelId);
+                break;
             /*case 4:
                 return FreeClassesFragment.getInstance(subjectId, subjectTitle, levelId);*/
             default:
                 return null;
         }
+        return fragment;
     }
 
     @Override

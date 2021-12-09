@@ -51,7 +51,7 @@ public class BuyDetailsAdapter extends RecyclerView.Adapter<BuyDetailsAdapter.Vi
         holder.binding.txtSubjects.setText(subjects + "\tSubjects with explaination");
         holder.binding.txtMcq.setText(questions + "*" + subjects + "=" + String.valueOf(calculatedValue) + "MCQs");
         holder.binding.btnBuyNowItem.setOnClickListener(view -> buyNowCallbacks.onBuy(position));
-        holder.binding.btnBuyNowItem.setText(String.format("₹ " + TextUtil.cutNull(data.getAmount()) + " " + "%s", context.getApplicationContext().getResources().getString(R.string.message_buy)));
+        holder.binding.txtAmount.setText(String.format("₹ " + TextUtil.cutNull(data.getAmount())));
         if (data.getLevel_active() == 1) {
             holder.binding.btnBuyNowItem.setClickable(false);
             holder.binding.btnBuyNowItem.setBackground(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.drawable_button_grey));
