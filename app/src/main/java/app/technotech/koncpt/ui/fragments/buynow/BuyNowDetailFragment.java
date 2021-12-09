@@ -68,6 +68,7 @@ public class BuyNowDetailFragment extends Fragment implements MainActivity.passO
     private MainActivity mainActivity;
     MainActivity.passOnData listener;
     DateUtil dateUtils;
+    String planId = "", validity = "", validityType = "";
 
     public BuyNowDetailFragment() {
         // Required empty public constructor
@@ -238,7 +239,13 @@ public class BuyNowDetailFragment extends Fragment implements MainActivity.passO
         binding.recyclerViewDetails.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.recyclerViewDetails.setItemAnimator(new DefaultItemAnimator());
         buyDetailsAdapter = new BuyDetailsAdapter(getActivity(), notesModel.getData(), (int position) -> {
-            onApiCallUserSubscription(notesModel.getData().get(position));
+            amount = notesModel.getData().get(position).getAmount();
+            planId = notesModel.getData().get(position).getPlan_id();
+            validity = notesModel.getData().get(position).getValidity();
+            validityType = notesModel.getData().get(position).getValidity_type();
+            new AppSharedPreference(getActivity()).setLevelId(TextUtil.cutNull(notesModel.getData().get(position).getLevel_id()));
+            startPayment();
+            //onApiCallUserSubscription(notesModel.getData().get(position));
         });
         binding.recyclerViewDetails.setAdapter(buyDetailsAdapter);
     }
@@ -294,18 +301,22 @@ public class BuyNowDetailFragment extends Fragment implements MainActivity.passO
 
     private void sendPost(String todayAsString, String tomorrowAsString, String razorpayPaymentID) {
         Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.SaveTransaction.getValue());
         params.put("user_id", Integer.toString(new AppSharedPreference(getActivity()).getUserResponse().getId()));
         params.put("start_date", todayAsString);
         params.put("end_date", tomorrowAsString);
         params.put("plan_type", type);
+        params.put("level_id", new AppSharedPreference(getActivity()).getLevelId());
         params.put("transaction_id", razorpayPaymentID);
         params.put("total_amount", amount);
         params.put("payment_status", "success");
-        DebugLog.e("paramsPAy==> " + params.toString());
+        params.put("plan_id", TextUtil.cutNull(planId));
+        params.put("validity", TextUtil.cutNull(validity));
+        params.put("validity_type", TextUtil.cutNull(validityType));
+        params.put("subscription_start_date", TextUtil.cutNull(dateUtils.getCurrentDate()));
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
-
         model.getCompleteData(params).observe(getActivity(), new Observer<PaymentSuccessModel>() {
             @Override
             public void onChanged(PaymentSuccessModel completeModel) {

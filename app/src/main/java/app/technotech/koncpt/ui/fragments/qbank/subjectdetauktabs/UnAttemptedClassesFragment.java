@@ -214,7 +214,7 @@ public class UnAttemptedClassesFragment extends Fragment implements AllTestRecyc
                 Navigation.findNavController(binding.getRoot()).navigate(R.id.mcqsFragment, bundle);
             } else if (data.getIsPaid() == 1) {
 
-                CallBuyNowFragment();
+                //CallBuyNowFragment();
             }
 
         } else {

@@ -220,7 +220,7 @@ public class OnLiveClassFragment extends Fragment implements OnLiveClassAdapter.
             onApiEnroll("1", Integer.toString(data.getId()));
 
             }else {
-            CallBuyNowFragment();
+            //CallBuyNowFragment();
         }
     }
 
@@ -291,15 +291,12 @@ public class OnLiveClassFragment extends Fragment implements OnLiveClassAdapter.
 
 
     public int joinMeeting(String title, String meetingId, String passcode) {
-
         MeetingService meetingService = ZoomSDK.getInstance().getMeetingService();
         JoinMeetingOptions meetingOptions = new JoinMeetingOptions();
         JoinMeetingParams meetingParams = new JoinMeetingParams();
-
         meetingParams.displayName = title;
         meetingParams.meetingNo = meetingId;
         meetingParams.password = passcode;
-
         return meetingService.joinMeetingWithParams(((MainActivity) requireActivity()).getApplicationContext(), meetingParams, meetingOptions);
     }
     private void CallBuyNowFragment() {

@@ -167,7 +167,7 @@ public class MiniTestFragment extends Fragment implements TestListener, GrandTes
 
 
             if (grandTestData.getData().get(position).getIsPaid().equals("1")) {
-                CallBuyNowFragment();
+                //CallBuyNowFragment();
             } else {
 
                 if (grandTestData.getData().get(position).getIsGiven().equals("1")) {

@@ -172,7 +172,7 @@ public class GrandTestFragment extends Fragment implements TestListener, GrandTe
 
 
             if (grandTestData.getData().get(position).getIsPaid().equals("1")) {
-                CallBuyNowFragment();
+                //CallBuyNowFragment();
             } else {
 
                 if (grandTestData.getData().get(position).getIsGiven().equals("1")) {

@@ -235,7 +235,7 @@ public class PauseClassesFragment extends Fragment implements AllTestRecyclerAda
                 Navigation.findNavController(binding.getRoot()).navigate(R.id.mcqsFragment, bundle);
             } else if (data.getIsPaid() == 1) {
 
-                CallBuyNowFragment();
+                //CallBuyNowFragment();
             }
 
         } else {

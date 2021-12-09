@@ -292,7 +292,7 @@ public interface ApiConnections {
 
 
     @FormUrlEncoded
-    @POST("save-transaction")
+    @POST("api.php")
     Call<PaymentSuccessModel> getPaymentresponse(@FieldMap Map<String, String> params);
 
 

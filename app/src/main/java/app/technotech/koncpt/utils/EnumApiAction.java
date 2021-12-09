@@ -34,6 +34,7 @@ public enum EnumApiAction {
     VideoAction("video_action"),
     VideoClassFile("video_class_file"),
     VideoRatting("video_ratting"),
+    SaveTransaction("save_transaction"),
     ProfileDetail("profile_detail");
     private String strValue;
 

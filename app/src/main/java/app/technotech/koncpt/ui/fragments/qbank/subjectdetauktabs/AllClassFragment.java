@@ -213,7 +213,7 @@ public class AllClassFragment extends Fragment implements AllTestRecyclerAdapter
                 Navigation.findNavController(binding.getRoot()).navigate(R.id.mcqsFragment, bundle);
             } else if (data.getIsPaid() == 1) {
 
-                CallBuyNowFragment();
+                //CallBuyNowFragment();
             }
 
         } else {

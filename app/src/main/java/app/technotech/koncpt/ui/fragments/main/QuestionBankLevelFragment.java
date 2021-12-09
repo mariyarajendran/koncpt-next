@@ -33,7 +33,6 @@ import app.technotech.koncpt.databinding.FragmentQuestionBankLevelBinding;
 import app.technotech.koncpt.ui.activity.MainActivity;
 import app.technotech.koncpt.ui.adapter.QBankLevelAdapter;
 import app.technotech.koncpt.ui.dialogs.CustomBuyNowDialogFragment;
-import app.technotech.koncpt.ui.fragments.buynow.BuyNowFragment;
 import app.technotech.koncpt.ui.viewmodels.BuyDetailsViewModel;
 import app.technotech.koncpt.utils.AppSharedPreference;
 import app.technotech.koncpt.utils.EnumApiAction;
