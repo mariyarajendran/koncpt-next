@@ -140,25 +140,17 @@ public class McqTestFragment extends Fragment implements View.OnTouchListener, Q
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 if (binding.viewPagerQuestion.getCurrentItem() < Objects.requireNonNull(binding.viewPagerQuestion.getAdapter()).getCount() - 1) {
-
-
                     binding.viewPagerQuestion.setCurrentItem(binding.viewPagerQuestion.getCurrentItem() + 1);
                     binding.progressCount.setProgress(binding.viewPagerQuestion.getCurrentItem() + 1);
                     binding.txtQuestionCount.setText("Question " + (binding.viewPagerQuestion.getCurrentItem() + 1) + " of " + Objects.requireNonNull(binding.viewPagerQuestion.getAdapter()).getCount());
                     binding.txtCurrentCount.setText("Question No." + (binding.viewPagerQuestion.getCurrentItem() + 1));
-
                     if (questionEntities.get(binding.viewPagerQuestion.getCurrentItem()).getmBookmarkStatus() == 0) {
                         binding.imageButtonBookmark.setImageResource(R.drawable.icon_bottom_sheet_book_mark_white);
                     } else {
                         binding.imageButtonBookmark.setImageResource(R.drawable.bookmark);
                     }
-
-
                 } else {
-
                     calculateQbankData();
                 }
             }
@@ -395,55 +387,41 @@ public class McqTestFragment extends Fragment implements View.OnTouchListener, Q
         Map<String, String> params = new HashMap<>();
         params.put(EnumApiAction.action.getValue(), EnumApiAction.QbankModuleQuestion.getValue());
         params.put("topic_id", data.getId());
+        params.put("user_id", Integer.toString(new AppSharedPreference(getActivity()).getUserResponse().getId()));
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
         model.getMCQs(params).observe(getActivity(), new Observer<MCQQuestionResponse>() {
             @Override
             public void onChanged(MCQQuestionResponse mcqQuestionResponse) {
-
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
                         try {
-
                             if (progressDialog.isShowing()) {
                                 progressDialog.dismiss();
                             }
-
                             if (mcqQuestionResponse != null) {
                                 if (mcqQuestionResponse.getStatus() == 1) {
                                     mCQSData = mcqQuestionResponse;
-
                                 } else {
                                     Toast.makeText(getActivity(), "" + mcqQuestionResponse.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
-
                             loadData();
                         } catch (Exception ex) {
                             ex.printStackTrace();
                         }
-
                     }
                 }, 500);
             }
         });
-
     }
 
     private void loadData() {
-
-
         for (int i = 0; i < mCQSData.getData().size(); i++) {
-
             String dataItem = new Gson().toJson(mCQSData.getData().get(i));
-
-
             DebugLog.e("ID => " + mCQSData.getData().get(i).getQuestionFile());
-
-
             questionEntities.add(new QuestionDetailsEntity(Long.parseLong(mCQSData.getData().get(i).getId()), mCQSData.getData().get(i).getQuestion(),
                     mCQSData.getData().get(i).getAnswers().get(0).getOptionValue(),
                     mCQSData.getData().get(i).getAnswers().get(1).getOptionValue(),
@@ -451,34 +429,34 @@ public class McqTestFragment extends Fragment implements View.OnTouchListener, Q
                     mCQSData.getData().get(i).getAnswers().get(3).getOptionValue(),
                     mCQSData.getData().get(i).getCorrectAnswers(),
                     dataItem, false, 0, 0, Integer.parseInt(mCQSData.getData().get(i).getId()), 0, mCQSData.getData().get(i).getExplanation(), mCQSData.getData().get(i).getQuestionFile(), "0", mCQSData.getData().get(i).getRefrenceFrom(), mCQSData.getData().get(i).getRefrenceFrom()));
-
         }
-
         mPagerAdapter = new QuestionViewPagerAdapter(getParentFragmentManager(), questionEntities, new QuestionViewPagerAdapter.AnswerListener() {
             @Override
             public void onAnswerClicked(int position) {
                 questionPosition = position;
                 if (position != 0) {
                     questionPosition -= 1;
+                    if (mCQSData.getData() != null && mCQSData.getData().size() > 0) {
+                        if (mCQSData.getData().get(questionPosition).getIsBookmark().equals("0")) {
+                            questionEntities.get(binding.viewPagerQuestion.getCurrentItem()).setmBookmarkStatus(0);
+                            binding.imageButtonBookmark.setImageResource(R.drawable.icon_bottom_sheet_book_mark_white);
+                        } else if (mCQSData.getData().get(questionPosition).getIsBookmark().equals("1")) {
+                            questionEntities.get(binding.viewPagerQuestion.getCurrentItem()).setmBookmarkStatus(1);
+                            binding.imageButtonBookmark.setImageResource(R.drawable.bookmark);
+                        }
+                    }
                 }
             }
         });
         binding.viewPagerQuestion.setAdapter(mPagerAdapter);
         binding.viewPagerQuestion.setPagingEnabled(false);
-
-
         binding.progressCount.setMax(Objects.requireNonNull(binding.viewPagerQuestion.getAdapter()).getCount());
         binding.progressCount.setProgress(binding.viewPagerQuestion.getCurrentItem() + 1);
         binding.txtQuestionCount.setText("Question 1 of " + Objects.requireNonNull(binding.viewPagerQuestion.getAdapter()).getCount());
         binding.txtCurrentCount.setText("Question No.1");
-
-
         if (questionEntities.get(0).getmBookmarkStatus() == 0) {
-
             binding.imageButtonBookmark.setImageResource(R.drawable.icon_bottom_sheet_book_mark_white);
-
         } else {
-
             binding.imageButtonBookmark.setImageResource(R.drawable.bookmark);
         }
     }
@@ -486,7 +464,6 @@ public class McqTestFragment extends Fragment implements View.OnTouchListener, Q
     @Override
     public void updateTotalMarks(int marks) {
         couuntMarks = couuntMarks + marks;
-
     }
 
     @Override
@@ -509,63 +486,42 @@ public class McqTestFragment extends Fragment implements View.OnTouchListener, Q
 
     }
 
-
     public interface onNextClickListener {
         void onNextClick();
     }
 
-
     private void apiBookmark(String questionId) {
-
         Map<String, String> params = new HashMap<>();
         params.put(EnumApiAction.action.getValue(), EnumApiAction.SaveBookMark.getValue());
         params.put("user_id", Integer.toString(new AppSharedPreference(getActivity()).getUserResponse().getId()));
         params.put("item_id", questionId);
-
-
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
-
         model.saveBookmarks(params).observe(getActivity(), new Observer<MessageModel>() {
             @Override
             public void onChanged(MessageModel messageModel) {
-
                 if (progressDialog.isShowing()) {
                     progressDialog.dismiss();
                 }
-
-
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
-
                         if (messageModel != null) {
                             if (messageModel.getStatus() == 1) {
-
                                 Toasty.success(getActivity(), messageModel.getMessage()).show();
-
                                 questionEntities.get(binding.viewPagerQuestion.getCurrentItem()).setmBookmarkStatus(1);
                                 binding.imageButtonBookmark.setImageResource(R.drawable.bookmark);
-
                             } else {
-
                                 Toasty.success(getActivity(), messageModel.getMessage()).show();
-
                                 questionEntities.get(binding.viewPagerQuestion.getCurrentItem()).setmBookmarkStatus(0);
                                 binding.imageButtonBookmark.setImageResource(R.drawable.icon_bottom_sheet_book_mark_white);
                             }
                         }
-
-
                     }
                 }, 500);
-
             }
         });
-
-
     }
 
     @Override
@@ -589,6 +545,5 @@ public class McqTestFragment extends Fragment implements View.OnTouchListener, Q
         Bundle bundle = new Bundle();
         bundle.putString("Data", jsonData);
         Navigation.findNavController(mView).navigate(R.id.questionExplanationBottomFragment, bundle);
-
     }
 }

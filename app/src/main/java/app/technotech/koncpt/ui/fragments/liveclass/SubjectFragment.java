@@ -12,15 +12,13 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.tabs.TabLayout;
 
 import app.technotech.koncpt.R;
 import app.technotech.koncpt.databinding.FragmentSubjectBinding;
 import app.technotech.koncpt.ui.activity.MainActivity;
 import app.technotech.koncpt.ui.adapter.LiveTabAdapter;
 
-
-public class SubjectFragment extends Fragment implements TabLayout.OnTabSelectedListener {
+public class SubjectFragment extends Fragment {
     private FragmentSubjectBinding binding;
     LiveTabAdapter mPagerAdapter;
     private String subject_id;
@@ -62,32 +60,17 @@ public class SubjectFragment extends Fragment implements TabLayout.OnTabSelected
     }
 
     private void setTabLayout() {
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_all)));
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_paused)));
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_completed)));
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_unattempted)));
+//        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_all)));
+//        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_paused)));
+//        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_completed)));
+//        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_unattempted)));
         //binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_free)));
         mPagerAdapter = new LiveTabAdapter(getChildFragmentManager(), binding.tabLayout.getTabCount(), subject_id);
+        mPagerAdapter.add(getResources().getString(R.string.subject_details_tab_all));
+        mPagerAdapter.add(getResources().getString(R.string.subject_details_tab_paused));
+        mPagerAdapter.add(getResources().getString(R.string.subject_details_tab_completed));
+        mPagerAdapter.add(getResources().getString(R.string.subject_details_tab_unattempted));
         binding.viewPager.setAdapter(mPagerAdapter);
-        binding.tabLayout.addOnTabSelectedListener(this);
-        binding.viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(binding.tabLayout));
+        binding.tabLayout.setupWithViewPager(binding.viewPager);
     }
-
-
-    @Override
-    public void onTabSelected(TabLayout.Tab tab) {
-        binding.viewPager.setCurrentItem(tab.getPosition());
-    }
-
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
-
-    }
-
-    @Override
-    public void onTabReselected(TabLayout.Tab tab) {
-
-    }
-
-
 }

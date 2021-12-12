@@ -37,6 +37,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.github.chrisbanes.photoview.PhotoView;
 
 import java.math.BigInteger;
@@ -90,7 +91,9 @@ public class GeneralUtils {
         PhotoView dialog_img = view.findViewById(R.id.img_dialog);
         Glide.with(context)
                 .load(url)
-                .error(R.drawable.icon_temp_question)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .error(R.drawable.app_logo)
                 .into(dialog_img);
 
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(

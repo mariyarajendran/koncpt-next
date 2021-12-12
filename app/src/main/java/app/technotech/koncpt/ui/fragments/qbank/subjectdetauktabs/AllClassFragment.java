@@ -157,7 +157,7 @@ public class AllClassFragment extends Fragment implements AllTestRecyclerAdapter
                                     }
                                 } else {
 
-                                    Toasty.info(getActivity(), subjectModel.getMessage()).show();
+                                    //Toasty.info(getActivity(), subjectModel.getMessage()).show();
 
                                 }
 

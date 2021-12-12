@@ -171,7 +171,7 @@ public class CompleteClassesFragment extends Fragment implements AllTestRecycler
                                         loadData();
                                     }
                                 } else {
-                                    Toasty.info(getActivity(), subjectModel.getMessage()).show();
+                                    //Toasty.info(getActivity(), subjectModel.getMessage()).show();
                                 }
                             }
                         } catch (Exception ex) {

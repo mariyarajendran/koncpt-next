@@ -20,7 +20,7 @@ import app.technotech.koncpt.ui.activity.MainActivity;
 import app.technotech.koncpt.ui.adapter.viewpageradapter.SubjectDetailsViewPagerAdapter;
 
 
-public class SubjectDetailsFragment extends Fragment implements TabLayout.OnTabSelectedListener {
+public class SubjectDetailsFragment extends Fragment {
     private FragmentTestDetailsBinding binding;
     private SubjectDetailsViewPagerAdapter mPagerAdapter;
     private View mView;
@@ -78,45 +78,19 @@ public class SubjectDetailsFragment extends Fragment implements TabLayout.OnTabS
     }
 
     private void setTabLayout() {
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_all)));
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_paused)));
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_completed)));
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_unattempted)));
-        /*binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_free)));*/
-        mPagerAdapter = new SubjectDetailsViewPagerAdapter(getActivity(), getChildFragmentManager(), binding.tabLayout.getTabCount(), subjectId, subjectTitle, levelId);
+//        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_all)));
+//        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_paused)));
+//        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_completed)));
+//        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_unattempted)));
+//        /*binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_free)));*/
+        mPagerAdapter = new SubjectDetailsViewPagerAdapter(getActivity(), requireActivity().getSupportFragmentManager(), binding.tabLayout.getTabCount(), subjectId, subjectTitle, levelId);
+        mPagerAdapter.add(getResources().getString(R.string.subject_details_tab_all));
+        mPagerAdapter.add(getResources().getString(R.string.subject_details_tab_paused));
+        mPagerAdapter.add(getResources().getString(R.string.subject_details_tab_completed));
+        mPagerAdapter.add(getResources().getString(R.string.subject_details_tab_unattempted));
         binding.viewPager.setAdapter(mPagerAdapter);
-        binding.tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-        binding.viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(binding.tabLayout));
-    }
-
-
-    @Override
-    public void onTabSelected(TabLayout.Tab tab) {
-        binding.viewPager.setCurrentItem(tab.getPosition());
-    }
-
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
-
-    }
-
-    @Override
-    public void onTabReselected(TabLayout.Tab tab) {
-
+        binding.tabLayout.setupWithViewPager(binding.viewPager);
+        //binding.tabLayout.setOnTabSelectedListener(this);
+        //binding.viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(binding.tabLayout));
     }
 }

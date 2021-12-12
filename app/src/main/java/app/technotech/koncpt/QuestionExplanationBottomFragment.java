@@ -21,6 +21,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -157,6 +158,8 @@ public class QuestionExplanationBottomFragment extends BottomSheetDialogFragment
 
             Glide.with(getActivity())
                     .load(quesItem.getQuestionFile())
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
                     .error(R.drawable.app_logo)
                     .into(binding.imgQuestionImage);
 

@@ -2,23 +2,29 @@ package app.technotech.koncpt.ui.adapter.viewpageradapter;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.AllClassFragment;
 import app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.CompleteClassesFragment;
 import app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.PauseClassesFragment;
 import app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.UnAttemptedClassesFragment;
 
-public class SubjectDetailsViewPagerAdapter extends FragmentPagerAdapter {
+public class SubjectDetailsViewPagerAdapter extends FragmentStatePagerAdapter {
     private Context myContext;
     int totalTabs;
     String subjectId;
     String subjectTitle;
     String levelId;
+    private final List<String> fragmentTitle = new ArrayList<>();
 
     public SubjectDetailsViewPagerAdapter(Context context, FragmentManager fm, int totalTabs, String subjectId, String subjectTitle, String levelId) {
         super(fm);
@@ -29,33 +35,43 @@ public class SubjectDetailsViewPagerAdapter extends FragmentPagerAdapter {
         this.totalTabs = totalTabs;
     }
 
+    public void add(String title) {
+        fragmentTitle.add(title);
+    }
+
     @NotNull
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment;
         switch (position) {
             case 0:
-                fragment = AllClassFragment.getInstance(subjectId, subjectTitle, levelId);
-                break;
+                return AllClassFragment.getInstance(subjectId, subjectTitle, levelId);
             case 1:
-                fragment = PauseClassesFragment.getInstance(subjectId, subjectTitle, levelId);
-                break;
+                return PauseClassesFragment.getInstance(subjectId, subjectTitle, levelId);
             case 2:
-                fragment = CompleteClassesFragment.getInstance(subjectId, subjectTitle, levelId);
-                break;
+                return CompleteClassesFragment.getInstance(subjectId, subjectTitle, levelId);
             case 3:
-                fragment = UnAttemptedClassesFragment.getInstance(subjectId, subjectTitle, levelId);
-                break;
+                return UnAttemptedClassesFragment.getInstance(subjectId, subjectTitle, levelId);
             /*case 4:
                 return FreeClassesFragment.getInstance(subjectId, subjectTitle, levelId);*/
             default:
                 return null;
         }
-        return fragment;
     }
 
     @Override
     public int getCount() {
-        return totalTabs;
+        return fragmentTitle.size();
+    }
+
+    @Nullable
+    @org.jetbrains.annotations.Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return fragmentTitle.get(position);
+    }
+
+    @Override
+    public int getItemPosition(@NonNull @NotNull Object object) {
+        return POSITION_NONE;
     }
 }

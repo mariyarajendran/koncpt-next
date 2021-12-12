@@ -140,7 +140,7 @@ public class PauseClassesFragment extends Fragment implements AllTestRecyclerAda
         params.put(EnumApiAction.action.getValue(), EnumApiAction.Topics.getValue());
         params.put("level_id", new AppSharedPreference(getActivity()).getLevelId());
         params.put("subject_id", TextUtil.cutNull(subject_id));
-        params.put("type", "1");
+        params.put("type", "0");
         params.put("user_id", String.valueOf(new AppSharedPreference(getActivity()).getUserResponse().getId()));
         if (!progressDialog.isShowing()) {
             progressDialog.show();
@@ -178,12 +178,12 @@ public class PauseClassesFragment extends Fragment implements AllTestRecyclerAda
                                 } else {
 
 
-                                    Toasty.info(getActivity(), subjectModel.getMessage()).show();
+                                    //Toasty.info(getActivity(), subjectModel.getMessage()).show();
 
                                 }
 
                             } else {
-                                Toasty.error(getActivity(), "Something Went Wrong ").show();
+                                //Toasty.error(getActivity(), "Something Went Wrong ").show();
                             }
 
                         } catch (Exception ex) {

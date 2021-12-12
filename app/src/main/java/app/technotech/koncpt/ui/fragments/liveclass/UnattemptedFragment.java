@@ -88,7 +88,6 @@ public class UnattemptedFragment extends Fragment implements UnattemptedAdapter.
         super.onViewCreated(view, savedInstanceState);
         generalUtils = new GeneralUtils(getActivity());
         progressDialog = generalUtils.showProgressDialog();
-
         SharedPreferences prfs = getActivity().getSharedPreferences("plan", Context.MODE_PRIVATE);
         plan = prfs.getString("plan", "");
         Log.d("planInUnattempted", plan + "");

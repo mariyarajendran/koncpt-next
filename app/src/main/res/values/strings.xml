@@ -211,4 +211,6 @@
     <string name="hint_video">Video</string>
     <string name="hint_subjects">Subjects</string>
     <string name="lable_pro">Pro</string>
+    <string name="label_back">Back</string>
+    <string name="label_next">Next</string>
 </resources>

@@ -36,8 +36,7 @@ public class MCQQuestionResponse implements Parcelable {
             return (new MCQQuestionResponse[size]);
         }
 
-    }
-            ;
+    };
 
     protected MCQQuestionResponse(Parcel in) {
         this.status = ((Integer) in.readValue((Integer.class.getClassLoader())));
@@ -93,12 +92,23 @@ public class MCQQuestionResponse implements Parcelable {
     }
 
 
-    public class Datum implements Parcelable
-    {
+    public class Datum implements Parcelable {
 
         @SerializedName("id")
         @Expose
         private String id;
+
+        public String getIsBookmark() {
+            return isBookmark;
+        }
+
+        public void setIsBookmark(String isBookmark) {
+            this.isBookmark = isBookmark;
+        }
+
+        @SerializedName("is_bookmark")
+        @Expose
+        private String isBookmark;
         @SerializedName("subject_id")
         @Expose
         private String subjectId;
@@ -176,7 +186,7 @@ public class MCQQuestionResponse implements Parcelable {
             this.refrenceFile = refrenceFile;
         }
 
-        public final  Parcelable.Creator<Datum> CREATOR = new Creator<Datum>() {
+        public final Parcelable.Creator<Datum> CREATOR = new Creator<Datum>() {
 
 
             @SuppressWarnings({
@@ -190,8 +200,7 @@ public class MCQQuestionResponse implements Parcelable {
                 return (new Datum[size]);
             }
 
-        }
-                ;
+        };
 
         protected Datum(Parcel in) {
             this.id = ((String) in.readValue((String.class.getClassLoader())));
@@ -399,8 +408,7 @@ public class MCQQuestionResponse implements Parcelable {
     }
 
 
-    public class Answer implements Parcelable
-    {
+    public class Answer implements Parcelable {
 
         @SerializedName("option_value")
         @Expose
@@ -414,7 +422,7 @@ public class MCQQuestionResponse implements Parcelable {
         @SerializedName("file_name")
         @Expose
         private String fileName;
-        public final  Parcelable.Creator<Answer> CREATOR = new Creator<Answer>() {
+        public final Parcelable.Creator<Answer> CREATOR = new Creator<Answer>() {
 
 
             @SuppressWarnings({
@@ -428,8 +436,7 @@ public class MCQQuestionResponse implements Parcelable {
                 return (new Answer[size]);
             }
 
-        }
-                ;
+        };
 
         protected Answer(Parcel in) {
             this.optionValue = ((String) in.readValue((String.class.getClassLoader())));

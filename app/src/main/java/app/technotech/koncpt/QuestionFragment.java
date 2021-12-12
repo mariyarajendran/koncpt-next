@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -115,6 +116,8 @@ public class QuestionFragment extends Fragment {
 
             Glide.with(getActivity())
                     .load(mDetailsEntity.getmExplanation_file())
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
                     .error(R.drawable.app_logo)
                     .into(binding.imageViewQuestion);
 

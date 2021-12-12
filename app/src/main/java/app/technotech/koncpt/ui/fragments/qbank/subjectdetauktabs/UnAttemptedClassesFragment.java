@@ -164,7 +164,7 @@ public class UnAttemptedClassesFragment extends Fragment implements AllTestRecyc
                                         loadData();
                                     }
                                 } else {
-                                    Toasty.info(getActivity(), subjectModel.getMessage()).show();
+                                    //Toasty.info(getActivity(), subjectModel.getMessage()).show();
                                 }
 
                             }
