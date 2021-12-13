@@ -1,39 +1,25 @@
 package app.technotech.koncpt.ui.fragments.main;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.text.Html;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.mikhaellopez.circularimageview.CircularImageView;
@@ -44,20 +30,17 @@ import java.util.Map;
 import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.BuildConfig;
 import app.technotech.koncpt.R;
-import app.technotech.koncpt.data.network.model.AnswerMcqOfTheDayModel;
 import app.technotech.koncpt.data.network.model.HomeScreenModel;
 import app.technotech.koncpt.databinding.FragmentHomeBinding;
 import app.technotech.koncpt.ui.activity.MainActivity;
 import app.technotech.koncpt.ui.adapter.SuggestedCourseAdapter;
 import app.technotech.koncpt.ui.adapter.SuggestedMaterClassAdapter;
 import app.technotech.koncpt.ui.adapter.SuggestedQuestionBankAdapter;
-import app.technotech.koncpt.ui.dialogs.SendOTPDialogFragment;
 import app.technotech.koncpt.ui.viewmodels.HomeScreenViewModel;
-import app.technotech.koncpt.ui.viewmodels.HomeViewModel;
 import app.technotech.koncpt.utils.AppSharedPreference;
 import app.technotech.koncpt.utils.DebugLog;
 import app.technotech.koncpt.utils.GeneralUtils;
-import es.dmoral.toasty.Toasty;
+import app.technotech.koncpt.utils.TextUtil;
 
 public class HomeFragment extends Fragment implements SuggestedCourseAdapter.OnTestItemClicked, SuggestedQuestionBankAdapter.OnMcqItemSelected, SuggestedMaterClassAdapter.OnMasterSelect, View.OnTouchListener {
     private FragmentHomeBinding binding;
@@ -98,7 +81,6 @@ public class HomeFragment extends Fragment implements SuggestedCourseAdapter.OnT
         setHasOptionsMenu(true);
         init();
     }
-
 
     @Override
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
@@ -153,14 +135,9 @@ public class HomeFragment extends Fragment implements SuggestedCourseAdapter.OnT
                                 progressDialog.dismiss();
                             }
                             if (homeScreenModel != null) {
-                                if (homeScreenModel.getStatus() == 1) {
-                                    homeScreenData = homeScreenModel;
-                                    sharedPreference.saveHomeScreenData(new Gson().toJson(homeScreenModel));
-                                } else {
-                                    if (progressDialog.isShowing()) {
-                                        progressDialog.dismiss();
-                                    }
-                                }
+                                binding.tvHomeTotalCount.setText(TextUtil.cutNull(homeScreenModel.getData().getTotalQuestions()));
+                                binding.tvHomeCompletedCount.setText(TextUtil.cutNull(homeScreenModel.getData().getCompletedQuestions()));
+                                binding.tvHomeInCompletedCount.setText(TextUtil.cutNull(homeScreenModel.getData().getIncompletedQuestions()));
                             } else {
                                 if (progressDialog.isShowing()) {
                                     progressDialog.dismiss();

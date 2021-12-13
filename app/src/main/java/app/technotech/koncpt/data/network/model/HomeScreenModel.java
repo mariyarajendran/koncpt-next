@@ -82,6 +82,43 @@ public class HomeScreenModel implements Parcelable {
 
     public class Data implements Parcelable {
 
+
+        @SerializedName("total_questions")
+        @Expose
+        private String totalQuestions;
+
+        public String getTotalQuestions() {
+            return totalQuestions;
+        }
+
+        public void setTotalQuestions(String totalQuestions) {
+            this.totalQuestions = totalQuestions;
+        }
+
+        public String getCompletedQuestions() {
+            return completedQuestions;
+        }
+
+        public void setCompletedQuestions(String completedQuestions) {
+            this.completedQuestions = completedQuestions;
+        }
+
+        public String getIncompletedQuestions() {
+            return incompletedQuestions;
+        }
+
+        public void setIncompletedQuestions(String incompletedQuestions) {
+            this.incompletedQuestions = incompletedQuestions;
+        }
+
+        @SerializedName("completed_questions")
+        @Expose
+        private String completedQuestions;
+
+        @SerializedName("incompleted_questions")
+        @Expose
+        private String incompletedQuestions;
+
         @SerializedName("live_class")
         @Expose
         private LiveClass liveClass;

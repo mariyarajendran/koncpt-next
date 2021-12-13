@@ -22,6 +22,7 @@ import app.technotech.koncpt.data.network.model.SubjectQuestionBankGroup;
 import app.technotech.koncpt.databinding.LayoutSubjectDetailsItemBinding;
 import app.technotech.koncpt.databinding.RowSectionHeaderBinding;
 import app.technotech.koncpt.utils.AppSharedPreference;
+import app.technotech.koncpt.utils.TextUtil;
 
 public class AllTestRecyclerAdapter extends ExpandableRecyclerViewAdapter<AllTestRecyclerAdapter.ParentViewHolder, AllTestRecyclerAdapter.ChildrenViewholder> {
 
@@ -53,6 +54,7 @@ public class AllTestRecyclerAdapter extends ExpandableRecyclerViewAdapter<AllTes
         String mcqs = data.getTotalMcq() + "MCQs";
         holder.binding.txtNoOfMcq.setText(mcqs);
         holder.binding.txtChapterCount.setText((childIndex + 1) + "");
+        holder.binding.txtTestTotalQ.setText(TextUtil.cutNull(data.getTopicRates()));
         Glide.with(context)
                 .load(R.drawable.app_logo)
                 .placeholder(R.drawable.dummy_img)

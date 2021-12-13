@@ -326,15 +326,15 @@ public class ClassFragment extends Fragment implements ClassAdapter.OnVideoItemS
 
         //Handler for clicking on the inactive zone of the window
 
-        popupView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                //Close the window when clicked
-                popupWindow.dismiss();
-                return true;
-            }
-        });
+//        popupView.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//
+//                //Close the window when clicked
+//                popupWindow.dismiss();
+//                return true;
+//            }
+//        });
     }
 
 
@@ -482,13 +482,17 @@ public class ClassFragment extends Fragment implements ClassAdapter.OnVideoItemS
                                 DebugLog.e("ResponseClass =>>" + jsonData);
                                 Toast.makeText(getContext(), "Thank You for your Ratting", Toast.LENGTH_SHORT).show();
                                 binding.btnComplete.setVisibility(View.INVISIBLE);
-
-//                                popupWindow.dismiss();
+                                if(popupWindow!=null){
+                                    popupWindow.dismiss();
+                                }
+                                Navigation.findNavController(binding.getRoot()).navigate(R.id.liveClassesHomeFragment);
                             } else {
                                 String jsonData = new Gson().toJson(notesModel);
                                 DebugLog.e("ResponseClass =>>" + jsonData);
                                 Toast.makeText(getContext(), "Oops..Something went wrong..please try again", Toast.LENGTH_SHORT).show();
-                                //                              popupWindow.dismiss();
+                                if(popupWindow!=null){
+                                    popupWindow.dismiss();
+                                }
                             }
                         }
                     }
