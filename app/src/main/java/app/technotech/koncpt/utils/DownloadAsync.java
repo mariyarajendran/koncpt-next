@@ -23,6 +23,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import app.technotech.koncpt.R;
 import app.technotech.koncpt.data.DBHelper;
@@ -45,18 +47,19 @@ public class DownloadAsync extends AsyncTask<Void, Void, String> {
     private GeneralUtils generalUtils;
     private AlertDialog progressDialog;
 
+
     public DownloadAsync(Context context, int i, String str, String displayTitle, String description, String download_url, DBHelper dbHelper) {
         this.mContext = context;
         this.id = i;
         String str3 = "_";
 //        this.title = str.replace("/", str3).replace("*", str3).replace("(", str3).replace(")", str3).replace("!", str3).replace("@", str3).replace("#", str3).replace("$", str3).replace("%", str3).substring(0, Math.min(str.length(), 20));
-        this.title = str;
+        this.title = DateUtil.getCurrentTimeStapWithSeconds();
         this.strUrl = download_url;
         this.displayTitle = displayTitle;
         this.description = description;
         this.dbHelper = dbHelper;
         generalUtils = new GeneralUtils(context);
-        progressDialog  = generalUtils.showProgressDialog();
+        progressDialog = generalUtils.showProgressDialog();
     }
 
     /* access modifiers changed from: protected */
@@ -159,7 +162,6 @@ public class DownloadAsync extends AsyncTask<Void, Void, String> {
             downloadModel.setSubject_title(displayTitle);
             downloadModel.setDescription(description);
             dbHelper.createVideos(downloadModel);
-
 
 
             return;

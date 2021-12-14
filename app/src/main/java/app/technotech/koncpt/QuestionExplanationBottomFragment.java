@@ -158,8 +158,8 @@ public class QuestionExplanationBottomFragment extends BottomSheetDialogFragment
 
             Glide.with(getActivity())
                     .load(quesItem.getQuestionFile())
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(true)
+                    //.diskCacheStrategy(DiskCacheStrategy.NONE)
+                    //.skipMemoryCache(true)
                     .error(R.drawable.app_logo)
                     .into(binding.imgQuestionImage);
 

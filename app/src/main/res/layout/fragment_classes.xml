@@ -167,6 +167,7 @@
                     android:layout_marginBottom="@dimen/_8sdp"
                     android:background="@drawable/complete_button_bg"
                     android:text="@string/markcomplete"
+                    android:visibility="gone"
                     android:textColor="@android:color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

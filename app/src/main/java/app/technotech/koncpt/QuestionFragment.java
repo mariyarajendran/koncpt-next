@@ -116,8 +116,8 @@ public class QuestionFragment extends Fragment {
 
             Glide.with(getActivity())
                     .load(mDetailsEntity.getmExplanation_file())
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(true)
+                    //.diskCacheStrategy(DiskCacheStrategy.NONE)
+                    //.skipMemoryCache(true)
                     .error(R.drawable.app_logo)
                     .into(binding.imageViewQuestion);
 

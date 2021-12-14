@@ -61,7 +61,6 @@ public class GeneralUtils {
 
 
     private Context context;
-
     private static String uniqueID = null;
     private static final String PREF_UNIQUE_ID = "PREF_UNIQUE_ID";
 
@@ -91,8 +90,8 @@ public class GeneralUtils {
         PhotoView dialog_img = view.findViewById(R.id.img_dialog);
         Glide.with(context)
                 .load(url)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true)
+                //.diskCacheStrategy(DiskCacheStrategy.NONE)
+                //.skipMemoryCache(false)
                 .error(R.drawable.app_logo)
                 .into(dialog_img);
 

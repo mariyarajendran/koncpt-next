@@ -173,21 +173,13 @@ public class ClassFragment extends Fragment implements ClassAdapter.OnVideoItemS
         binding.imgDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (class_video != null) {
-
-                    // File downloadFile = new File(directory, video_id + ".klc");
-
                     Activity activity = getActivity();
-
                     if (GeneralUtils.hasPermissionToDownload(activity)) {
                         new DownloadAsync(getActivity(), 0, videoId, title, description, class_video, db).execute();
                     }
-
                 }
-
             }
-
         });
         binding.btnViewPlans.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -210,19 +202,14 @@ public class ClassFragment extends Fragment implements ClassAdapter.OnVideoItemS
                         type = "1";
                         progressDialog.show();
                         completePost(type, lastPosition, v);
-
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
-
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-
             }
         });
-
-
     }
 
 
@@ -308,7 +295,6 @@ public class ClassFragment extends Fragment implements ClassAdapter.OnVideoItemS
                     updateRating(rating);
                 } else {
                     Toast.makeText(getContext(), "Oops!You have not rated the module yet", Toast.LENGTH_SHORT).show();
-
                 }
 
 
@@ -474,23 +460,24 @@ public class ClassFragment extends Fragment implements ClassAdapter.OnVideoItemS
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
                         if (notesModel != null) {
                             binding.activityMain.setVisibility(View.VISIBLE);
                             if (notesModel.getStatus() == 1) {
                                 String jsonData = new Gson().toJson(notesModel);
                                 DebugLog.e("ResponseClass =>>" + jsonData);
                                 Toast.makeText(getContext(), "Thank You for your Ratting", Toast.LENGTH_SHORT).show();
-                                binding.btnComplete.setVisibility(View.INVISIBLE);
-                                if(popupWindow!=null){
+                                binding.btnComplete.setVisibility(View.GONE);
+                                if (popupWindow != null) {
                                     popupWindow.dismiss();
                                 }
+                                video_type = "1";
                                 Navigation.findNavController(binding.getRoot()).navigate(R.id.liveClassesHomeFragment);
                             } else {
+                                binding.btnComplete.setVisibility(View.VISIBLE);
                                 String jsonData = new Gson().toJson(notesModel);
                                 DebugLog.e("ResponseClass =>>" + jsonData);
                                 Toast.makeText(getContext(), "Oops..Something went wrong..please try again", Toast.LENGTH_SHORT).show();
-                                if(popupWindow!=null){
+                                if (popupWindow != null) {
                                     popupWindow.dismiss();
                                 }
                             }
@@ -587,44 +574,32 @@ public class ClassFragment extends Fragment implements ClassAdapter.OnVideoItemS
         binding.txtLabel.setText(notesModel.getData().get(0).getClassTitle());
         binding.txtDescription.setText(notesModel.getData().get(0).getDescription());
         class_video = notesModel.getData().get(0).getClassVideo();
-
         if (class_video != null) {
-            String[] separated = class_video.split("video_class/");
-            String one = separated[0].trim();
-            Log.d("one", one + "");
-            String two = separated[1].trim();
-            Log.d("two", two + "");
-            String three[] = two.split("-");
-            videoId = three[0].trim();
-            Log.d("videoId", videoId + "");
-
-
+//            String[] separated = class_video.split("video_class/");
+//            String one = separated[0].trim();
+//            Log.d("one", one + "");
+//            String two = separated[1].trim();
+//            Log.d("two", two + "");
+//            String three[] = two.split("-");
+//            videoId = three[0].trim();
+//            Log.d("videoId", videoId + "");
             if (notesModel.getData().get(0).getData().size() > 0) {
                 binding.recyclerViewSlicing.setLayoutManager(new LinearLayoutManager(getActivity()));
                 binding.recyclerViewSlicing.setItemAnimator(new DefaultItemAnimator());
                 completedAdapter = new ClassAdapter(getActivity(), notesModel.getData().get(0).getData(), this::onVideoItemClick);
                 binding.recyclerViewSlicing.setAdapter(completedAdapter);
-
             }
-
-
             title = notesModel.getData().get(0).getSubjectTitle();
             description = notesModel.getData().get(0).getDescription();
             video_type = notesModel.getData().get(0).getType();
-
-
             initializePlayer(class_video);
-
-
             if (video_type != null) {
                 if (video_type.equals("1")) {
-                    binding.btnComplete.setVisibility(View.INVISIBLE);
+                    binding.btnComplete.setVisibility(View.GONE);
                 } else {
                     binding.btnComplete.setVisibility(View.VISIBLE);
-
                 }
             }
-
 
         }
 
@@ -646,9 +621,11 @@ public class ClassFragment extends Fragment implements ClassAdapter.OnVideoItemS
                                 TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
                 Log.i("TAG", "onPause: " + valuePause);
                 if (video_type.equals("")) {
+                    binding.btnComplete.setVisibility(View.VISIBLE);
                     pauseVideo(valuePause);
                 } else if (video_type.equals("1")) {
                 } else {
+                    binding.btnComplete.setVisibility(View.VISIBLE);
                     pauseVideo(valuePause);
                 }
             }
@@ -656,11 +633,9 @@ public class ClassFragment extends Fragment implements ClassAdapter.OnVideoItemS
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
     }
 
     private void pauseVideo(String valuePause) {
-
         Map<String, String> params = new HashMap<>();
         params.put(EnumApiAction.action.getValue(), EnumApiAction.VideoAction.getValue());
         params.put("type", "2");
@@ -670,7 +645,6 @@ public class ClassFragment extends Fragment implements ClassAdapter.OnVideoItemS
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
-
         model.getCompleteData(params).observe(getActivity(), new Observer<VideoCompleteModel>() {
             @Override
             public void onChanged(VideoCompleteModel notesModel) {

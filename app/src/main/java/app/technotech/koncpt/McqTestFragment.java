@@ -184,7 +184,6 @@ public class McqTestFragment extends Fragment implements View.OnTouchListener, Q
     }
 
     private void calculateQbankData() {
-
         arr_unAttemptQuestion = new ArrayList<>();
         arr_correctAnswers = new ArrayList<>();
         arr_inCorrectAnswer = new ArrayList<>();
