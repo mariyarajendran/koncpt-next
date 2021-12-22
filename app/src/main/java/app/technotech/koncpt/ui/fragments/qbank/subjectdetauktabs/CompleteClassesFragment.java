@@ -63,14 +63,12 @@ public class CompleteClassesFragment extends Fragment implements AllTestRecycler
     private SubjectViewModel model;
     private AlertDialog progressDialog;
     private AllTestRecyclerAdapter mAdapter;
-
     List<SubjectQuestionBankGroup> questionBankGroups = new ArrayList<>();
-
     private int destination = 0;
+    private boolean isLoaded = false, isVisibleToUser;
 
 
     public static CompleteClassesFragment getInstance(String params1, String params2, String params3) {
-
         CompleteClassesFragment fragment = new CompleteClassesFragment();
         Bundle bundle = new Bundle();
         bundle.putString("subject_id", params1);
@@ -115,9 +113,21 @@ public class CompleteClassesFragment extends Fragment implements AllTestRecycler
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         init();
-        callApi();
+        if (isVisibleToUser && (!isLoaded)) {
+            callApi();
+            isLoaded = true;
+        }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        this.isVisibleToUser = isVisibleToUser;
+        if (isVisibleToUser && isAdded()) {
+            callApi();
+            isLoaded = true;
+        }
     }
 
     @Override

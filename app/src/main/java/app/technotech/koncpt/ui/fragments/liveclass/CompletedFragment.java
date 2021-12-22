@@ -49,6 +49,7 @@ public class CompletedFragment extends Fragment implements CompletedAdapter.OnVi
     private GeneralUtils generalUtils;
     private AlertDialog progressDialog;
     String plan;
+    private boolean isLoaded = false, isVisibleToUser;
 
     public static CompletedFragment getInstance(String params) {
 
@@ -87,11 +88,23 @@ public class CompletedFragment extends Fragment implements CompletedAdapter.OnVi
         super.onViewCreated(view, savedInstanceState);
         generalUtils = new GeneralUtils(getActivity());
         progressDialog = generalUtils.showProgressDialog();
-
         SharedPreferences prfs = getActivity().getSharedPreferences("plan", Context.MODE_PRIVATE);
         plan = prfs.getString("plan", "");
         Log.d("planInAll",plan+"");
-        sendPost();
+        if (isVisibleToUser && (!isLoaded)) {
+            sendPost();
+            isLoaded = true;
+        }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        this.isVisibleToUser = isVisibleToUser;
+        if (isVisibleToUser && isAdded()) {
+            sendPost();
+            isLoaded = true;
+        }
     }
 
     private void sendPost() {

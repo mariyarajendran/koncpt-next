@@ -44,7 +44,7 @@ public class AllFragment extends Fragment implements AllAdapter.OnVideoItemSelec
     private GeneralUtils generalUtils;
     private AlertDialog progressDialog;
     private LiveAllViewModel model;
-
+    private boolean isLoaded = false, isVisibleToUser;
     String plan;
 
     public static AllFragment getInstance(String params) {
@@ -81,7 +81,20 @@ public class AllFragment extends Fragment implements AllAdapter.OnVideoItemSelec
         progressDialog = generalUtils.showProgressDialog();
         SharedPreferences prfs = getActivity().getSharedPreferences("plan", Context.MODE_PRIVATE);
         plan = new AppSharedPreference(getActivity()).getUserResponse().getPlan();
-        sendPost();
+        if (isVisibleToUser && (!isLoaded)) {
+            sendPost();
+            isLoaded = true;
+        }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        this.isVisibleToUser = isVisibleToUser;
+        if (isVisibleToUser && isAdded()) {
+            sendPost();
+            isLoaded = true;
+        }
     }
 
     private void sendPost() {

@@ -54,6 +54,7 @@ public class UnAttemptedClassesFragment extends Fragment implements AllTestRecyc
     private String subject_name;
     private String levelId;
     private int destination = 0;
+    private boolean isLoaded = false, isVisibleToUser;
 
 
     public static UnAttemptedClassesFragment getInstance(String params1, String params2, String params3) {
@@ -103,7 +104,20 @@ public class UnAttemptedClassesFragment extends Fragment implements AllTestRecyc
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init();
-        callApi();
+        if (isVisibleToUser && (!isLoaded)) {
+            callApi();
+            isLoaded = true;
+        }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        this.isVisibleToUser = isVisibleToUser;
+        if (isVisibleToUser && isAdded()) {
+            callApi();
+            isLoaded = true;
+        }
     }
 
     @Override
@@ -120,7 +134,6 @@ public class UnAttemptedClassesFragment extends Fragment implements AllTestRecyc
     private void init() {
         utils = new GeneralUtils(getActivity());
         progressDialog = utils.showProgressDialog();
-
     }
 
 

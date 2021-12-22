@@ -57,11 +57,9 @@ public class PauseClassesFragment extends Fragment implements AllTestRecyclerAda
     private AlertDialog progressDialog;
     private AllTestRecyclerAdapter mAdapter;
     List<SubjectQuestionBankGroup> questionBankGroups = new ArrayList<>();
-
     private int destination = 0;
-
-
     private FragmentPauseClassesBinding binding;
+    private boolean isLoaded = false, isVisibleToUser;
 
     public static PauseClassesFragment getInstance(String params1, String params2, String params3) {
 
@@ -111,9 +109,21 @@ public class PauseClassesFragment extends Fragment implements AllTestRecyclerAda
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         init();
-        callApi();
+        if (isVisibleToUser && (!isLoaded)) {
+            callApi();
+            isLoaded = true;
+        }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        this.isVisibleToUser = isVisibleToUser;
+        if (isVisibleToUser && isAdded()) {
+            callApi();
+            isLoaded = true;
+        }
     }
 
     @Override

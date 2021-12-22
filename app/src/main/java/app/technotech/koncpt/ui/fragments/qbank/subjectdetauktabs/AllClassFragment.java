@@ -58,6 +58,7 @@ public class AllClassFragment extends Fragment implements AllTestRecyclerAdapter
     private String levelId;
     private int destination = 0;
     List<SubjectQuestionBankGroup> questionBankGroups = new ArrayList<>();
+    private boolean isLoaded = false, isVisibleToUser;
 
     public static AllClassFragment getInstance(String params1, String params2, String params3) {
         AllClassFragment fragment = new AllClassFragment();
@@ -101,9 +102,21 @@ public class AllClassFragment extends Fragment implements AllTestRecyclerAdapter
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init();
-        callApi();
+        if (isVisibleToUser && (!isLoaded)) {
+            callApi();
+            isLoaded = true;
+        }
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        this.isVisibleToUser = isVisibleToUser;
+        if (isVisibleToUser && isAdded()) {
+            callApi();
+            isLoaded = true;
+        }
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

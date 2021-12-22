@@ -43,6 +43,7 @@ public class PausedFragment extends Fragment implements PausedAdapter.OnVideoIte
     private GeneralUtils generalUtils;
     private AlertDialog progressDialog;
     String plan;
+    private boolean isLoaded = false, isVisibleToUser;
 
     public static PausedFragment getInstance(String params) {
         Bundle bundle = new Bundle();
@@ -78,7 +79,20 @@ public class PausedFragment extends Fragment implements PausedAdapter.OnVideoIte
         progressDialog = generalUtils.showProgressDialog();
         SharedPreferences prfs = getActivity().getSharedPreferences("plan", Context.MODE_PRIVATE);
         plan = prfs.getString("plan", "");
-        sendPost();
+        if (isVisibleToUser && (!isLoaded)) {
+            sendPost();
+            isLoaded = true;
+        }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        this.isVisibleToUser = isVisibleToUser;
+        if (isVisibleToUser && isAdded()) {
+            sendPost();
+            isLoaded = true;
+        }
     }
 
     private void sendPost() {

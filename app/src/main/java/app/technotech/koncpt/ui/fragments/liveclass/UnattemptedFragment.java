@@ -48,6 +48,7 @@ public class UnattemptedFragment extends Fragment implements UnattemptedAdapter.
     private GeneralUtils generalUtils;
     private AlertDialog progressDialog;
     String plan;
+    private boolean isLoaded = false, isVisibleToUser;
 
 
     public static UnattemptedFragment getInstance(String params) {
@@ -91,7 +92,20 @@ public class UnattemptedFragment extends Fragment implements UnattemptedAdapter.
         SharedPreferences prfs = getActivity().getSharedPreferences("plan", Context.MODE_PRIVATE);
         plan = prfs.getString("plan", "");
         Log.d("planInUnattempted", plan + "");
-        sendPost();
+        if (isVisibleToUser && (!isLoaded)) {
+            sendPost();
+            isLoaded = true;
+        }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        this.isVisibleToUser = isVisibleToUser;
+        if (isVisibleToUser && isAdded()) {
+            sendPost();
+            isLoaded = true;
+        }
     }
 
     private void sendPost() {
