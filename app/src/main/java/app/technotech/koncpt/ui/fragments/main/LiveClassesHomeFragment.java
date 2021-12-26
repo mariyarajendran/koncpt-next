@@ -44,9 +44,16 @@ public class LiveClassesHomeFragment extends Fragment implements LiveClassRecycl
         model = new ViewModelProvider(this).get(LiveClassSubjectModel.class);
         binding.setSubjectViewMode(model);
         binding.rltSavedClass.setOnClickListener(v -> Navigation.findNavController(binding.getRoot()).navigate(R.id.downloadFragment));
-        binding.relativeLiveClass.setOnClickListener(view -> Navigation.findNavController(binding.getRoot()).navigate(R.id.onLiveClassFragmen));
+        binding.relativeLiveClass.setOnClickListener(view -> {
+            //Navigation.findNavController(binding.getRoot()).navigate(R.id.onLiveClassFragmen);
+            Bundle bundle = new Bundle();
+            bundle.putString("plan_id", "4");
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.liveClassesLevelFragment,bundle);
+        });
         binding.relativeLiveClassVideo.setOnClickListener(view -> {
-            Navigation.findNavController(binding.getRoot()).navigate(R.id.liveClassesLevelFragment);
+            Bundle bundle = new Bundle();
+            bundle.putString("plan_id", "2");
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.liveClassesLevelFragment,bundle);
         });
         return binding.getRoot();
     }

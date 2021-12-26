@@ -41,7 +41,9 @@ import app.technotech.koncpt.ui.adapter.OnLiveClassAdapter;
 import app.technotech.koncpt.ui.dialogs.CustomBuyNowDialogFragment;
 import app.technotech.koncpt.ui.viewmodels.OnLiveViewModel;
 import app.technotech.koncpt.utils.AppSharedPreference;
+import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.utils.GeneralUtils;
+import app.technotech.koncpt.utils.TextUtil;
 import es.dmoral.toasty.Toasty;
 import us.zoom.sdk.JoinMeetingOptions;
 import us.zoom.sdk.JoinMeetingParams;
@@ -61,6 +63,7 @@ public class OnLiveClassFragment extends Fragment implements OnLiveClassAdapter.
 
     private List<LiveClassesListModel.LiveClassDatum> liveClassData = new ArrayList<>();
     private List<LiveClassesListModel.EnrollDatum> enrollData = new ArrayList<>();
+    private String mSubjectId = "";
 
     public static OnLiveClassFragment newInstance(String param1, String param2) {
         OnLiveClassFragment fragment = new OnLiveClassFragment();
@@ -72,7 +75,9 @@ public class OnLiveClassFragment extends Fragment implements OnLiveClassAdapter.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
         if (getArguments() != null) {
+            mSubjectId = bundle.getString("subject_id");
         }
     }
 
@@ -97,10 +102,11 @@ public class OnLiveClassFragment extends Fragment implements OnLiveClassAdapter.
     }
 
     private void onApiCallList() {
-
         Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.LiveClassList.getValue());
+        params.put("subject_id", TextUtil.cutNull(mSubjectId));
         params.put("user_id", sharedPreference.getUserResponse().getId() + "");
-
+        params.put("level_id", new AppSharedPreference(getActivity()).getLevelId());
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
@@ -166,7 +172,6 @@ public class OnLiveClassFragment extends Fragment implements OnLiveClassAdapter.
     }
 
     private void loadEnroll() {
-
         binding.textViewUpComing.setVisibility(View.VISIBLE);
 
     }
@@ -215,20 +220,12 @@ public class OnLiveClassFragment extends Fragment implements OnLiveClassAdapter.
 
     @Override
     public void onEnrollItemClick(LiveClassesListModel.LiveClassDatum data, int position) {
-        String plantType = new AppSharedPreference(getActivity()).getUserResponse().getPlan();
-        if (plantType.equalsIgnoreCase("d")){
-            onApiEnroll("1", Integer.toString(data.getId()));
-
-            }else {
-            //CallBuyNowFragment();
-        }
+        onApiEnroll("1", Integer.toString(data.getId()));
     }
 
     @Override
     public void onUnenroll(LiveClassesListModel.EnrollDatum data, int position) {
-
         onApiEnroll("0", Integer.toString(data.getId()));
-
     }
 
     @Override
@@ -243,8 +240,8 @@ public class OnLiveClassFragment extends Fragment implements OnLiveClassAdapter.
 
 
     private void onApiEnroll(String type, String id) {
-
         Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.EnrollementForLiveClass.getValue());
         params.put("user_id", sharedPreference.getUserResponse().getId() + "");
         params.put("live_schedule_id", id);
         params.put("flag", type);
@@ -298,17 +295,6 @@ public class OnLiveClassFragment extends Fragment implements OnLiveClassAdapter.
         meetingParams.meetingNo = meetingId;
         meetingParams.password = passcode;
         return meetingService.joinMeetingWithParams(((MainActivity) requireActivity()).getApplicationContext(), meetingParams, meetingOptions);
-    }
-    private void CallBuyNowFragment() {
-        FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
-        Fragment prev = requireActivity().getSupportFragmentManager().findFragmentByTag("dialog");
-        if (prev != null) {
-            ft.remove(prev);
-        }
-        ft.addToBackStack(null);
-        DialogFragment dialogFragment = new CustomBuyNowDialogFragment(this);
-        dialogFragment.setCancelable(false);
-        dialogFragment.show(ft, "dialog");
     }
 
     @Override

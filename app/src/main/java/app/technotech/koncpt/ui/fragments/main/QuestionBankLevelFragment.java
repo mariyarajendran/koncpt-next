@@ -89,6 +89,7 @@ public class QuestionBankLevelFragment extends Fragment implements CustomBuyNowD
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
         menu.findItem(R.id.action_notification).setVisible(false);
         menu.findItem(R.id.action_index).setVisible(false);
+        menu.findItem(R.id.action_search).setVisible(false);
         super.onPrepareOptionsMenu(menu);
     }
 

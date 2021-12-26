@@ -35,6 +35,10 @@ public enum EnumApiAction {
     VideoClassFile("video_class_file"),
     VideoRatting("video_ratting"),
     SaveTransaction("save_transaction"),
+    AboutUs("about_us"),
+    LiveClassList("live_classess_list"),
+    LiveClassSubject("live_class_subject"),
+    EnrollementForLiveClass("enrollement_for_live_class"),
     ProfileDetail("profile_detail");
     private String strValue;
 

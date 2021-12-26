@@ -36,11 +36,8 @@ public class EnrollClassAdapter extends RecyclerView.Adapter<EnrollClassAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         try {
-
             LiveClassesListModel.EnrollDatum data = datumList.get(position);
-
             holder.binding.textViewLiveTitle.setText(data.getTitle());
             String dates = data.getDate() + " - " + data.getToDate();
             holder.binding.textViewLiveDate.setText(dates);

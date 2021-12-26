@@ -1876,7 +1876,7 @@ public class Repository {
 
         final MutableLiveData<AboutusModel> data = new MutableLiveData<>();
 
-        connection.getAboutusResponse().enqueue(new Callback<AboutusModel>() {
+        connection.getAboutusResponse(EnumApiAction.AboutUs.getValue()).enqueue(new Callback<AboutusModel>() {
             @Override
             public void onResponse(Call<AboutusModel> call, retrofit2.Response<AboutusModel> response) {
 

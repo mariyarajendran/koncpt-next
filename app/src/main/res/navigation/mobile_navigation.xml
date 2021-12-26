@@ -142,6 +142,12 @@
             app:popUpTo="@+id/liveClassesLevelFragment" />
     </fragment>
 
+    <fragment
+        android:id="@+id/LiveClassesSubjectFragment"
+        android:name="app.technotech.koncpt.ui.fragments.main.LiveClassesSubjectFragment"
+        android:label="@string/hint_subjects">
+    </fragment>
+
 
     <fragment
         android:id="@+id/testFragment"

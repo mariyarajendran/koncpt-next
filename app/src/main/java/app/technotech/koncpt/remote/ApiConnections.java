@@ -329,8 +329,8 @@ public interface ApiConnections {
     @GET("api.php")
     public Call<FacultyModel> getFacultyResponse(@Query("action") String facultyList);
 
-    @GET("about-us")
-    public Call<AboutusModel> getAboutusResponse();
+    @GET("api.php")
+    public Call<AboutusModel> getAboutusResponse(@Query("action") String aboutUs);
 
     @GET("api.php")
     public Call<FaqModel> getFaqResponse(@Query("action") String faqs);
@@ -348,11 +348,11 @@ public interface ApiConnections {
     public Call<String> getPauseResponse(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
-    @POST("live_classess_list")
+    @POST("api.php")
     public Call<LiveClassesListModel> getLiveClassListResponse(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
-    @POST("enrollement_for_live_class")
+    @POST("api.php")
     public Call<MessageModel> getEnrollResponse(@FieldMap Map<String, String> params);
 
 

@@ -47,6 +47,7 @@ public class LiveClassesLevelFragment extends Fragment implements CustomBuyNowDi
     private AlertDialog progressDialog;
     private BottomNavigationView navigationView;
     private QBankLevelAdapter qBankLevelAdapter;
+    private String mPlanId = "";
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -57,6 +58,10 @@ public class LiveClassesLevelFragment extends Fragment implements CustomBuyNowDi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            mPlanId = bundle.getString("plan_id");
+        }
     }
 
     @Override
@@ -89,6 +94,7 @@ public class LiveClassesLevelFragment extends Fragment implements CustomBuyNowDi
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
         menu.findItem(R.id.action_notification).setVisible(false);
         menu.findItem(R.id.action_index).setVisible(false);
+        menu.findItem(R.id.action_search).setVisible(false);
         super.onPrepareOptionsMenu(menu);
     }
 
@@ -102,7 +108,7 @@ public class LiveClassesLevelFragment extends Fragment implements CustomBuyNowDi
         Map<String, String> params = new HashMap<>();
         params.put(EnumApiAction.action.getValue(), EnumApiAction.PlanWiseLevel.getValue());
         params.put("user_id", Integer.toString(new AppSharedPreference(getActivity()).getUserResponse().getId()));
-        params.put("plan_id", "2");
+        params.put("plan_id", mPlanId);
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
@@ -130,18 +136,29 @@ public class LiveClassesLevelFragment extends Fragment implements CustomBuyNowDi
         binding.revLiveClassesLevel.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.revLiveClassesLevel.setItemAnimator(new DefaultItemAnimator());
         qBankLevelAdapter = new QBankLevelAdapter(getActivity(), notesModel.getData(), (int position) -> {
-            if (notesModel.getData().get(position).getLevel_active() == 1)
-                navigateToQBankFragment(TextUtil.cutNull(notesModel.getData().get(position).getLevel_id()));
-            else
+            if (notesModel.getData().get(position).getLevel_active() == 1) {
+                if (TextUtil.cutNull(mPlanId).equalsIgnoreCase("2")) {
+                    navigateToLiveClassFragment(TextUtil.cutNull(notesModel.getData().get(position).getLevel_id()));
+                } else if (TextUtil.cutNull(mPlanId).equalsIgnoreCase("4")) {
+                    navigateToLiveClassSubjectFragment(TextUtil.cutNull(notesModel.getData().get(position).getLevel_id()));
+                }
+            } else {
                 callBuyNowFragment();
+            }
         });
         binding.revLiveClassesLevel.setAdapter(qBankLevelAdapter);
     }
 
-    private void navigateToQBankFragment(String levelId) {
+    private void navigateToLiveClassFragment(String levelId) {
         new AppSharedPreference(getActivity()).setLevelId(levelId);
         Navigation.findNavController(binding.getRoot()).navigate(R.id.LiveClassesFragment);
     }
+
+    private void navigateToLiveClassSubjectFragment(String levelId) {
+        new AppSharedPreference(getActivity()).setLevelId(levelId);
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.LiveClassesSubjectFragment);
+    }
+
 
     private void callBuyNowFragment() {
         FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();

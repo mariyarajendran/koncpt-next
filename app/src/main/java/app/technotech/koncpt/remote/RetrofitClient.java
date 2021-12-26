@@ -17,8 +17,8 @@ public class RetrofitClient {
 //    private static final String BASE_URL = "http://koncptkritatechnosolutions.com/api/v1/";
 //    private static final String BASE_URL = "https://koncptkritatechnosolutions.com/api/v1/";
 //    private static final String BASE_URL = "https://dev.koncptkritatechnosolutions.com/api/v1/";
-    //private static final String BASE_URL = "https://7hillstechnosolutions.com/app/mobile_api/"; //dev
-    private static final String BASE_URL = "http://enlytmed.in/app/mobile_api/"; //live
+    private static final String BASE_URL = "https://7hillstechnosolutions.com/app/mobile_api/"; //dev
+    //private static final String BASE_URL = "http://enlytmed.in/app/mobile_api/"; //live
 
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {
