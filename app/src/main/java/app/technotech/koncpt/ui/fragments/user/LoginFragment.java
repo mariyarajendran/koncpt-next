@@ -79,7 +79,6 @@ public class LoginFragment extends Fragment {
     private String regId;
 
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,7 +108,7 @@ public class LoginFragment extends Fragment {
 
         DebugLog.e("Token : " + new AppSharedPreference(getActivity()).getSavedToken());
 
-        if (new AppSharedPreference(getActivity()).getSavedToken() == null){
+        if (new AppSharedPreference(getActivity()).getSavedToken() == null) {
             FirebaseMessaging.getInstance().getToken()
                     .addOnCompleteListener(new OnCompleteListener<String>() {
                         @Override
@@ -148,7 +147,7 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void onFBLogin() {
-                    facebooklogin();
+                facebooklogin();
             }
 
             @Override
@@ -179,7 +178,6 @@ public class LoginFragment extends Fragment {
     }
 
 
-
     private void loadTermNCondition() {
 
         Bundle argumnets = new Bundle();
@@ -195,17 +193,13 @@ public class LoginFragment extends Fragment {
 
 
     private void ApiCallLogin() {
-
-
         Map<String, String> params = new HashMap<>();
         params.put("email", binding.edtEmail.getText().toString());
         params.put("password", binding.edtPassword.getText().toString());
         params.put("device_id", new AppSharedPreference(getActivity()).getSavedToken());
-
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
-
         model.SignInWithPassword(params).observe(getActivity(), new Observer<UserModelLogin2>() {
             @Override
             public void onChanged(UserModelLogin2 userModelLogin) {
@@ -222,7 +216,7 @@ public class LoginFragment extends Fragment {
                             if (userModelLogin != null) {
 
                                 if (userModelLogin.getStatus() == 1) {
-                                      String jsonDAta = new Gson().toJson(userModelLogin);
+                                    String jsonDAta = new Gson().toJson(userModelLogin);
                                     DebugLog.e("JOSN => " + jsonDAta);
 
                                     Toasty.success(getActivity(), userModelLogin.getMessage()).show();
@@ -362,8 +356,6 @@ public class LoginFragment extends Fragment {
     }
 
 
-
-
     private void facebooklogin() {
 
         LoginManager.getInstance().registerCallback(callbackManager,
@@ -498,7 +490,6 @@ public class LoginFragment extends Fragment {
                                 } else {
 
                                     Toasty.error(getActivity(), facebookResponseModel.getMessage()).show();
-
 
 
                                 }

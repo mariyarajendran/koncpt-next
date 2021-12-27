@@ -1,6 +1,7 @@
 package app.technotech.koncpt.ui.fragments.user;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,6 +24,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.Gson;
@@ -32,6 +34,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import app.technotech.koncpt.ui.activity.MainActivity;
+import app.technotech.koncpt.ui.activity.UserAuthanticationActivity;
 import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.R;
 import app.technotech.koncpt.application.BaseApp;
@@ -48,15 +52,11 @@ import app.technotech.koncpt.utils.PasswordValidator;
 import es.dmoral.toasty.Toasty;
 
 public class RegisterFragment extends Fragment {
-
-
     private FragmentRegisterBinding binding;
     private RegisterViewModel model;
     private GeneralUtils utils;
     private AlertDialog progressDialog;
-
     private FirebaseAnalytics mFirebaseAnalytics;
-
     private List<StateListModel.Data> list = new ArrayList<>();
     private List<CollegeListModel.Data> collegeListModels = new ArrayList<>();
 
@@ -128,28 +128,18 @@ public class RegisterFragment extends Fragment {
         }
     }
 
-    private void collegeListInit() {
-
-    }
 
     private void buttonClickListenerBind() {
-
         binding.setRegisterCallback(new RegisterCallback() {
             @Override
             public void onRegisterUser() {
-
                 if (((BaseApp) requireActivity().getApplication()).isInternetAvailable()) {
-
                     if (validation()) {
                         if (((BaseApp) requireActivity().getApplication()).isInternetAvailable()) {
-
                             CheckEmailExistApi();
-
                         }
                     }
-
                 }
-
             }
         });
     }
@@ -234,11 +224,8 @@ public class RegisterFragment extends Fragment {
     }
 
     private void loadStateData() {
-
         ArrayAdapter<String> stateAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, stateList);
         stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-
         binding.spState.setAdapter(stateAdapter);
         binding.spState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -327,7 +314,6 @@ public class RegisterFragment extends Fragment {
 
 
     private boolean validation() {
-
         if (TextUtils.isEmpty(binding.edtFullName.getText().toString())) {
             Toasty.warning(getActivity(), "Full name field shouldn't be empty").show();
             return false;
@@ -400,14 +386,11 @@ public class RegisterFragment extends Fragment {
 //            Toasty.warning(getActivity(), "Please select college").show();
 //            return false;
 //        }
-
         if (binding.radioCourseGroup.getCheckedRadioButtonId() == R.id.rd_btn_neet_pg) {
             course = "1";
         } else {
             course = "2";
         }
-
-
         phone_number = binding.edtNumber.getText().toString();
         name = binding.edtFullName.getText().toString();
         email = binding.edtEmailId.getText().toString();
@@ -415,7 +398,6 @@ public class RegisterFragment extends Fragment {
         yearId = String.valueOf(binding.spCurrentYear.getSelectedItemPosition());
         stateId = String.valueOf(list.get(binding.spState.getSelectedItemPosition() - 1).getId());
         collegeId = binding.spCollege.getText().toString();
-
         return true;
     }
 
@@ -444,63 +426,42 @@ public class RegisterFragment extends Fragment {
         model.getUserRegister(params).observe(getActivity(), new Observer<UserModelLogin>() {
             @Override
             public void onChanged(UserModelLogin userModelLogin) {
-
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
                         if (progressDialog.isShowing()) {
                             progressDialog.dismiss();
                         }
-
-                        if (userModelLogin != null) {
-
-                            try {
-
-
-                                if (userModelLogin.getStatus() == 1) {
-
-
-                                    String json = new Gson().toJson(userModelLogin);
-
-
-                                    String otp = Integer.toString(userModelLogin.getOtp());
-                                    String phone_no = userModelLogin.getData().getPhone();
-
-                                    Bundle args = new Bundle();
-                                    args.putString("mobile_no", phone_no);
-                                    args.putString("otp", otp);
-
-
-                                    Fragment fragment = new OtpVerificationFragment();
-                                    fragment.setArguments(args);
-                                    FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-                                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                    fragmentTransaction.replace(R.id.container, fragment);
-                                    fragmentTransaction.addToBackStack(null);
-                                    fragmentTransaction.commit();
-//
-//                                Intent mIntent = new Intent(getActivity(), MainActivity.class);
-//                                startActivity(mIntent);
-//                                requireActivity().finish();
-
-                                } else {
-
-                                    Toasty.error(getActivity(), userModelLogin.getMessage()).show();
-
-//
-                                }
-
-
-                            } catch (Exception ex) {
-
-                            }
-
-
-                        } else {
-                            Toasty.error(getActivity(), "Oops Something went wrong").show();
-                        }
-
+//                        if (userModelLogin != null) {
+//                            try {
+//                                if (userModelLogin.getStatus() == 1) {
+//                                    String otp = Integer.toString(userModelLogin.getOtp());
+//                                    String phone_no = userModelLogin.getData().getPhone();
+//                                    Bundle args = new Bundle();
+//                                    args.putString("mobile_no", phone_no);
+//                                    args.putString("otp", otp);
+//                                    Fragment fragment = new OtpVerificationFragment();
+//                                    fragment.setArguments(args);
+//                                    FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+//                                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                                    fragmentTransaction.replace(R.id.container, fragment);
+//                                    fragmentTransaction.addToBackStack(null);
+//                                    fragmentTransaction.commit();
+//                                } else {
+//                                    Toasty.error(getActivity(), userModelLogin.getMessage()).show();
+//                                }
+//                            } catch (Exception ex) {
+//                            }
+//                        } else {
+//                            Toasty.error(getActivity(), "Oops Something went wrong").show();
+//                        }
+//                        Intent mIntent = new Intent(getActivity(), MainActivity.class);
+//                        startActivity(mIntent);
+//                        requireActivity().finish();
+                        Intent redirect = new Intent(getActivity(), UserAuthanticationActivity.class);
+                        redirect.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(redirect);
+                        getActivity().finish();
                     }
                 }, 500);
 
@@ -511,7 +472,6 @@ public class RegisterFragment extends Fragment {
 
 
     private void CheckEmailExistApi() {
-
         Map<String, String> params = new HashMap<>();
         params.put(EnumApiAction.action.getValue(), EnumApiAction.CheckEmail.getValue());
         params.put("email", binding.edtEmailId.getText().toString());
@@ -536,14 +496,9 @@ public class RegisterFragment extends Fragment {
                         }
 
                         if (checkEmailModel != null) {
-
                             if (checkEmailModel.getStatus() == 1) {
-
                                 registerCallApi();
-
                             } else if (checkEmailModel.getStatus() == 0) {
-
-
                                 Toasty.info(getActivity(), checkEmailModel.getMessage()).show();
 
                             }

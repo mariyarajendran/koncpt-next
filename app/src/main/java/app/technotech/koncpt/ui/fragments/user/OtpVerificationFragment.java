@@ -85,8 +85,6 @@ public class OtpVerificationFragment extends Fragment implements OnOtpCompletion
         iniUI();
         bindClickListener();
         estimateTimerCountdown();
-
-
         if (new AppSharedPreference(getActivity()).getSavedToken() == null) {
             FirebaseMessaging.getInstance().getToken()
                     .addOnCompleteListener(new OnCompleteListener<String>() {
@@ -96,7 +94,6 @@ public class OtpVerificationFragment extends Fragment implements OnOtpCompletion
                                 Log.w("TAG", "Fetching FCM registration token failed", task.getException());
                                 return;
                             }
-
                             // Get new FCM registration token
                             String token = task.getResult();
                             DebugLog.e("Token : " + token);
@@ -129,19 +126,11 @@ public class OtpVerificationFragment extends Fragment implements OnOtpCompletion
 
             @Override
             public void onValidateOTP() {
-
                 if (otpCode.equals(binding.otpView.getText().toString())) {
-
                     verifyApiCall();
-
                 } else {
-
                     Toasty.error(getActivity(), "Otp is not matched").show();
-
-
                 }
-
-
             }
         });
 

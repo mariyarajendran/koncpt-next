@@ -173,13 +173,10 @@ public class OnLiveClassFragment extends Fragment implements OnLiveClassAdapter.
 
     private void loadEnroll() {
         binding.textViewUpComing.setVisibility(View.VISIBLE);
-
     }
 
     private void loadHorizontal() {
-
         binding.textViewEnroll.setVisibility(View.VISIBLE);
-
     }
 
     private void initUI() {
