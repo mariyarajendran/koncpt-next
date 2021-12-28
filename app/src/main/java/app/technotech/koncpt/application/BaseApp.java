@@ -98,13 +98,10 @@ public class BaseApp extends Application implements InternetConnectivityListener
     private void initializeSdk(Context context) {
         ZoomSDK zoomSDK = ZoomSDK.getInstance();
         ZoomSDKInitParams initParams = new ZoomSDKInitParams();
-
         initParams.appKey = AuthConstants.APP_KEY;
         initParams.appSecret = AuthConstants.APP_SECRET;
         initParams.domain = AuthConstants.WEB_DOMAIN;
         initParams.enableLog = true;
-
-
         ZoomSDKInitializeListener listener = new ZoomSDKInitializeListener() {
             @Override
             public void onZoomSDKInitializeResult(int i, int i1) {

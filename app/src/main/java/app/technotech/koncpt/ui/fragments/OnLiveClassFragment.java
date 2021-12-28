@@ -289,8 +289,8 @@ public class OnLiveClassFragment extends Fragment implements OnLiveClassAdapter.
         JoinMeetingOptions meetingOptions = new JoinMeetingOptions();
         JoinMeetingParams meetingParams = new JoinMeetingParams();
         meetingParams.displayName = title;
-        meetingParams.meetingNo = meetingId;
-        meetingParams.password = passcode;
+        meetingParams.meetingNo = "87437429879";
+        meetingParams.password = "SA1eA4";
         return meetingService.joinMeetingWithParams(((MainActivity) requireActivity()).getApplicationContext(), meetingParams, meetingOptions);
     }
 

@@ -24,7 +24,6 @@ public class ZoomInitClass {
     private void initializeSdk(Context context) {
         ZoomSDK zoomSDK = ZoomSDK.getInstance();
         ZoomSDKInitParams initParams = new ZoomSDKInitParams();
-
         initParams.appKey = AuthConstants.APP_KEY;
         initParams.appSecret = AuthConstants.APP_SECRET;
         initParams.domain = AuthConstants.WEB_DOMAIN;
@@ -48,15 +47,12 @@ public class ZoomInitClass {
 
 
     public int joinMeeting(String title, String meetingId, String passcode){
-
         MeetingService meetingService = ZoomSDK.getInstance().getMeetingService();
         JoinMeetingOptions meetingOptions = new JoinMeetingOptions();
         JoinMeetingParams meetingParams = new JoinMeetingParams();
-
         meetingParams.displayName = title;
         meetingParams.meetingNo = meetingId;
         meetingParams.password = passcode;
-
         return meetingService.joinMeetingWithParams(context, meetingParams, meetingOptions);
     }
 }
