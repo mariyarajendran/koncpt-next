@@ -180,7 +180,6 @@ public class OnLiveClassFragment extends Fragment implements OnLiveClassAdapter.
     }
 
     private void initUI() {
-
         generalUtils = new GeneralUtils(getActivity());
         progressDialog = generalUtils.showProgressDialog();
         sharedPreference = new AppSharedPreference(getActivity());
@@ -235,18 +234,15 @@ public class OnLiveClassFragment extends Fragment implements OnLiveClassAdapter.
         joinMeeting(data.getTitle(), data.getZoomUsername(), data.getZoomPassword());
     }
 
-
     private void onApiEnroll(String type, String id) {
         Map<String, String> params = new HashMap<>();
         params.put(EnumApiAction.action.getValue(), EnumApiAction.EnrollementForLiveClass.getValue());
         params.put("user_id", sharedPreference.getUserResponse().getId() + "");
         params.put("live_schedule_id", id);
         params.put("flag", type);
-
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
-
         model.getEnrollClass(params).observe(getActivity(), new Observer<MessageModel>() {
             @Override
             public void onChanged(MessageModel messageModel) {
@@ -258,9 +254,7 @@ public class OnLiveClassFragment extends Fragment implements OnLiveClassAdapter.
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
                         try {
-
                             if (messageModel != null) {
                                 if (messageModel.getStatus() == 1) {
                                     Toasty.success(getActivity(), messageModel.getMessage()).show();
@@ -289,8 +283,8 @@ public class OnLiveClassFragment extends Fragment implements OnLiveClassAdapter.
         JoinMeetingOptions meetingOptions = new JoinMeetingOptions();
         JoinMeetingParams meetingParams = new JoinMeetingParams();
         meetingParams.displayName = title;
-        meetingParams.meetingNo = "87437429879";
-        meetingParams.password = "SA1eA4";
+        meetingParams.meetingNo = meetingId;
+        meetingParams.password = passcode;
         return meetingService.joinMeetingWithParams(((MainActivity) requireActivity()).getApplicationContext(), meetingParams, meetingOptions);
     }
 

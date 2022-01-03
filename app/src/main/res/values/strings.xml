@@ -216,4 +216,5 @@
     <string name="total_qa">TOTAL QA</string>
     <string name="lable_completed">COMPLETED</string>
     <string name="label_incompleted">IN COMPLETED</string>
+    <string name="msg_no_data">NO DATA FOUND</string>
 </resources>

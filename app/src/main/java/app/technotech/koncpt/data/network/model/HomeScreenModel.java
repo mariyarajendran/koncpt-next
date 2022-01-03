@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomeScreenModel implements Parcelable {
@@ -17,9 +18,18 @@ public class HomeScreenModel implements Parcelable {
     @SerializedName("message")
     @Expose
     private String message;
+
+    public List<Data> getData() {
+        return data;
+    }
+
+    public void setData(List<Data> data) {
+        this.data = data;
+    }
+
     @SerializedName("data")
     @Expose
-    private Data data;
+    private List<Data> data = null;
     public final static Parcelable.Creator<HomeScreenModel> CREATOR = new Creator<HomeScreenModel>() {
 
 
@@ -39,7 +49,6 @@ public class HomeScreenModel implements Parcelable {
     protected HomeScreenModel(Parcel in) {
         this.status = ((Integer) in.readValue((Integer.class.getClassLoader())));
         this.message = ((String) in.readValue((String.class.getClassLoader())));
-        this.data = ((Data) in.readValue((Data.class.getClassLoader())));
     }
 
     public HomeScreenModel() {
@@ -61,18 +70,9 @@ public class HomeScreenModel implements Parcelable {
         this.message = message;
     }
 
-    public Data getData() {
-        return data;
-    }
-
-    public void setData(Data data) {
-        this.data = data;
-    }
-
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(status);
         dest.writeValue(message);
-        dest.writeValue(data);
     }
 
     public int describeContents() {
@@ -81,43 +81,29 @@ public class HomeScreenModel implements Parcelable {
 
 
     public class Data implements Parcelable {
-
-
-        @SerializedName("total_questions")
+        @SerializedName("title")
         @Expose
-        private String totalQuestions;
+        private String title = "";
 
-        public String getTotalQuestions() {
-            return totalQuestions;
+        public String getTitle() {
+            return title;
         }
 
-        public void setTotalQuestions(String totalQuestions) {
-            this.totalQuestions = totalQuestions;
+        public void setTitle(String title) {
+            this.title = title;
         }
 
-        public String getCompletedQuestions() {
-            return completedQuestions;
-        }
-
-        public void setCompletedQuestions(String completedQuestions) {
-            this.completedQuestions = completedQuestions;
-        }
-
-        public String getIncompletedQuestions() {
-            return incompletedQuestions;
-        }
-
-        public void setIncompletedQuestions(String incompletedQuestions) {
-            this.incompletedQuestions = incompletedQuestions;
-        }
-
-        @SerializedName("completed_questions")
+        @SerializedName("total_count")
         @Expose
-        private String completedQuestions;
+        private String total_count = "";
 
-        @SerializedName("incompleted_questions")
-        @Expose
-        private String incompletedQuestions;
+        public String getTotal_count() {
+            return total_count;
+        }
+
+        public void setTotal_count(String total_count) {
+            this.total_count = total_count;
+        }
 
         @SerializedName("live_class")
         @Expose

@@ -19,14 +19,22 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import app.technotech.koncpt.data.network.model.BuyDetailsModel;
+import app.technotech.koncpt.ui.adapter.BuyDetailsAdapter;
+import app.technotech.koncpt.ui.adapter.HomeAdapter;
 import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.BuildConfig;
 import app.technotech.koncpt.R;
@@ -54,6 +62,8 @@ public class HomeFragment extends Fragment implements SuggestedCourseAdapter.OnT
     private CircularImageView headerImageView;
     private AppSharedPreference sharedPreference;
     private NavController navController;
+    private HomeAdapter homeAdapter;
+    private ArrayList<String> arrayListDashboardTitle;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -135,10 +145,9 @@ public class HomeFragment extends Fragment implements SuggestedCourseAdapter.OnT
                                 progressDialog.dismiss();
                             }
                             if (homeScreenModel != null) {
-                                binding.tvHomeTotalCount.setText(TextUtil.cutNull(homeScreenModel.getData().getTotalQuestions()));
-                                binding.tvHomeCompletedCount.setText(TextUtil.cutNull(homeScreenModel.getData().getCompletedQuestions()));
-                                binding.tvHomeInCompletedCount.setText(TextUtil.cutNull(homeScreenModel.getData().getIncompletedQuestions()));
+                                loadData(homeScreenModel.getData());
                             } else {
+                                binding.tvHomeDashboardNoData.setVisibility(View.VISIBLE);
                                 if (progressDialog.isShowing()) {
                                     progressDialog.dismiss();
                                 }
@@ -150,6 +159,18 @@ public class HomeFragment extends Fragment implements SuggestedCourseAdapter.OnT
                 }, 1000);
             }
         });
+    }
+
+    private void loadData(List<HomeScreenModel.Data> dataList) {
+        if (dataList != null && dataList.size() > 0) {
+            binding.recyclerViewHomeDashboard.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+            binding.recyclerViewHomeDashboard.setItemAnimator(new DefaultItemAnimator());
+            homeAdapter = new HomeAdapter(getActivity(), dataList);
+            binding.recyclerViewHomeDashboard.setAdapter(homeAdapter);
+            binding.tvHomeDashboardNoData.setVisibility(View.GONE);
+        } else {
+            binding.tvHomeDashboardNoData.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
