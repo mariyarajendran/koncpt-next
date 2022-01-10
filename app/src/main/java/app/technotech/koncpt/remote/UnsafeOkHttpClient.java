@@ -1,17 +1,17 @@
 package app.technotech.koncpt.remote;
 
 import java.security.cert.CertificateException;
+import java.util.concurrent.TimeUnit;
 
-import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 
-public class SSLTrust {
+public class UnsafeOkHttpClient {
     @SuppressWarnings("null")
     public static OkHttpClient getUnsafeOkHttpClient() {
         try {
@@ -38,8 +38,13 @@ public class SSLTrust {
             // Create an ssl socket factory with our all-trusting manager
             final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
             OkHttpClient.Builder builder = new OkHttpClient.Builder();
+            HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
             builder.sslSocketFactory(sslSocketFactory, (X509TrustManager) trustAllCerts[0]);
             builder.hostnameVerifier((hostname, session) -> true);
+            builder.addInterceptor(logging).readTimeout(60, TimeUnit.SECONDS)
+                    .connectTimeout(60, TimeUnit.SECONDS)
+                    .build();
             OkHttpClient okHttpClient = builder.build();
             return okHttpClient;
         } catch (Exception e) {

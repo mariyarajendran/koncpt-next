@@ -67,7 +67,7 @@ public class AllTestRecyclerAdapter extends ExpandableRecyclerViewAdapter<AllTes
                 holder.binding.txtPro.setVisibility(View.GONE);
             } else if (data.getIsPaid() == 1) {
                 //paid
-                holder.binding.txtPro.setVisibility(View.VISIBLE);
+                holder.binding.txtPro.setVisibility(View.GONE);
 
             }
         } else {

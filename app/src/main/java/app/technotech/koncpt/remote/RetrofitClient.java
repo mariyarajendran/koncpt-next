@@ -17,17 +17,15 @@ public class RetrofitClient {
 //    private static final String BASE_URL = "http://koncptkritatechnosolutions.com/api/v1/";
 //    private static final String BASE_URL = "https://koncptkritatechnosolutions.com/api/v1/";
 //    private static final String BASE_URL = "https://dev.koncptkritatechnosolutions.com/api/v1/";
-    private static final String BASE_URL = "https://7hillstechnosolutions.com/app/mobile_api/"; //dev
+    //private static final String BASE_URL = "https://7hillstechnosolutions.com/app/mobile_api/"; //dev
+    private static final String BASE_URL = "https://enlytmed.in/app/mobile_api/"; //dev
     //private static final String BASE_URL = "http://enlytmed.in/app/mobile_api/"; //live
 
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-            OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(logging)
-                    .readTimeout(60, TimeUnit.SECONDS)
-                    .connectTimeout(60, TimeUnit.SECONDS)
-                    .build();
+            OkHttpClient okHttpClient = UnsafeOkHttpClient.getUnsafeOkHttpClient();
             Gson gson = new GsonBuilder()
                     .setLenient()
                     .create();
