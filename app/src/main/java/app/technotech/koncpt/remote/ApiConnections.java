@@ -99,8 +99,8 @@ public interface ApiConnections {
     @POST("api.php")
     public Call<UserModelLogin> getOTPVerificationResponse(@FieldMap Map<String, String> data);
 
-    @GET("daily-hunt")
-    public Call<DailyHuntModel> getDailyHuntResponse();
+    @GET("api.php")
+    public Call<DailyHuntModel> getDailyHuntResponse(@Query("action") String dailyHunt);
 
     @FormUrlEncoded
     @POST("login")

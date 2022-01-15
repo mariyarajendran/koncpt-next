@@ -41,34 +41,27 @@ public class DailyHuntAdapter extends RecyclerView.Adapter<DailyHuntAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         try {
-
             int radius = context.getResources().getDimensionPixelOffset(R.dimen._4sdp);
-
             final DailyHuntModel.Datum data = modelList.get(position);
-
             Glide.with(context)
                     .load(data.getBlogImage())
                     .transform(new CenterCrop(), new RoundedCorners(radius))
+                    .placeholder(R.drawable.zm_image_placeholder)
+                    .error(R.drawable.zm_image_placeholder)
                     .into(holder.binding.imageHuntProfile);
-
             holder.binding.imageHuntProfile.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     GeneralUtils.openImageDialog(context,data.getBlogImage());
                 }
             });
-
-
             holder.binding.textHuntDescription
                     .setAnimationDuration(500)
                     .setEllipsizedText("Read More")
                     .setVisibleLines(3)
                     .setIsExpanded(false)
                     .setEllipsizedTextColor(ContextCompat.getColor(context, R.color.colorAccent));
-
-
             holder.binding.textHuntTitle.setText(data.getTitle());
             holder.binding.textHuntDescription.setText(data.getContent());
             holder.binding.textHuntDescription.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +71,6 @@ public class DailyHuntAdapter extends RecyclerView.Adapter<DailyHuntAdapter.View
                 }
             });
             holder.binding.textHuntCreated.setText(data.getCreatedAt());
-
             holder.binding.executePendingBindings();
 
         } catch (Exception ex) {

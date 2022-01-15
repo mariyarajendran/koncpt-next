@@ -15,9 +15,18 @@ public class DailyHuntModel {
     @SerializedName("message")
     @Expose
     private String message;
+
     @SerializedName("data")
     @Expose
-    private Data data;
+    private List<Datum> data;
+
+    public List<Datum> getData() {
+        return data;
+    }
+
+    public void setData(List<Datum> data) {
+        this.data = data;
+    }
 
     public Integer getStatus() {
         return status;
@@ -34,15 +43,6 @@ public class DailyHuntModel {
     public void setMessage(String message) {
         this.message = message;
     }
-
-    public Data getData() {
-        return data;
-    }
-
-    public void setData(Data data) {
-        this.data = data;
-    }
-
 
     public class Data {
 

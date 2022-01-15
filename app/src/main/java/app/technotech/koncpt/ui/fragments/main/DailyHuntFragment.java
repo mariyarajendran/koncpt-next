@@ -31,8 +31,6 @@ import app.technotech.koncpt.ui.viewmodels.HuntViewModel;
 import app.technotech.koncpt.utils.GeneralUtils;
 
 public class DailyHuntFragment extends Fragment {
-
-
     private FragmentDailyHuntBinding binding;
     private GeneralUtils utils;
     private AlertDialog progressDialog;
@@ -70,78 +68,47 @@ public class DailyHuntFragment extends Fragment {
         menu.findItem(R.id.action_notification).setVisible(false);
         menu.findItem(R.id.action_index).setVisible(false);
         menuItem = menu.findItem(R.id.action_search);
-
         menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-
                 Navigation.findNavController(binding.getRoot()).navigate(R.id.searchHomeFragment);
                 return false;
             }
         });
         super.onPrepareOptionsMenu(menu);
-
     }
 
-
     private void callApi() {
-
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
-
-
-        model.getHuntData().observe(getActivity(), new Observer<DailyHuntModel>() {
+        model.getHuntData().observe(getActivity(), dailyHuntModel -> new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
-            public void onChanged(DailyHuntModel dailyHuntModel) {
-
-                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        try {
-
-                            if (progressDialog.isShowing()) {
-                                progressDialog.dismiss();
-                            }
-
-                            if (dailyHuntModel != null) {
-                                if (dailyHuntModel.getStatus() == 1) {
-                                    modelList = dailyHuntModel.getData().getData();
-                                    loadData();
-                                }
-
-                            }
-
-                        } catch (Exception ex) {
-                            ex.printStackTrace();
-                        }
-
+            public void run() {
+                if (progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                }
+                if (dailyHuntModel != null) {
+                    if (dailyHuntModel.getStatus() == 1) {
+                        modelList = dailyHuntModel.getData();
+                        loadData();
                     }
-                }, 500);
 
+                }
             }
-        });
-
-
+        }, 500));
     }
 
     private void loadData() {
-
         binding.recyclerHunt.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.recyclerHunt.setItemAnimator(new DefaultItemAnimator());
         binding.recyclerHunt.setHasFixedSize(true);
-
-        DailyHuntAdapter adapter = new DailyHuntAdapter(getActivity(), modelList, new DailyHuntAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(DailyHuntModel.Datum datum, int position) {
+        DailyHuntAdapter adapter = new DailyHuntAdapter(getActivity(), modelList, (datum, position) -> {
 //                String json = new Gson().toJson(datum);
 //                Intent mIntent = new Intent(getActivity(), DailyHuntDetailView.class);
 //                mIntent.putExtra("data", json);
 //                startActivity(mIntent);
-            }
         });
-
         binding.recyclerHunt.setAdapter(adapter);
     }
 

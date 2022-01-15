@@ -360,7 +360,7 @@ public class Repository {
 
         final MutableLiveData<DailyHuntModel> data = new MutableLiveData<>();
 
-        connection.getDailyHuntResponse().enqueue(new Callback<DailyHuntModel>() {
+        connection.getDailyHuntResponse(EnumApiAction.DailyHunt.getValue()).enqueue(new Callback<DailyHuntModel>() {
             @Override
             public void onResponse(Call<DailyHuntModel> call, retrofit2.Response<DailyHuntModel> response) {
 

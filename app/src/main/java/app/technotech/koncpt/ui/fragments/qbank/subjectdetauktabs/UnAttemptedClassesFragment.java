@@ -163,7 +163,6 @@ public class UnAttemptedClassesFragment extends Fragment implements AllTestRecyc
 
                             if (subjectModel != null) {
                                 if (subjectModel.getStatus() == 1) {
-
                                     questionBankGroups = new ArrayList<>();
                                     for (int i = 0; i < subjectModel.getData().getModuleName().size(); i++) {
                                         String moduleName = subjectModel.getData().getModuleName().get(i).getModuleName();
@@ -204,14 +203,13 @@ public class UnAttemptedClassesFragment extends Fragment implements AllTestRecyc
         mAdapter = new AllTestRecyclerAdapter(activity, questionBankGroups, this);
         binding.revSubjectChapter.setLayoutManager(new LinearLayoutManager(mContext));
         binding.revSubjectChapter.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
         mAdapter.expandAllGroups();
     }
 
     @Override
     public void onItemClick(SubjectModel.ModuleDatum data, int position) {
-
         LoadLoginFragment(data);
-
     }
 
     private void LoadLoginFragment(SubjectModel.ModuleDatum data) {
@@ -231,7 +229,6 @@ public class UnAttemptedClassesFragment extends Fragment implements AllTestRecyc
             }
 
         } else {
-
             Bundle bundle = new Bundle();
             bundle.putParcelable("data", data);
             bundle.putString("topic_id", data.getId());
@@ -239,18 +236,6 @@ public class UnAttemptedClassesFragment extends Fragment implements AllTestRecyc
             Navigation.findNavController(binding.getRoot()).navigate(R.id.mcqsFragment, bundle);
 
         }
-    }
-
-    private void CallBuyNowFragment() {
-        FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
-        Fragment prev = requireActivity().getSupportFragmentManager().findFragmentByTag("dialog");
-        if (prev != null) {
-            ft.remove(prev);
-        }
-        ft.addToBackStack(null);
-        DialogFragment dialogFragment = new CustomBuyNowDialogFragment(this);
-        dialogFragment.setCancelable(false);
-        dialogFragment.show(ft, "dialog");
     }
 
     @Override

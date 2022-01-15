@@ -39,6 +39,7 @@ public enum EnumApiAction {
     LiveClassList("live_classess_list"),
     LiveClassSubject("live_class_subject"),
     EnrollementForLiveClass("enrollement_for_live_class"),
+    DailyHunt("daily_hunt"),
     ProfileDetail("profile_detail");
     private String strValue;
 

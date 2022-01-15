@@ -110,7 +110,6 @@ public class AllTestRecyclerAdapter extends ExpandableRecyclerViewAdapter<AllTes
 
 
     public void expandAllGroups() {
-
         for (int i = 0; i < groups.size(); i++) {
             if (!isGroupExpanded(groups.get(i))) {
                 onGroupClick(expandableList.getFlattenedGroupIndex(i));

@@ -71,15 +71,21 @@ public class SubjectDetailActivity extends AppCompatActivity implements TabLayou
     }
 
     private void setTabLayout() {
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_all)));
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_paused)));
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_completed)));
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_unattempted)));
+        //binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_all)));
+        //binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_paused)));
+        //binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_completed)));
+        //binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_unattempted)));
         //binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_free)));
         mPagerAdapter = new SubjectDetailsViewPagerAdapter(getApplicationContext(), getSupportFragmentManager(), binding.tabLayout.getTabCount(), subjectId, subjectTitle, "");
+        mPagerAdapter.add(getResources().getString(R.string.subject_details_tab_all));
+        mPagerAdapter.add(getResources().getString(R.string.subject_details_tab_paused));
+        mPagerAdapter.add(getResources().getString(R.string.subject_details_tab_completed));
+        mPagerAdapter.add(getResources().getString(R.string.subject_details_tab_unattempted));
         binding.viewPager.setAdapter(mPagerAdapter);
-        binding.tabLayout.addOnTabSelectedListener(this);
-        binding.viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(binding.tabLayout));
+        binding.tabLayout.setupWithViewPager(binding.viewPager);
+        //binding.viewPager.setAdapter(mPagerAdapter);
+        //binding.tabLayout.addOnTabSelectedListener(this);
+        //binding.viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(binding.tabLayout));
     }
 
     @Override

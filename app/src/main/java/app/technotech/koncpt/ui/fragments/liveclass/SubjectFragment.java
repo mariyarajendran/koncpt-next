@@ -24,7 +24,6 @@ public class SubjectFragment extends Fragment {
     private String subject_id;
     FreeFragment freeFragment;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
