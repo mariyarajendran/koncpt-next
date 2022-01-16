@@ -3,6 +3,7 @@ package app.technotech.koncpt.ui.fragments.liveclass;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -61,6 +62,14 @@ public class SubjectFragment extends Fragment {
             bottomNavigationView.setVisibility(View.GONE);
         }
         setTabLayout();
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        menu.findItem(R.id.action_search).setVisible(false);
+        menu.findItem(R.id.action_notification).setVisible(false);
+        menu.findItem(R.id.action_index).setVisible(false);
     }
 
     private void setTabLayout() {

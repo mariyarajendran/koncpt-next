@@ -43,18 +43,7 @@ import app.technotech.koncpt.utils.TextUtil;
 import es.dmoral.toasty.Toasty;
 
 public class CompleteClassesFragment extends Fragment implements AllTestRecyclerAdapter.OnItemClickListener, CustomBuyNowDialogFragment.OnNavigateToScreen {
-
-//    @BindView(R.id.rev_subject_chapter)
-//    RecyclerView mRevChapter;
-//
-//    private SubjectDetailsAdapter mAdapter;
-
     private Context mContext;
-//    private View mView;
-
-
-    /***/
-
     private String subject_id;
     private String subject_name;
     private String levelId;
@@ -66,7 +55,6 @@ public class CompleteClassesFragment extends Fragment implements AllTestRecycler
     List<SubjectQuestionBankGroup> questionBankGroups = new ArrayList<>();
     private int destination = 0;
     private boolean isLoaded = false, isVisibleToUser;
-
 
     public static CompleteClassesFragment getInstance(String params1, String params2, String params3) {
         CompleteClassesFragment fragment = new CompleteClassesFragment();
@@ -130,18 +118,7 @@ public class CompleteClassesFragment extends Fragment implements AllTestRecycler
         }
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        if (getActivity() != null) {
-
-
-        }
-    }
-
     private void init() {
-
         utils = new GeneralUtils(getActivity());
         progressDialog = utils.showProgressDialog();
     }
@@ -202,7 +179,6 @@ public class CompleteClassesFragment extends Fragment implements AllTestRecycler
         }
 
         AppCompatActivity activity = (AppCompatActivity) getContext();
-
         mAdapter = new AllTestRecyclerAdapter(activity, questionBankGroups, this);
         binding.revSubjectChapter.setLayoutManager(new LinearLayoutManager(mContext));
         binding.revSubjectChapter.setAdapter(mAdapter);
@@ -211,50 +187,11 @@ public class CompleteClassesFragment extends Fragment implements AllTestRecycler
 
     @Override
     public void onItemClick(SubjectModel.ModuleDatum data, int position) {
-
-        LoadLoginFragment(data);
-
-    }
-
-
-    private void LoadLoginFragment(SubjectModel.ModuleDatum data) {
-        String plantType = new AppSharedPreference(getActivity()).getUserResponse().getPlan();
-
-        if (plantType.equals("f")) {
-
-            if (data.getIsPaid() == 0) {
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("data", data);
-                bundle.putString("topic_id", data.getId());
-                bundle.putInt("destination", destination);
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.mcqsFragment, bundle);
-            } else if (data.getIsPaid() == 1) {
-
-                //CallBuyNowFragment();
-            }
-
-        } else {
-
-            Bundle bundle = new Bundle();
-            bundle.putParcelable("data", data);
-            bundle.putString("topic_id", data.getId());
-            bundle.putInt("destination", destination);
-            Navigation.findNavController(binding.getRoot()).navigate(R.id.mcqsFragment, bundle);
-
-        }
-
-    }
-
-    private void CallBuyNowFragment() {
-        FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
-        Fragment prev = requireActivity().getSupportFragmentManager().findFragmentByTag("dialog");
-        if (prev != null) {
-            ft.remove(prev);
-        }
-        ft.addToBackStack(null);
-        DialogFragment dialogFragment = new CustomBuyNowDialogFragment(this);
-        dialogFragment.setCancelable(false);
-        dialogFragment.show(ft, "dialog");
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("data", data);
+        bundle.putString("topic_id", data.getId());
+        bundle.putInt("destination", destination);
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.mcqsFragment, bundle);
     }
 
     @Override

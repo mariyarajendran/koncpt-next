@@ -81,9 +81,7 @@ public class FreeClassesFragment extends Fragment implements AllTestRecyclerAdap
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         Bundle bundle = getArguments();
-
         if (bundle != null) {
             subject_id = bundle.getString("subject_id");
             subject_name = bundle.getString("subject_name");
@@ -192,19 +190,14 @@ public class FreeClassesFragment extends Fragment implements AllTestRecyclerAdap
 
             }
         });
-
     }
 
-
     private void loadData() {
-
         RecyclerView.ItemAnimator animator = binding.revSubjectChapter.getItemAnimator();
         if (animator instanceof DefaultItemAnimator) {
             ((DefaultItemAnimator) animator).setSupportsChangeAnimations(false);
         }
-
         AppCompatActivity activity = (AppCompatActivity) getContext();
-
         mAdapter = new AllTestRecyclerAdapter(activity, questionBankGroups, this);
         binding.revSubjectChapter.setLayoutManager(new LinearLayoutManager(mContext));
         binding.revSubjectChapter.setAdapter(mAdapter);
@@ -213,50 +206,11 @@ public class FreeClassesFragment extends Fragment implements AllTestRecyclerAdap
 
     @Override
     public void onItemClick(SubjectModel.ModuleDatum data, int position) {
-
-        LoadLoginFragment(data);
-
-    }
-
-
-    private void LoadLoginFragment(SubjectModel.ModuleDatum data) {
-        String plantType = new AppSharedPreference(getActivity()).getUserResponse().getPlan();
-
-        if (plantType.equals("f")) {
-
-            if (data.getIsPaid() == 0) {
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("data", data);
-                bundle.putString("topic_id", data.getId());
-                bundle.putInt("destination", destination);
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.mcqsFragment, bundle);
-            } else if (data.getIsPaid() == 1) {
-
-                //CallBuyNowFragment();
-            }
-
-        } else {
-
-            Bundle bundle = new Bundle();
-            bundle.putParcelable("data", data);
-            bundle.putString("topic_id", data.getId());
-            bundle.putInt("destination", destination);
-            Navigation.findNavController(binding.getRoot()).navigate(R.id.mcqsFragment, bundle);
-
-        }
-
-    }
-
-    private void CallBuyNowFragment() {
-        FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
-        Fragment prev = requireActivity().getSupportFragmentManager().findFragmentByTag("dialog");
-        if (prev != null) {
-            ft.remove(prev);
-        }
-        ft.addToBackStack(null);
-        DialogFragment dialogFragment = new CustomBuyNowDialogFragment(this);
-        dialogFragment.setCancelable(false);
-        dialogFragment.show(ft, "dialog");
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("data", data);
+        bundle.putString("topic_id", data.getId());
+        bundle.putInt("destination", destination);
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.mcqsFragment, bundle);
     }
 
     @Override

@@ -1,8 +1,6 @@
 package app.technotech.koncpt.ui.adapter;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,9 +73,7 @@ public class UnattemptedAdapter extends RecyclerView.Adapter<UnattemptedAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
         private FragmentItemUnattemptedBinding binding;
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             binding = DataBindingUtil.bind(itemView);

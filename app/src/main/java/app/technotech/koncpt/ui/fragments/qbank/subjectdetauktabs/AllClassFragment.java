@@ -213,48 +213,11 @@ public class AllClassFragment extends Fragment implements AllTestRecyclerAdapter
 
     @Override
     public void onItemClick(SubjectModel.ModuleDatum data, int position) {
-
-        LoadLoginFragment(data);
-
-    }
-
-
-    private void LoadLoginFragment(SubjectModel.ModuleDatum data) {
-
-        String plantType = new AppSharedPreference(getActivity()).getUserResponse().getPlan();
-
-        if (plantType.equals("f")) {
-
-            if (data.getIsPaid() == 0) {
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("data", data);
-                bundle.putString("topic_id", data.getId());
-                bundle.putInt("destination", destination);
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.mcqsFragment, bundle);
-            } else if (data.getIsPaid() == 1) {
-
-                //CallBuyNowFragment();
-            }
-
-        } else {
-            Bundle bundle = new Bundle();
-            bundle.putParcelable("data", data);
-            bundle.putString("topic_id", data.getId());
-            bundle.putInt("destination", destination);
-            Navigation.findNavController(binding.getRoot()).navigate(R.id.mcqsFragment, bundle);
-        }
-    }
-
-    private void CallBuyNowFragment() {
-        FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
-        Fragment prev = requireActivity().getSupportFragmentManager().findFragmentByTag("dialog");
-        if (prev != null) {
-            ft.remove(prev);
-        }
-        ft.addToBackStack(null);
-        DialogFragment dialogFragment = new CustomBuyNowDialogFragment(this);
-        dialogFragment.setCancelable(false);
-        dialogFragment.show(ft, "dialog");
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("data", data);
+        bundle.putString("topic_id", data.getId());
+        bundle.putInt("destination", destination);
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.mcqsFragment, bundle);
     }
 
     @Override

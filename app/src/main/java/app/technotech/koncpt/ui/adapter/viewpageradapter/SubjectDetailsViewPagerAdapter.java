@@ -19,7 +19,6 @@ import app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.PauseClassesFr
 import app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.UnAttemptedClassesFragment;
 
 public class SubjectDetailsViewPagerAdapter extends FragmentStatePagerAdapter {
-    private Context myContext;
     int totalTabs;
     String subjectId;
     String subjectTitle;
@@ -31,7 +30,6 @@ public class SubjectDetailsViewPagerAdapter extends FragmentStatePagerAdapter {
         this.subjectId = subjectId;
         this.subjectTitle = subjectTitle;
         this.levelId = levelId;
-        myContext = context;
         this.totalTabs = totalTabs;
     }
 

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -48,7 +49,6 @@ public class AllFragment extends Fragment implements AllAdapter.OnVideoItemSelec
     String plan;
 
     public static AllFragment getInstance(String params) {
-
         Bundle bundle = new Bundle();
         AllFragment allFragment = new AllFragment();
         bundle.putString("subject_id", params);
@@ -66,7 +66,6 @@ public class AllFragment extends Fragment implements AllAdapter.OnVideoItemSelec
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle savedInstanceState) {
-// doneokkk
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_layout_all, viewGroup, false);
         binding.setLifecycleOwner(this);
         model = new ViewModelProvider(this).get(LiveAllViewModel.class);
@@ -96,6 +95,7 @@ public class AllFragment extends Fragment implements AllAdapter.OnVideoItemSelec
             isLoaded = true;
         }
     }
+
 
     private void sendPost() {
         Map<String, String> params = new HashMap<>();

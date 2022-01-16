@@ -149,7 +149,6 @@ public class MCQsFragments extends Fragment {
     }
 
     private void buttonClickListener() {
-
         binding.setMcqCallbacks(new MCQsCallbacks() {
             @Override
             public void onStartMCQs() {
@@ -158,21 +157,14 @@ public class MCQsFragments extends Fragment {
 
             @Override
             public void onBookmarks() {
-
                 if (totalBookmark != 0) {
-
                     Bundle bundle = new Bundle();
                     bundle.putString("subject_id", subjectId);
                     bundle.putString("user_id", Integer.toString(new AppSharedPreference(getActivity()).getUserResponse().getId()));
                     bundle.putInt("destination", 1);
                     bundle.putInt("type", 1);
-
                     Navigation.findNavController(mView).navigate(R.id.action_mcqsFragment_to_bookmarkTopicFragment, bundle);
-
-
                 }
-
-
             }
         });
 

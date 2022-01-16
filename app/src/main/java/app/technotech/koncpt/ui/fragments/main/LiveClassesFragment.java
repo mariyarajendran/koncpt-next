@@ -154,6 +154,7 @@ public class LiveClassesFragment extends Fragment implements LiveClassRecyclerAd
         menu.findItem(R.id.action_search).setVisible(true);
         menu.findItem(R.id.action_index).setVisible(false);
         menu.findItem(R.id.action_notification).setVisible(false);
+        menu.findItem(R.id.action_search).setVisible(false);
         menuItem = menu.findItem(R.id.action_search);
         menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override

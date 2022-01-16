@@ -126,6 +126,7 @@ public class QuestionBankFragment extends Fragment {
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
         menu.findItem(R.id.action_notification).setVisible(false);
         menu.findItem(R.id.action_index).setVisible(false);
+        menu.findItem(R.id.action_search).setVisible(false);
         menuItem = menu.findItem(R.id.action_search);
 
         menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {

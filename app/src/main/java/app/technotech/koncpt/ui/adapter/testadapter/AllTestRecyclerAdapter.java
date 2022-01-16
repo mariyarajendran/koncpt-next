@@ -60,27 +60,7 @@ public class AllTestRecyclerAdapter extends ExpandableRecyclerViewAdapter<AllTes
                 .placeholder(R.drawable.dummy_img)
                 .error(R.drawable.ic_image_placeholder)
                 .into(holder.binding.imgSubject);
-        String plantType = new AppSharedPreference(context).getUserResponse().getPlan();
-        if (plantType.equals("f")) {
-            if (data.getIsPaid() == 0) {
-                //free
-                holder.binding.txtPro.setVisibility(View.GONE);
-            } else if (data.getIsPaid() == 1) {
-                //paid
-                holder.binding.txtPro.setVisibility(View.GONE);
-
-            }
-        } else {
-            holder.binding.txtPro.setVisibility(View.GONE);
-        }
-
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.onItemClick(data, childIndex);
-            }
-        });
+        holder.itemView.setOnClickListener(view -> listener.onItemClick(data, childIndex));
     }
 
     @Override

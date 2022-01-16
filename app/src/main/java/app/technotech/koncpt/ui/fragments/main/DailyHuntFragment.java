@@ -67,14 +67,7 @@ public class DailyHuntFragment extends Fragment {
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
         menu.findItem(R.id.action_notification).setVisible(false);
         menu.findItem(R.id.action_index).setVisible(false);
-        menuItem = menu.findItem(R.id.action_search);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.searchHomeFragment);
-                return false;
-            }
-        });
+        menu.findItem(R.id.action_search).setVisible(false);
         super.onPrepareOptionsMenu(menu);
     }
 

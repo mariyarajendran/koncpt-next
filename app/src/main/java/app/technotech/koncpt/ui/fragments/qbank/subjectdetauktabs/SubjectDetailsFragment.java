@@ -83,7 +83,7 @@ public class SubjectDetailsFragment extends Fragment {
 //        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_completed)));
 //        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_unattempted)));
 //        /*binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.subject_details_tab_free)));*/
-        mPagerAdapter = new SubjectDetailsViewPagerAdapter(getActivity(), requireActivity().getSupportFragmentManager(), binding.tabLayout.getTabCount(), subjectId, subjectTitle, levelId);
+        mPagerAdapter = new SubjectDetailsViewPagerAdapter(getActivity(), getChildFragmentManager(), binding.tabLayout.getTabCount(), subjectId, subjectTitle, levelId);
         mPagerAdapter.add(getResources().getString(R.string.subject_details_tab_all));
         mPagerAdapter.add(getResources().getString(R.string.subject_details_tab_paused));
         mPagerAdapter.add(getResources().getString(R.string.subject_details_tab_completed));

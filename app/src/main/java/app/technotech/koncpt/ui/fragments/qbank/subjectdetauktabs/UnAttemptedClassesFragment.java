@@ -160,7 +160,6 @@ public class UnAttemptedClassesFragment extends Fragment implements AllTestRecyc
                         }
 
                         try {
-
                             if (subjectModel != null) {
                                 if (subjectModel.getStatus() == 1) {
                                     questionBankGroups = new ArrayList<>();
@@ -175,10 +174,7 @@ public class UnAttemptedClassesFragment extends Fragment implements AllTestRecyc
                                         questionBankGroups.add(new SubjectQuestionBankGroup(moduleName, datumList));
                                         loadData();
                                     }
-                                } else {
-                                    //Toasty.info(getActivity(), subjectModel.getMessage()).show();
                                 }
-
                             }
 
                         } catch (Exception ex) {
@@ -203,39 +199,16 @@ public class UnAttemptedClassesFragment extends Fragment implements AllTestRecyc
         mAdapter = new AllTestRecyclerAdapter(activity, questionBankGroups, this);
         binding.revSubjectChapter.setLayoutManager(new LinearLayoutManager(mContext));
         binding.revSubjectChapter.setAdapter(mAdapter);
-        mAdapter.notifyDataSetChanged();
         mAdapter.expandAllGroups();
     }
 
     @Override
     public void onItemClick(SubjectModel.ModuleDatum data, int position) {
-        LoadLoginFragment(data);
-    }
-
-    private void LoadLoginFragment(SubjectModel.ModuleDatum data) {
-        String plantType = new AppSharedPreference(getActivity()).getUserResponse().getPlan();
-
-        if (plantType.equals("f")) {
-
-            if (data.getIsPaid() == 0) {
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("data", data);
-                bundle.putString("topic_id", data.getId());
-                bundle.putInt("destination", destination);
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.mcqsFragment, bundle);
-            } else if (data.getIsPaid() == 1) {
-
-                //CallBuyNowFragment();
-            }
-
-        } else {
-            Bundle bundle = new Bundle();
-            bundle.putParcelable("data", data);
-            bundle.putString("topic_id", data.getId());
-            bundle.putInt("destination", destination);
-            Navigation.findNavController(binding.getRoot()).navigate(R.id.mcqsFragment, bundle);
-
-        }
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("data", data);
+        bundle.putString("topic_id", data.getId());
+        bundle.putInt("destination", destination);
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.mcqsFragment, bundle);
     }
 
     @Override
