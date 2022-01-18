@@ -48,6 +48,7 @@ public class BookmarkQuestionsFragment extends Fragment implements QuestionsBook
     private String bookmark_id;
     private String subject_id;
     private String user_id;
+    private String topicId;
     private int position;
     private int type;
     private int destination;
@@ -61,11 +62,13 @@ public class BookmarkQuestionsFragment extends Fragment implements QuestionsBook
                 type = getArguments().getInt("type");
                 user_id = getArguments().getString("user_id");
                 destination = getArguments().getInt("destination");
+                topicId = getArguments().getString("topic_id");
             } else {
                 type = getArguments().getInt("type");
                 user_id = getArguments().getString("user_id");
                 subject_id = getArguments().getString("subject_id");
                 destination = getArguments().getInt("destination");
+                topicId = getArguments().getString("topic_id");
             }
 
 
@@ -119,6 +122,7 @@ public class BookmarkQuestionsFragment extends Fragment implements QuestionsBook
         params.put("level_id", new AppSharedPreference(getActivity()).getLevelId());
         params.put("user_id", user_id);
         params.put("subject_id", subject_id);
+        params.put("topic_id", topicId);
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
@@ -231,6 +235,7 @@ public class BookmarkQuestionsFragment extends Fragment implements QuestionsBook
     private void onDeleteBookmark() {
 
         Map<String, String> params = new HashMap<>();
+        params.put(EnumApiAction.action.getValue(), EnumApiAction.DeleteBookmark.getValue());
         params.put("user_id", Integer.toString(new AppSharedPreference(getActivity()).getUserResponse().getId()));
         params.put("bookmark_id", bookmark_id);
 

@@ -40,6 +40,7 @@ public enum EnumApiAction {
     LiveClassSubject("live_class_subject"),
     EnrollementForLiveClass("enrollement_for_live_class"),
     DailyHunt("daily_hunt"),
+    DeleteBookmark("delete_bookmark"),
     ProfileDetail("profile_detail");
     private String strValue;
 

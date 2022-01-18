@@ -180,7 +180,7 @@ public interface ApiConnections {
 
 
     @FormUrlEncoded
-    @POST("bookmarks/delete")
+    @POST("api.php")
     public Call<DeleteBookmarkModel> getDeleteBookmarkResponse(@FieldMap Map<String, String> params);
 
     @GET("api.php")

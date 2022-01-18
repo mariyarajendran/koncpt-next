@@ -160,6 +160,7 @@ public class MCQsFragments extends Fragment {
                 if (totalBookmark != 0) {
                     Bundle bundle = new Bundle();
                     bundle.putString("subject_id", subjectId);
+                    bundle.putString("topic_id", topicId);
                     bundle.putString("user_id", Integer.toString(new AppSharedPreference(getActivity()).getUserResponse().getId()));
                     bundle.putInt("destination", 1);
                     bundle.putInt("type", 1);

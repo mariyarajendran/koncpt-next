@@ -159,13 +159,11 @@ public class BlookMarkFragment extends Fragment implements BookmarkRecyclerAdapt
 
 
         if (position != 0) {
-
             Bundle bundle = new Bundle();
             bundle.putString("subject_id", Integer.toString(datum.getSubjectId()));
             bundle.putString("user_id", Integer.toString(new AppSharedPreference(getActivity()).getUserResponse().getId()));
             bundle.putInt("destination", 0);
             bundle.putInt("type", 1);
-
             Navigation.findNavController(mView).navigate(R.id.action_blookMarkFragment_to_bookmarkQuestionFragment, bundle);
 
         } else {
@@ -175,8 +173,6 @@ public class BlookMarkFragment extends Fragment implements BookmarkRecyclerAdapt
             bundle.putString("user_id", Integer.toString(new AppSharedPreference(getActivity()).getUserResponse().getId()));
             bundle.putInt("destination", 0);
             bundle.putInt("type", 0);
-
-
             Navigation.findNavController(mView).navigate(R.id.action_blookMarkFragment_to_bookmarkQuestionFragment, bundle);
 
 
