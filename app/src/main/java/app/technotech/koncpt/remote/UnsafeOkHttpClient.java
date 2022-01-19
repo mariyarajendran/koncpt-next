@@ -42,8 +42,8 @@ public class UnsafeOkHttpClient {
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
             builder.sslSocketFactory(sslSocketFactory, (X509TrustManager) trustAllCerts[0]);
             builder.hostnameVerifier((hostname, session) -> true);
-            builder.addInterceptor(logging).readTimeout(60, TimeUnit.SECONDS)
-                    .connectTimeout(60, TimeUnit.SECONDS)
+            builder.addInterceptor(logging).readTimeout(120, TimeUnit.SECONDS)
+                    .connectTimeout(120, TimeUnit.SECONDS)
                     .build();
             OkHttpClient okHttpClient = builder.build();
             return okHttpClient;
