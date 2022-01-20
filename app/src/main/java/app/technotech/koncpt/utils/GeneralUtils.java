@@ -78,12 +78,10 @@ public class GeneralUtils {
 
     @SuppressLint("InflateParams")
     public static void openImageDialog(Context context, String url) { //String photoPath todo add this perams to method
-
         final Dialog dialog = new Dialog(context, R.style.DialogTheme);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         View view = LayoutInflater.from(context)
                 .inflate(R.layout.dialog_image_preview, null);
-
         ImageView imgClose = view.findViewById(R.id.img_close_image_dialog);
         imgClose.setOnClickListener(v -> dialog.dismiss());
 
@@ -94,7 +92,6 @@ public class GeneralUtils {
                 //.skipMemoryCache(false)
                 .error(R.drawable.app_logo)
                 .into(dialog_img);
-
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(
                 new ColorDrawable(Color.TRANSPARENT)
         );

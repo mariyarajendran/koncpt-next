@@ -1,13 +1,21 @@
 package app.technotech.koncpt.remote;
 
+import java.io.InputStream;
+import java.security.KeyStore;
+import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
 import java.util.concurrent.TimeUnit;
 
+import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
+import app.technotech.koncpt.R;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
@@ -41,7 +49,13 @@ public class UnsafeOkHttpClient {
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
             builder.sslSocketFactory(sslSocketFactory, (X509TrustManager) trustAllCerts[0]);
-            builder.hostnameVerifier((hostname, session) -> true);
+            //builder.hostnameVerifier((hostname, session) -> true);
+            builder.hostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return "enlytmed.in".equalsIgnoreCase(hostname);
+                }
+            });
             builder.addInterceptor(logging).readTimeout(120, TimeUnit.SECONDS)
                     .connectTimeout(120, TimeUnit.SECONDS)
                     .build();

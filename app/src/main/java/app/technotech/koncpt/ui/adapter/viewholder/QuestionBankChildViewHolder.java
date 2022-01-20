@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.thoughtbot.expandablerecyclerview.viewholders.ChildViewHolder;
 
 import app.technotech.koncpt.R;
+import app.technotech.koncpt.application.GlideApp;
 import app.technotech.koncpt.data.network.model.QuestionBank;
 import app.technotech.koncpt.databinding.LayoutQuestionBankListItemBinding;
 import app.technotech.koncpt.utils.AppSharedPreference;
@@ -34,7 +35,7 @@ public class QuestionBankChildViewHolder extends ChildViewHolder {
             holder.binding.txtSubjectName.setText(questionBank.getSubjectTitle());
             String moduleString = questionBank.getTotalModule() + " / 16";
             holder.binding.txtModuleCompleted.setText(moduleString);
-            Glide.with(itemView.getContext())
+            GlideApp.with(itemView.getContext())
                     .load(questionBank.getSubjectImage())
                     .override(65)
                     .into(holder.binding.imgSubjectImage);

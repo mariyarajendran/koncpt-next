@@ -17,11 +17,11 @@ import com.thoughtbot.expandablerecyclerview.viewholders.GroupViewHolder;
 import java.util.List;
 
 import app.technotech.koncpt.R;
+import app.technotech.koncpt.application.GlideApp;
 import app.technotech.koncpt.data.network.model.SubjectModel;
 import app.technotech.koncpt.data.network.model.SubjectQuestionBankGroup;
 import app.technotech.koncpt.databinding.LayoutSubjectDetailsItemBinding;
 import app.technotech.koncpt.databinding.RowSectionHeaderBinding;
-import app.technotech.koncpt.utils.AppSharedPreference;
 import app.technotech.koncpt.utils.TextUtil;
 
 public class AllTestRecyclerAdapter extends ExpandableRecyclerViewAdapter<AllTestRecyclerAdapter.ParentViewHolder, AllTestRecyclerAdapter.ChildrenViewholder> {
@@ -55,7 +55,7 @@ public class AllTestRecyclerAdapter extends ExpandableRecyclerViewAdapter<AllTes
         holder.binding.txtNoOfMcq.setText(mcqs);
         holder.binding.txtChapterCount.setText((childIndex + 1) + "");
         holder.binding.txtTestTotalQ.setText(TextUtil.cutNull(data.getTopicRates()));
-        Glide.with(context)
+        GlideApp.with(context)
                 .load(R.drawable.app_logo)
                 .placeholder(R.drawable.dummy_img)
                 .error(R.drawable.ic_image_placeholder)

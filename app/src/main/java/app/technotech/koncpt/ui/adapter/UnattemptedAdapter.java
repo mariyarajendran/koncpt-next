@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import app.technotech.koncpt.R;
+import app.technotech.koncpt.application.GlideApp;
 import app.technotech.koncpt.data.network.model.VideoModel;
 import app.technotech.koncpt.databinding.FragmentItemUnattemptedBinding;
 import app.technotech.koncpt.utils.AppSharedPreference;
@@ -47,7 +48,7 @@ public class UnattemptedAdapter extends RecyclerView.Adapter<UnattemptedAdapter.
         holder.binding.txtTopicName.setText(data.getClassTitle());
         holder.binding.txtDescription.setText(data.getPaushedTime());
         holder.binding.txtCount.setText((position + 1) + "");
-        Glide.with(context)
+        GlideApp.with(context)
                 .load(data.getFacultyImage())
                 .placeholder(R.drawable.dummy_img)
                 .error(R.drawable.dummy_img)

@@ -18,9 +18,11 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import app.technotech.koncpt.R;
+import app.technotech.koncpt.application.GlideApp;
 import app.technotech.koncpt.data.network.model.GrandTestModelResponse;
 import app.technotech.koncpt.databinding.LayoutTestItemBinding;
 import app.technotech.koncpt.utils.AppSharedPreference;
+
 
 public class GrandTestRecyclerAdapter extends RecyclerView.Adapter<GrandTestRecyclerAdapter.ViewHolder> {
 
@@ -49,7 +51,7 @@ public class GrandTestRecyclerAdapter extends RecyclerView.Adapter<GrandTestRecy
             GrandTestModelResponse.Datum dataItem = datumList.get(position);
             holder.binding.txtTestDate.setText(getFormattedString(dataItem.getStartDate()));
 
-            Glide.with(context)
+            GlideApp.with(context)
                     .load(dataItem.getSubImage())
                     .placeholder(R.drawable.icon_test_examination)
                     .error(R.drawable.icon_test_examination)

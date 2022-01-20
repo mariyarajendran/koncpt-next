@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -11,12 +12,15 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
 import app.technotech.koncpt.R;
+import app.technotech.koncpt.application.GlideApp;
 import app.technotech.koncpt.data.network.model.DailyHuntModel;
 import app.technotech.koncpt.databinding.LayoutHuntItemBinding;
 import app.technotech.koncpt.utils.GeneralUtils;
@@ -44,16 +48,20 @@ public class DailyHuntAdapter extends RecyclerView.Adapter<DailyHuntAdapter.View
         try {
             int radius = context.getResources().getDimensionPixelOffset(R.dimen._4sdp);
             final DailyHuntModel.Datum data = modelList.get(position);
-            Glide.with(context)
-                    .load(data.getBlogImage())
-                    .transform(new CenterCrop(), new RoundedCorners(radius))
-                    .placeholder(R.drawable.zm_image_placeholder)
-                    .error(R.drawable.zm_image_placeholder)
-                    .into(holder.binding.imageHuntProfile);
+            GlideApp.with(context)
+                    .load(data.getImage())
+                    .apply(new RequestOptions()
+                            .transform(new CenterCrop(), new RoundedCorners(radius))
+                            .skipMemoryCache(true)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .placeholder(R.drawable.zm_image_placeholder)
+                            .error(R.drawable.zm_image_placeholder)
+                    ).into(holder.binding.imageHuntProfile);
+
             holder.binding.imageHuntProfile.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    GeneralUtils.openImageDialog(context,data.getBlogImage());
+                    GeneralUtils.openImageDialog(context, data.getImage());
                 }
             });
             holder.binding.textHuntDescription

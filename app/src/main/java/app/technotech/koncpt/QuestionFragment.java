@@ -22,12 +22,14 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import app.technotech.koncpt.application.GlideApp;
 import app.technotech.koncpt.data.local.entites.QuestionDetailsEntity;
 import app.technotech.koncpt.data.network.model.MCQQuestionResponse;
 import app.technotech.koncpt.databinding.FragmentQuestionBinding;
 import app.technotech.koncpt.ui.fragments.RatingDialogFragment;
 import app.technotech.koncpt.utils.DebugLog;
 import app.technotech.koncpt.utils.GeneralUtils;
+
 
 
 public class QuestionFragment extends Fragment {
@@ -114,7 +116,7 @@ public class QuestionFragment extends Fragment {
 
         if (!TextUtils.isEmpty(mDetailsEntity.getmExplanation_file()) && !mDetailsEntity.getmExplanation_file().contains("NA")) {
 
-            Glide.with(getActivity())
+            GlideApp.with(getActivity())
                     .load(mDetailsEntity.getmExplanation_file())
                     //.diskCacheStrategy(DiskCacheStrategy.NONE)
                     //.skipMemoryCache(true)

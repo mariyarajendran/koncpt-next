@@ -14,6 +14,7 @@ import com.smarteist.autoimageslider.SliderViewAdapter;
 import java.util.List;
 
 import app.technotech.koncpt.R;
+import app.technotech.koncpt.application.GlideApp;
 import app.technotech.koncpt.utils.AppConstants;
 import ozaydin.serkan.com.image_zoom_view.ImageViewZoom;
 import ozaydin.serkan.com.image_zoom_view.ImageViewZoomConfig;
@@ -60,7 +61,7 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
 
         // DebugLog.e("Link Slider ==> "+ AppConstants.S);
 
-        Glide.with(viewHolder.itemView)
+        GlideApp.with(viewHolder.itemView)
                 .load(AppConstants.SLIDER_URL + data)
                 .into(viewHolder.imageViewBackground);
 

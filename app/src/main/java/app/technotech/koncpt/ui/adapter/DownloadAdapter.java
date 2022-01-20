@@ -19,11 +19,12 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import app.technotech.koncpt.R;
+import app.technotech.koncpt.application.GlideApp;
 import app.technotech.koncpt.data.DBHelper;
 import app.technotech.koncpt.data.network.model.DownloadModel;
 import app.technotech.koncpt.databinding.DownloadsItemBinding;
-//import app.technotech.koncpt.ui.activity.PlayVideo;
 import app.technotech.koncpt.utils.GeneralUtils;
+
 
 public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.ViewHolder> {
 
@@ -67,7 +68,7 @@ public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.ViewHo
 
         try {
             thumbs = GeneralUtils.retriveVideoFrameFromVideo(downloadModelArrayList.get(position).getVideo_url());
-            Glide.with(context)
+            GlideApp.with(context)
                     .asBitmap()
                     .load(thumbs)
                     .into(holder.binding.imgThumbnail);
