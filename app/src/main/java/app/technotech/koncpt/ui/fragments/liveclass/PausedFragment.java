@@ -34,6 +34,7 @@ import app.technotech.koncpt.utils.AppSharedPreference;
 import app.technotech.koncpt.utils.DebugLog;
 import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.utils.GeneralUtils;
+import es.dmoral.toasty.Toasty;
 
 public class PausedFragment extends Fragment implements PausedAdapter.OnVideoItemSelectedListener {
     private String subject_id;
@@ -102,36 +103,32 @@ public class PausedFragment extends Fragment implements PausedAdapter.OnVideoIte
         params.put("type", "2");
         params.put(EnumApiAction.action.getValue(), EnumApiAction.VideoTopicList.getValue());
         params.put("level_id", new AppSharedPreference(getActivity()).getLevelId());
-
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
-
         model.getVideoData(params).observe(getActivity(), new Observer<VideoModel>() {
             @Override
             public void onChanged(VideoModel videoModel) {
-
-
                 if (progressDialog.isShowing()) {
                     progressDialog.dismiss();
                 }
-
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
                         if (videoModel != null) {
                             if (videoModel.getStatus() == 1) {
-                                binding.rltNoVideo.setVisibility(View.GONE);
-                                binding.recyclerViewTopic.setVisibility(View.VISIBLE);
-                                loadData(videoModel);
+                                if (videoModel.getData().getModuleData().size() > 0) {
+                                    binding.rltNoVideo.setVisibility(View.GONE);
+                                    binding.recyclerViewTopic.setVisibility(View.VISIBLE);
+                                    loadData(videoModel);
+                                } else {
+                                    binding.rltNoVideo.setVisibility(View.VISIBLE);
+                                    binding.recyclerViewTopic.setVisibility(View.GONE);
+                                }
                             } else {
-                                binding.rltNoVideo.setVisibility(View.VISIBLE);
-                                binding.recyclerViewTopic.setVisibility(View.GONE);
-                                DebugLog.e("Mo Data found");
+                                Toasty.error(getActivity(), videoModel.getMessage()).show();
                             }
                         }
-
                     }
                 }, 500);
             }

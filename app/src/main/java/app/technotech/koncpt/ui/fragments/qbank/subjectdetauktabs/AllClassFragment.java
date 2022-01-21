@@ -171,18 +171,13 @@ public class AllClassFragment extends Fragment implements AllTestRecyclerAdapter
                                                 datumList.add(subjectModel.getData().getModuleData().get(j));
                                             }
                                         }
-//
                                         questionBankGroups.add(new SubjectQuestionBankGroup(moduleName, datumList));
                                         loadData();
                                     }
                                 } else {
-
                                     //Toasty.info(getActivity(), subjectModel.getMessage()).show();
-
                                 }
-
                             }
-
                         } catch (Exception ex) {
                             ex.printStackTrace();
                         }

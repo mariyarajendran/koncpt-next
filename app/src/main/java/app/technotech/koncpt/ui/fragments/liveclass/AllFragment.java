@@ -110,12 +110,9 @@ public class AllFragment extends Fragment implements AllAdapter.OnVideoItemSelec
         model.getCompleteData(params).observe(getActivity(), new Observer<VideoModel>() {
             @Override
             public void onChanged(VideoModel completeModel) {
-
-
                 if (progressDialog.isShowing()) {
                     progressDialog.dismiss();
                 }
-
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -128,15 +125,11 @@ public class AllFragment extends Fragment implements AllAdapter.OnVideoItemSelec
                                     binding.recyclerViewTopic.setVisibility(View.VISIBLE);
                                     loadData(completeModel);
                                 } else {
-
                                     binding.rltNoVideo.setVisibility(View.VISIBLE);
                                     binding.recyclerViewTopic.setVisibility(View.GONE);
-
                                     binding.rltNoVideo.setVisibility(View.VISIBLE);
                                     binding.recyclerViewTopic.setVisibility(View.GONE);
-
                                 }
-
                             } else {
                                 Toasty.error(getActivity(), completeModel.getMessage()).show();
 
