@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_4sdp"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_4sdp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -79,16 +79,18 @@
                             android:text="@string/hint_video_class"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/_10ssp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:visibility="gone" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/tv_live_class_master"
                             android:layout_marginStart="@dimen/_8sdp"
-                            android:layout_marginTop="@dimen/_1sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
                             android:layout_marginBottom="@dimen/_4sdp"
-                            android:text="Explorer"
+                            android:paddingBottom="@dimen/_5sdp"
+                            android:text="@string/hint_explorer"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/_9ssp" />
                     </RelativeLayout>
@@ -100,7 +102,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_4sdp"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginEnd="@dimen/_4sdp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -135,11 +137,11 @@
                             android:layout_marginStart="@dimen/_8sdp"
                             android:layout_marginTop="@dimen/_16sdp"
                             android:layout_toEndOf="@+id/image_saved"
-                            android:text="Neet PG (ED 4)"
+                            android:text="@string/hint_saved_videos"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/_10ssp"
                             android:textStyle="bold"
-                            android:visibility="gone" />
+                            android:visibility="visible" />
 
                         <TextView
                             android:id="@+id/text_saved_class"
@@ -151,7 +153,8 @@
                             android:text="Saved Classes"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/_10ssp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:visibility="gone" />
 
                         <TextView
                             android:id="@+id/text_saved_explorer"
@@ -159,9 +162,10 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/text_saved_class"
                             android:layout_marginStart="@dimen/_8sdp"
-                            android:layout_marginTop="@dimen/_1sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
                             android:layout_marginBottom="@dimen/_4sdp"
-                            android:text="Explorer"
+                            android:paddingBottom="@dimen/_5sdp"
+                            android:text="@string/hint_explorer"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/_9ssp" />
                     </RelativeLayout>
@@ -173,7 +177,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_4sdp"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginEnd="@dimen/_4sdp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -184,7 +188,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:cardBackgroundColor="@color/btn_yellow"
+                    app:cardBackgroundColor="@color/grey_600"
                     app:cardCornerRadius="@dimen/_8sdp"
                     app:cardUseCompatPadding="true">
 
@@ -208,7 +212,7 @@
                             android:layout_marginStart="@dimen/_8sdp"
                             android:layout_marginTop="@dimen/_16sdp"
                             android:layout_toEndOf="@+id/image_master"
-                            android:text="Neet PG (ED 4)"
+                            android:text="@string/hint_live_classes"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/_10ssp"
                             android:textStyle="bold" />
@@ -223,7 +227,8 @@
                             android:text="Master Class"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/_10ssp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:visibility="gone" />
 
                         <TextView
                             android:id="@+id/text_master_explorer"
@@ -231,9 +236,10 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/text_master_class"
                             android:layout_marginStart="@dimen/_8sdp"
-                            android:layout_marginTop="@dimen/_1sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
                             android:layout_marginBottom="@dimen/_4sdp"
-                            android:text="Explorer"
+                            android:paddingBottom="@dimen/_5sdp"
+                            android:text="@string/hint_explorer"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/_9ssp" />
                     </RelativeLayout>

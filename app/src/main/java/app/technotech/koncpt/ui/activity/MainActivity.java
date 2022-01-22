@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
         binding = DataBindingUtil.setContentView(MainActivity.this, R.layout.activity_main);
         binding.setLifecycleOwner(this);
         initViews();

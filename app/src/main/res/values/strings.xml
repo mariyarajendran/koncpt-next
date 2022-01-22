@@ -208,7 +208,7 @@
     <!--Live Classes-->
     <string name="hint_video_levels">Video levels</string>
     <string name="hint_video_class">Video Class</string>
-    <string name="hint_video">Video</string>
+    <string name="hint_video">VIDEOS</string>
     <string name="hint_subjects">Subjects</string>
     <string name="lable_pro">Pro</string>
     <string name="label_back">Back</string>
@@ -217,4 +217,7 @@
     <string name="lable_completed">COMPLETED</string>
     <string name="label_incompleted">IN COMPLETED</string>
     <string name="msg_no_data">NO DATA FOUND</string>
+    <string name="hint_saved_videos">SAVED VIDEOS</string>
+    <string name="hint_live_classes">LIVE CLASSES</string>
+    <string name="hint_explorer">Explorer</string>
 </resources>
