@@ -16,10 +16,10 @@
         android:icon="@drawable/icon_bottom_menu_live_class"
         android:title="@string/title_bottom_menu_classes" />
 
-    <item
-        android:id="@+id/testFragment"
-        android:icon="@drawable/icon_bottom_menu_test"
-        android:title="@string/title_bottom_menu_test" />
+    <!--    <item-->
+    <!--        android:id="@+id/testFragment"-->
+    <!--        android:icon="@drawable/icon_bottom_menu_test"-->
+    <!--        android:title="@string/title_bottom_menu_test" />-->
 
     <item
         android:id="@+id/dailyHuntFragment"

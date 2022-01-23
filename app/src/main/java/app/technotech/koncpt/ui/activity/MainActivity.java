@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
         binding = DataBindingUtil.setContentView(MainActivity.this, R.layout.activity_main);
         binding.setLifecycleOwner(this);
         initViews();
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
         setSupportActionBar(binding.appBarMain.toolbar);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.homeFragment, R.id.questionBankLevelFragment,
-                R.id.testFragment, R.id.dailyHuntFragment,
+                /*R.id.testFragment,*/ R.id.dailyHuntFragment,
                 R.id.liveClassesHomeFragment)
                 .setOpenableLayout(binding.drawerLayout)
                 .build();
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
         ids.add(R.id.homeFragment);
         ids.add(R.id.dailyHuntFragment);
         ids.add(R.id.questionBankLevelFragment);
-        ids.add(R.id.testFragment);
+        /*ids.add(R.id.testFragment);*/
         ids.add(R.id.liveClassesHomeFragment);
         binding.appBarMain.bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @SuppressLint("NonConstantResourceId")
