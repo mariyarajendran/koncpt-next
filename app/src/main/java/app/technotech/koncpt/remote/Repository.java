@@ -72,17 +72,12 @@ public class Repository {
     private static String TAG = "APIService";
     private String Response = "response";
     private String Error = "Error";
-
     ApiConnections connection = RetrofitClient.getRetrofitInstance().create(ApiConnections.class);
-
     public MutableLiveData<WelcomeModel> getOtpRepository(Map<String, String> params) {
-
         final MutableLiveData<WelcomeModel> data = new MutableLiveData<WelcomeModel>();
-
         connection.getOtpResponse(params).enqueue(new Callback<WelcomeModel>() {
             @Override
             public void onResponse(Call<WelcomeModel> call, retrofit2.Response<WelcomeModel> response) {
-
                 try {
                     data.setValue(response.body());
                 } catch (Exception ex) {
@@ -90,7 +85,6 @@ public class Repository {
                 }
 
             }
-
             @Override
             public void onFailure(Call<WelcomeModel> call, Throwable t) {
 
