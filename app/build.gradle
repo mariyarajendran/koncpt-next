@@ -6,11 +6,25 @@ apply plugin: 'com.google.firebase.firebase-perf'
 
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('C:\\Users\\Mariya Rajendran\\AndroidStudioProjects\\koncpt-next\\app\\keystore\\koncptapp.jks')
+            storePassword 'koncpt1234*'
+            keyPassword 'koncpt1234*'
+            keyAlias 'classes'
+        }
+        release {
+            storeFile file('C:\\Users\\Mariya Rajendran\\AndroidStudioProjects\\koncpt-next\\app\\keystore\\koncptapp.jks')
+            storePassword 'koncpt1234*'
+            keyPassword 'koncpt1234*'
+            keyAlias 'classes'
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "app.education.koncpt.dev"
+        applicationId "app.education.koncpt"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 10
@@ -27,14 +41,27 @@ android {
 
     buildTypes {
         release {
+            manifestPlaceholders = [appLabel: "@string/app_name",
+                                    appIcon : "@mipmap/ic_launcher"]
+            buildConfigField "String", "BASE_URL", "\"https://enlytmed.in/app/mobile_api/\""
+            buildConfigField "String", "DOMAIN", "\"enlytmed.in\""
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            debuggable false
         }
         debug {
+            manifestPlaceholders = [appLabel: "@string/app_name_dev",
+                                    appIcon : "@mipmap/ic_launcher_dev"]
+            buildConfigField "String", "BASE_URL", "\"https://7hillstechnosolutions.com/app/mobile_api/\""
+            buildConfigField "String", "DOMAIN", "\"7hillstechnosolutions.com\""
             minifyEnabled false
             shrinkResources false
+            debuggable true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationIdSuffix '.dev'
+            versionNameSuffix 'dev'
         }
     }
 

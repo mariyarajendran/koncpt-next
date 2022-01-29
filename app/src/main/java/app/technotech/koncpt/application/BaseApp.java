@@ -36,18 +36,12 @@ public class BaseApp extends Application implements InternetConnectivityListener
     @Override
     public void onCreate() {
         super.onCreate();
-
-
         registerActivityLifecycle();
         TestFairy.begin(this, "ac8b3c0e75d694545f6c937efbdc828d0c4d11da");
-
         initializeSdk(this);
-
         FirebaseApp.initializeApp(getApplicationContext());
         FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
         FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
-
-
         mInternetAvailabilityChecker = InternetAvailabilityChecker.init(this);
         mInternetAvailabilityChecker.addInternetConnectivityListener(this);
         mAppExecutors = new AppExecutors();
