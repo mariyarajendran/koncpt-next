@@ -5,12 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
-
 import app.technotech.koncpt.R;
 import app.technotech.koncpt.data.network.model.HomeScreenModel;
 import app.technotech.koncpt.data.network.model.VideoModel;
@@ -49,7 +46,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvHomeDashboardTitle, tvHomeDashboardCount;
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvHomeDashboardTitle = (TextView) itemView.findViewById(R.id.tvHomeDashboardTitle);

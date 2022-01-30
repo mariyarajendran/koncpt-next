@@ -5,7 +5,6 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,13 +23,9 @@ import app.technotech.koncpt.zoom.AuthConstants;
 import us.zoom.sdk.ZoomSDK;
 import us.zoom.sdk.ZoomSDKInitParams;
 import us.zoom.sdk.ZoomSDKInitializeListener;
-
-
 public class BaseApp extends Application implements InternetConnectivityListener {
-
     private Boolean isInternetAvailable = false;
     private InternetAvailabilityChecker mInternetAvailabilityChecker;
-
     private AppExecutors mAppExecutors;
 
     @Override
@@ -116,7 +111,7 @@ public class BaseApp extends Application implements InternetConnectivityListener
 
             @Override
             public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
-                activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+                //activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
             }
 
             @Override

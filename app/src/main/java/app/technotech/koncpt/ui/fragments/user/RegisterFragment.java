@@ -500,7 +500,6 @@ public class RegisterFragment extends Fragment {
                                 registerCallApi();
                             } else if (checkEmailModel.getStatus() == 0) {
                                 Toasty.info(getActivity(), checkEmailModel.getMessage()).show();
-
                             }
                         }
 

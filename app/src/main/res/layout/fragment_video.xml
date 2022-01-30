@@ -27,12 +27,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.exoplayer2.ui.PlayerView
+            <com.google.android.exoplayer2.ui.StyledPlayerView
                 android:id="@+id/video_view"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:layout_centerInParent="true"
-                app:controller_layout_id="@layout/exo_playback_control_view" />
+                android:layout_centerInParent="true" />
 
 
             <ProgressBar

@@ -21,7 +21,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.google.android.exoplayer2.ExoPlayer;
-import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.Renderer;
@@ -51,7 +50,7 @@ public class VideoFragment extends Fragment {
     private BottomNavigationView mBottomNavigationView;
 
 
-    private SimpleExoPlayer player;
+    private ExoPlayer player;
     AppCompatImageView fullscreenButton;
     boolean fullscreen = false;
 
@@ -121,11 +120,9 @@ public class VideoFragment extends Fragment {
 
 
     private void createPlayer(View view) {
-
         try {
-
             player = null;
-            player = ExoPlayerFactory.newSimpleInstance(getActivity());
+            player = new ExoPlayer.Builder(getActivity()).build();
             fullscreenButton = binding.videoView.findViewById(R.id.exo_fullscreen_icon);
             fullscreenButton.setOnClickListener(view1 -> {
                 if (fullscreen) {
@@ -161,8 +158,6 @@ public class VideoFragment extends Fragment {
                     fullscreen = true;
                 }
             });
-
-            player.setVideoScalingMode(Renderer.VIDEO_SCALING_MODE_DEFAULT);
             binding.videoView.setPlayer(player);
             binding.videoView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FILL);
             playbackStateListener = new PlaybackStateListener();
