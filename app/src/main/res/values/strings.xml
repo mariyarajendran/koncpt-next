@@ -221,4 +221,5 @@
     <string name="hint_saved_videos">SAVED VIDEOS</string>
     <string name="hint_live_classes">LIVE CLASSES</string>
     <string name="hint_explorer">Explorer</string>
+    <string name="msg_start_download">Starting Download</string>
 </resources>
