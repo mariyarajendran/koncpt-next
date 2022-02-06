@@ -1,4 +1,4 @@
-package app.technotech.koncpt.ui.adapter;
+package app.technotech.koncpt.ui.adapter.zoomadapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,18 +11,16 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.technotech.koncpt.ui.fragments.liveclass.AllFragment;
-import app.technotech.koncpt.ui.fragments.liveclass.CompletedFragment;
+import app.technotech.koncpt.ui.fragments.zoomclass.CompletedZoomFragment;
+import app.technotech.koncpt.ui.fragments.zoomclass.OnLiveClassFragment;
 import app.technotech.koncpt.ui.fragments.liveclass.PausedFragment;
-import app.technotech.koncpt.ui.fragments.liveclass.UnattemptedFragment;
 
-
-public class LiveTabAdapter extends FragmentStatePagerAdapter {
+public class ZoomTabAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
     String id;
     private final List<String> fragmentTitle = new ArrayList<>();
 
-    public LiveTabAdapter(FragmentManager fm, int NoOfTabs, String id) {
+    public ZoomTabAdapter(FragmentManager fm, int NoOfTabs, String id) {
         super(fm);
         this.mNumOfTabs = NoOfTabs;
         this.id = id;
@@ -43,16 +41,9 @@ public class LiveTabAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return AllFragment.getInstance(id);
+                return OnLiveClassFragment.getInstance(id);
             case 1:
-                return PausedFragment.getInstance(id);
-            case 2:
-                return CompletedFragment.getInstance(id);
-            case 3:
-                return UnattemptedFragment.getInstance(id);
-//            case 4:
-//                FreeFragment freeFragment= FreeFragment.getInstance(id);
-//                return freeFragment;
+                return CompletedZoomFragment.getInstance(id);
             default:
                 return null;
         }

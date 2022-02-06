@@ -41,6 +41,7 @@ public enum EnumApiAction {
     EnrollementForLiveClass("enrollement_for_live_class"),
     DailyHunt("daily_hunt"),
     DeleteBookmark("delete_bookmark"),
+    RecordedVideo("recorded_video"),
     ProfileDetail("profile_detail");
     private String strValue;
 

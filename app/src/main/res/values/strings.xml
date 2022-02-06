@@ -222,4 +222,7 @@
     <string name="hint_live_classes">LIVE CLASSES</string>
     <string name="hint_explorer">Explorer</string>
     <string name="msg_start_download">Starting Download</string>
+    <string name="title_zoom_class">Zoom</string>
+    <string name="title_zoom_live_class_tab">Live Classes</string>
+    <string name="title_zoom_completed_class_tab">Completed Classes</string>
 </resources>

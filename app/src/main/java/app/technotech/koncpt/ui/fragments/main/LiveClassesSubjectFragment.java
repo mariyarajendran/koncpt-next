@@ -117,6 +117,6 @@ public class LiveClassesSubjectFragment extends Fragment implements LiveClassSub
     public void OnItemClick(int position, SubjectListDataModel.Datum data) {
         Bundle bundle = new Bundle();
         bundle.putString("subject_id", Integer.toString(data.getId()));
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.onLiveClassFragmen,bundle);
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.zoomFragment,bundle);
     }
 }

@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 
 import java.util.Map;
 
+import app.technotech.koncpt.data.network.model.RecordedDataModel;
 import app.technotech.koncpt.data.network.model.UserSubscriptionModel;
 import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.data.network.model.AboutusModel;
@@ -73,6 +74,7 @@ public class Repository {
     private String Response = "response";
     private String Error = "Error";
     ApiConnections connection = RetrofitClient.getRetrofitInstance().create(ApiConnections.class);
+
     public MutableLiveData<WelcomeModel> getOtpRepository(Map<String, String> params) {
         final MutableLiveData<WelcomeModel> data = new MutableLiveData<WelcomeModel>();
         connection.getOtpResponse(params).enqueue(new Callback<WelcomeModel>() {
@@ -85,6 +87,7 @@ public class Repository {
                 }
 
             }
+
             @Override
             public void onFailure(Call<WelcomeModel> call, Throwable t) {
 
@@ -2054,6 +2057,30 @@ public class Repository {
             }
         });
 
+        return data;
+    }
+
+    public MutableLiveData<RecordedDataModel> getRecordedVideo(Map<String, String> params) {
+        final MutableLiveData<RecordedDataModel> data = new MutableLiveData<>();
+        connection.getRecordedVideo(params).enqueue(new Callback<RecordedDataModel>() {
+            @Override
+            public void onResponse(Call<RecordedDataModel> call, retrofit2.Response<RecordedDataModel> response) {
+                try {
+                    data.setValue(response.body());
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RecordedDataModel> call, Throwable t) {
+                try {
+                    data.setValue(null);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
         return data;
     }
 

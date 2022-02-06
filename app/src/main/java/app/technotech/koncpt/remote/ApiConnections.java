@@ -2,6 +2,7 @@ package app.technotech.koncpt.remote;
 
 import java.util.Map;
 
+import app.technotech.koncpt.data.network.model.RecordedDataModel;
 import app.technotech.koncpt.data.network.model.UserSubscriptionModel;
 import app.technotech.koncpt.data.network.model.AboutusModel;
 import app.technotech.koncpt.data.network.model.AnswerMcqOfTheDayModel;
@@ -354,6 +355,10 @@ public interface ApiConnections {
     @FormUrlEncoded
     @POST("api.php")
     public Call<MessageModel> getEnrollResponse(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("api.php")
+    public Call<RecordedDataModel> getRecordedVideo(@FieldMap Map<String, String> params);
 
 
 }

@@ -45,7 +45,7 @@ public class SplashActivity extends AppCompatActivity {
         binding.setLifecycleOwner(this);
         model = new ViewModelProvider(this).get(SplashViewModel.class);
         binding.setSplashViewModel(model);
-        redirectToAuthWithHomeScreen();
+        initInAppUpdatePlayStore();
     }
 
     private void callApi() {
@@ -88,12 +88,6 @@ public class SplashActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        initInAppUpdatePlayStore();
-    }
-
     private void initInAppUpdatePlayStore() {
         AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(this);
 // Returns an intent object that you use to check for an update.
@@ -114,7 +108,12 @@ public class SplashActivity extends AppCompatActivity {
                 } catch (IntentSender.SendIntentException e) {
                     e.printStackTrace();
                 }
+            } else {
+                redirectToAuthWithHomeScreen();
             }
+        });
+        appUpdateInfoTask.addOnFailureListener(appUpdateInfoTaskFailure -> {
+            redirectToAuthWithHomeScreen();
         });
     }
 
@@ -122,10 +121,10 @@ public class SplashActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_IN_APP_UPDATE) {
-            Toasty.success(getApplicationContext(), getResources().getString(R.string.msg_start_download)).show();
+            //Toasty.success(getApplicationContext(), getResources().getString(R.string.msg_start_download)).show();
         }
         if (resultCode != RESULT_OK) {
-            redirectToAuthWithHomeScreen();
+            initInAppUpdatePlayStore();
         }
     }
 }

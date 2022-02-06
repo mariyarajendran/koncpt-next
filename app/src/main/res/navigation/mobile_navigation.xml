@@ -145,8 +145,7 @@
     <fragment
         android:id="@+id/LiveClassesSubjectFragment"
         android:name="app.technotech.koncpt.ui.fragments.main.LiveClassesSubjectFragment"
-        android:label="@string/hint_subjects">
-    </fragment>
+        android:label="@string/hint_subjects"></fragment>
 
 
     <fragment
@@ -652,8 +651,12 @@
         android:name="app.technotech.koncpt.ui.fragments.liveclass.ProUserFragment"
         android:label=" " />
     <fragment
+        android:id="@+id/zoomFragment"
+        android:name="app.technotech.koncpt.ui.fragments.zoomclass.ZoomFragment"
+        android:label="@string/title_zoom_class" />
+    <fragment
         android:id="@+id/onLiveClassFragmen"
-        android:name="app.technotech.koncpt.ui.fragments.OnLiveClassFragment"
+        android:name="app.technotech.koncpt.ui.fragments.zoomclass.OnLiveClassFragment"
         android:label="Live Class" />
     <dialog
         android:id="@+id/customBuyNowDialogFragment"
