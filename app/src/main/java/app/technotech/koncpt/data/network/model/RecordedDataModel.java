@@ -46,6 +46,30 @@ public class RecordedDataModel {
         @Expose
         private String id;
 
+        @SerializedName("title")
+        @Expose
+        private String title;
+
+        @SerializedName("faculty_name")
+        @Expose
+        private String facultyName;
+
+        @SerializedName("from_time")
+        @Expose
+        private String fromTime;
+
+        @SerializedName("to_time")
+        @Expose
+        private String toTime;
+
+        @SerializedName("to_date")
+        @Expose
+        private String toDate;
+
+        @SerializedName("video_url")
+        @Expose
+        private String videoUrl;
+
         public String getId() {
             return id;
         }
@@ -62,8 +86,45 @@ public class RecordedDataModel {
             this.videoUrl = videoUrl;
         }
 
-        @SerializedName("video_url")
-        @Expose
-        private String videoUrl;
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getFacultyName() {
+            return facultyName;
+        }
+
+        public void setFacultyName(String facultyName) {
+            this.facultyName = facultyName;
+        }
+
+        public String getFromTime() {
+            return fromTime;
+        }
+
+        public void setFromTime(String fromTime) {
+            this.fromTime = fromTime;
+        }
+
+        public String getToTime() {
+            return toTime;
+        }
+
+        public void setToTime(String toTime) {
+            this.toTime = toTime;
+        }
+
+        public String getToDate() {
+            return toDate;
+        }
+
+        public void setToDate(String toDate) {
+            this.toDate = toDate;
+        }
+
     }
 }

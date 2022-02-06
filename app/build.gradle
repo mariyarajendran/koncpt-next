@@ -27,8 +27,8 @@ android {
         applicationId "app.education.koncpt"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 14
-        versionName "1.6"
+        versionCode 15
+        versionName "1.5"
         resConfigs "en"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -45,6 +45,7 @@ android {
                                     appIcon : "@mipmap/ic_launcher"]
             buildConfigField "String", "BASE_URL", "\"https://enlytmed.in/app/mobile_api/\""
             buildConfigField "String", "DOMAIN", "\"enlytmed.in\""
+            buildConfigField "boolean", "IS_LIVE_BUILD", "true"
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -56,6 +57,7 @@ android {
                                     appIcon : "@mipmap/ic_launcher_dev"]
             buildConfigField "String", "BASE_URL", "\"https://7hillstechnosolutions.com/app/mobile_api/\""
             buildConfigField "String", "DOMAIN", "\"7hillstechnosolutions.com\""
+            buildConfigField "boolean", "IS_LIVE_BUILD", "false"
             minifyEnabled false
             shrinkResources false
             debuggable true

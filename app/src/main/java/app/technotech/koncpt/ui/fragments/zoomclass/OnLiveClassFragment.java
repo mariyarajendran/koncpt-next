@@ -116,52 +116,47 @@ public class OnLiveClassFragment extends Fragment implements OnLiveClassAdapter.
         params.put("subject_id", TextUtil.cutNull(mSubjectId));
         params.put("user_id", sharedPreference.getUserResponse().getId() + "");
         params.put("level_id", new AppSharedPreference(getActivity()).getLevelId());
-        params.put("type", "1");
+        params.put("type", "0");
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
-        model.getOnLiveData(params).observe(getActivity(), new Observer<LiveClassesListModel>() {
+        model.getOnLiveData(params).observe(getActivity(), liveClassesListModel -> new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
-            public void onChanged(LiveClassesListModel liveClassesListModel) {
-                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (progressDialog.isShowing()) {
-                            progressDialog.dismiss();
-                        }
-                        try {
-                            if (liveClassesListModel != null) {
-                                if (liveClassesListModel.getStatus() == 1) {
-                                    liveClassData.clear();
-                                    liveClassData.addAll(liveClassesListModel.getLiveClassData());
-                                    enrollData.clear();
-                                    enrollData.addAll(liveClassesListModel.getEnrollData());
-                                    if (liveClassData.size() > 0) {
-                                        loadHorizontal();
-                                    }
-                                    if (enrollData.size() > 0) {
-                                        loadEnroll();
-                                    }
-                                    if (adapter != null && liveClassData.size() > 0) {
-                                        adapter.notifyItemRangeChanged(0, liveClassData.size());
-                                    }
-                                    if (adapter != null && enrollData.size() > 0) {
-                                        enrollClassAdapter.notifyDataSetChanged();
-                                    }
-                                } else {
-                                    Toasty.info(getActivity(), liveClassesListModel.getMessage()).show();
-                                }
-                            } else {
-                                Toasty.error(getActivity(), "Oops ! Something Went Wrong").show();
+            public void run() {
+                if (progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                }
+                try {
+                    if (liveClassesListModel != null) {
+                        if (liveClassesListModel.getStatus() == 1) {
+                            liveClassData.clear();
+                            liveClassData.addAll(liveClassesListModel.getLiveClassData());
+                            enrollData.clear();
+                            enrollData.addAll(liveClassesListModel.getEnrollData());
+                            if (liveClassData.size() > 0) {
+                                loadHorizontal();
                             }
-
-                        } catch (Exception ex) {
-                            ex.printStackTrace();
+                            if (enrollData.size() > 0) {
+                                loadEnroll();
+                            }
+                            if (adapter != null && liveClassData.size() > 0) {
+                                adapter.notifyItemRangeChanged(0, liveClassData.size());
+                            }
+                            if (adapter != null && enrollData.size() > 0) {
+                                enrollClassAdapter.notifyDataSetChanged();
+                            }
+                        } else {
+                            Toasty.error(getActivity(), liveClassesListModel.getMessage()).show();
                         }
+                    } else {
+                        Toasty.error(getActivity(), "Oops ! Something Went Wrong").show();
                     }
-                }, 800);
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
-        });
+        }, 800));
     }
 
     private void loadEnroll() {
@@ -201,7 +196,7 @@ public class OnLiveClassFragment extends Fragment implements OnLiveClassAdapter.
 
     @Override
     public void onEnrollItemClick(LiveClassesListModel.LiveClassDatum data, int position) {
-        onApiEnroll("1", Integer.toString(data.getId()));
+        onApiEnroll("1", data.getId());
     }
 
     @Override

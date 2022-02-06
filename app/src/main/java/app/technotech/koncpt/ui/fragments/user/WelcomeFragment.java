@@ -118,27 +118,24 @@ public class WelcomeFragment extends Fragment {
         binding.setWelcomeCallback(new WelcomeCallback() {
             @Override
             public void onSendCode() {
-
                 if (((BaseApp) requireActivity().getApplication()).isInternetAvailable()) {
-
                     if (validation()) {
                         callOTPApi();
                     }
-
                 }
-
+            }
+            @Override
+            public void onFacebookLogin() {
+                facebooklogin();
             }
 
             @Override
-            public void onFacebookLogin() {
-
-                facebooklogin();
-
+            public void onSignUp() {
+                LoadRegisterFragment();
             }
 
             @Override
             public void onEmailLogin() {
-
                 LoadLoginFragment();
             }
 
@@ -252,10 +249,20 @@ public class WelcomeFragment extends Fragment {
 
 
     private void LoadLoginFragment() {
-
         Bundle argumnets = new Bundle();
         Fragment fragment = new LoginFragment();
         fragment.setArguments(argumnets);
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.container, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    private void LoadRegisterFragment() {
+        Bundle argumnets = new Bundle();
+        argumnets.putInt("status", 1);
+        Fragment fragment = new RegisterFragment();
         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.container, fragment);

@@ -237,9 +237,17 @@ public class LiveClassesListModel {
 
     public class LiveClassDatum {
 
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
         @SerializedName("id")
         @Expose
-        private Integer id;
+        private String id;
         @SerializedName("faculty_id")
         @Expose
         private Integer facultyId;
@@ -286,13 +294,6 @@ public class LiveClassesListModel {
         @Expose
         private String name;
 
-        public Integer getId() {
-            return id;
-        }
-
-        public void setId(Integer id) {
-            this.id = id;
-        }
 
         public Integer getFacultyId() {
             return facultyId;

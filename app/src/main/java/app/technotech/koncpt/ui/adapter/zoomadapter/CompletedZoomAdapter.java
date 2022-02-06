@@ -12,38 +12,38 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import app.technotech.koncpt.R;
-import app.technotech.koncpt.data.network.model.RecordedDataModel;
+import app.technotech.koncpt.data.network.model.LiveClassesListModel;
 import app.technotech.koncpt.databinding.CompletedZoomItemBinding;
-import app.technotech.koncpt.ui.callbacks.RecordedZoomCallbacks;
+import app.technotech.koncpt.ui.callbacks.CompletedZoomCallbacks;
 
 public class CompletedZoomAdapter extends RecyclerView.Adapter<CompletedZoomAdapter.ViewHolder> {
     final Context context;
-    final List<RecordedDataModel.RecordedData> recordedDataList;
-    RecordedZoomCallbacks recordedZoomCallbacks;
+    final List<LiveClassesListModel.LiveClassDatum> classDatumList;
+    CompletedZoomCallbacks callbacks;
 
-    public CompletedZoomAdapter(Context context, List<RecordedDataModel.RecordedData> recordedDataList, RecordedZoomCallbacks recordedZoomCallbacks) {
+    public CompletedZoomAdapter(Context context, List<LiveClassesListModel.LiveClassDatum> classDatumList, CompletedZoomCallbacks callbacks) {
         this.context = context;
-        this.recordedDataList = recordedDataList;
-        this.recordedZoomCallbacks = recordedZoomCallbacks;
+        this.classDatumList = classDatumList;
+        this.callbacks = callbacks;
     }
 
     @NonNull
     @Override
     public CompletedZoomAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.qbank_level_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.completed_zoom_item, parent, false);
         return new CompletedZoomAdapter.ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CompletedZoomAdapter.ViewHolder holder, int position) {
-        RecordedDataModel.RecordedData data = recordedDataList.get(position);
-        holder.binding.tvSubjectName.setText(data.getId());
-        holder.binding.crdCzi.setOnClickListener(view -> recordedZoomCallbacks.onTap(position));
+        LiveClassesListModel.LiveClassDatum data = classDatumList.get(position);
+        holder.binding.tvSubjectName.setText(data.getTitle());
+        holder.binding.crdCzi.setOnClickListener(view -> callbacks.onTap(position));
     }
 
     @Override
     public int getItemCount() {
-        return recordedDataList.size();
+        return classDatumList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

@@ -52,21 +52,22 @@ public class ZoomFragment extends Fragment {
     }
 
     @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        menu.findItem(R.id.action_search).setVisible(false);
+        menu.findItem(R.id.action_notification).setVisible(false);
+        menu.findItem(R.id.action_index).setVisible(false);
+        super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setHasOptionsMenu(true);
         BottomNavigationView bottomNavigationView = ((MainActivity) requireActivity()).getBottomNavigationView();
         if (bottomNavigationView.getVisibility() == View.VISIBLE) {
             bottomNavigationView.setVisibility(View.GONE);
         }
         setTabLayout();
-    }
-
-    @Override
-    public void onPrepareOptionsMenu(@NonNull Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-        menu.findItem(R.id.action_search).setVisible(false);
-        menu.findItem(R.id.action_notification).setVisible(false);
-        menu.findItem(R.id.action_index).setVisible(false);
     }
 
     private void setTabLayout() {

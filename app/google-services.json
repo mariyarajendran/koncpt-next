@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "321977687628",
-    "project_id": "koncpt-next-dev",
-    "storage_bucket": "koncpt-next-dev.appspot.com"
+    "project_number": "542576705412",
+    "project_id": "pg-app-push-notification",
+    "storage_bucket": "pg-app-push-notification.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:321977687628:android:ca9281d9d3ce7e72169ee9",
+        "mobilesdk_app_id": "1:542576705412:android:77b2e179242ebc19bce7d1",
         "android_client_info": {
-          "package_name": "app.education.koncpt.dev"
+          "package_name": "app.education.koncpt"
         }
       },
       "oauth_client": [
         {
-          "client_id": "321977687628-o0v51o42qsg0on7oppdgp05iristap1j.apps.googleusercontent.com",
+          "client_id": "542576705412-emlh2s6q20do2n5ddjdj1uiumjfvpobo.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCKydXvIMfZgHJHhU_mY-NyU_kQs-oS5N8"
+          "current_key": "AIzaSyCTCRMlqicCMrt_1K62Icz2A_Zhhb_-6uY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "321977687628-o0v51o42qsg0on7oppdgp05iristap1j.apps.googleusercontent.com",
+              "client_id": "542576705412-emlh2s6q20do2n5ddjdj1uiumjfvpobo.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

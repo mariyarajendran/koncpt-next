@@ -23,9 +23,9 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/crd_czi"
+                android:id="@+id/crd_rzi"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
                 app:cardCornerRadius="4dp"
@@ -35,30 +35,60 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
+                    android:layout_gravity="center"
                     android:foregroundGravity="center_vertical">
 
                     <TextView
                         android:id="@+id/tv_subject_name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_40sdp"
+                        android:layout_marginStart="@dimen/_30sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
                         android:layout_marginEnd="@dimen/_15sdp"
                         android:text="SPM"
                         android:textColor="@android:color/black"
                         android:textSize="@dimen/_11ssp"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/img_right_arrow"
+                        app:layout_constraintEnd_toStartOf="@+id/img_play_video"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
+                    <TextView
+                        android:id="@+id/tv_faculty_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_30sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:text="SPM"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_10ssp"
+                        app:layout_constraintEnd_toStartOf="@+id/img_play_video"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_subject_name" />
+
+                    <TextView
+                        android:id="@+id/tv_meeting_date_time"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_30sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:paddingBottom="@dimen/_10sdp"
+                        android:text="SPM"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_10ssp"
+                        app:layout_constraintEnd_toStartOf="@+id/img_play_video"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_faculty_name" />
+
+
                     <ImageView
-                        android:id="@+id/img_right_arrow"
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
+                        android:id="@+id/img_play_video"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
                         android:layout_marginEnd="@dimen/_10sdp"
-                        android:src="@drawable/ic_right_arrow"
+                        android:src="@drawable/ic_play_video"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -69,7 +99,7 @@
                 android:id="@+id/img_subject_image"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/ic_zoom_call"
                 android:visibility="visible"
                 app:civ_border="false" />

@@ -295,11 +295,8 @@ public class LoginFragment extends Fragment {
     }
 
     private void LoadRegisterFragment() {
-
-
         Bundle argumnets = new Bundle();
         argumnets.putInt("status", 1);
-
         Fragment fragment = new RegisterFragment();
         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

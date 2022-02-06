@@ -13,8 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -24,29 +24,40 @@ import java.util.HashMap;
 import java.util.Map;
 
 import app.technotech.koncpt.R;
-import app.technotech.koncpt.data.network.model.BuyDetailsModel;
 import app.technotech.koncpt.data.network.model.RecordedDataModel;
-import app.technotech.koncpt.databinding.FragmentCompletedZoomListBinding;
+import app.technotech.koncpt.databinding.FragmentRecordedZoomListBinding;
 import app.technotech.koncpt.ui.activity.MainActivity;
-import app.technotech.koncpt.ui.adapter.zoomadapter.CompletedZoomAdapter;
+import app.technotech.koncpt.ui.adapter.zoomadapter.RecordedZoomAdapter;
 import app.technotech.koncpt.ui.viewmodels.OnLiveViewModel;
 import app.technotech.koncpt.utils.AppSharedPreference;
 import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.utils.GeneralUtils;
+import es.dmoral.toasty.Toasty;
 
-public class CompletedZoomListFragment extends Fragment {
-    private FragmentCompletedZoomListBinding binding;
+public class RecordedZoomListFragment extends Fragment {
+    private FragmentRecordedZoomListBinding binding;
     private OnLiveViewModel model;
     private GeneralUtils utils;
     private AlertDialog progressDialog;
-    private CompletedZoomAdapter completedZoomAdapter;
+    private RecordedZoomAdapter recordedZoomAdapter;
+    private String mSubjectId = "";
+    private String mScheduledId = "";
+
+    public static RecordedZoomListFragment getInstance(String subjectId) {
+        RecordedZoomListFragment fragment = new RecordedZoomListFragment();
+        Bundle args = new Bundle();
+        args.putString("subject_id", subjectId);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
         if (getArguments() != null) {
-
+            mSubjectId = bundle.getString("subject_id");
+            mScheduledId = bundle.getString("scheduled_id");
         }
     }
 
@@ -54,10 +65,18 @@ public class CompletedZoomListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_completed_zoom_list, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_recorded_zoom_list, container, false);
         model = new ViewModelProvider(this).get(OnLiveViewModel.class);
         binding.setLifecycleOwner(this);
         return binding.getRoot();
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        menu.findItem(R.id.action_notification).setVisible(false);
+        menu.findItem(R.id.action_index).setVisible(false);
+        menu.findItem(R.id.action_search).setVisible(false);
+        super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -70,17 +89,10 @@ public class CompletedZoomListFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onPrepareOptionsMenu(@NonNull Menu menu) {
-        menu.findItem(R.id.action_notification).setVisible(false);
-        menu.findItem(R.id.action_index).setVisible(false);
-        menu.findItem(R.id.action_search).setVisible(false);
-        super.onPrepareOptionsMenu(menu);
-    }
-
     private void init() {
         utils = new GeneralUtils(getActivity());
         progressDialog = utils.showProgressDialog();
+        setHasOptionsMenu(true);
         onCompletedZoomListApi();
     }
 
@@ -88,20 +100,24 @@ public class CompletedZoomListFragment extends Fragment {
         Map<String, String> params = new HashMap<>();
         params.put(EnumApiAction.action.getValue(), EnumApiAction.RecordedVideo.getValue());
         params.put("level_id", new AppSharedPreference(getActivity()).getLevelId());
-        params.put("scheduled_id", "40");
-        params.put("subject_id", "20");
+        params.put("scheduled_id", mScheduledId);
+        params.put("subject_id", mSubjectId);
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
-        model.getRecordedVideo(params).observe(getActivity(), notesModel -> new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+        model.getRecordedVideo(params).observe(getActivity(), recordedDataModel -> new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (progressDialog.isShowing()) {
                     progressDialog.dismiss();
                 }
-                if (notesModel != null) {
-                    if (notesModel.getData() != null && notesModel.getData().size() > 0) {
-                        loadData(notesModel);
+                if (recordedDataModel != null) {
+                    if (recordedDataModel.getStatus() == 1) {
+                        if (recordedDataModel.getData() != null && recordedDataModel.getData().size() > 0) {
+                            loadData(recordedDataModel);
+                        }
+                    } else {
+                        Toasty.error(getActivity(), recordedDataModel.getMessage()).show();
                     }
                 }
             }
@@ -109,14 +125,14 @@ public class CompletedZoomListFragment extends Fragment {
     }
 
     private void loadData(RecordedDataModel recordedDataModel) {
-        binding.rvCompletedZoom.setLayoutManager(new LinearLayoutManager(getActivity()));
-        binding.rvCompletedZoom.setItemAnimator(new DefaultItemAnimator());
-        completedZoomAdapter = new CompletedZoomAdapter(getActivity(), recordedDataModel.getData(), (int position) -> {
-//            if (notesModel.getData().get(position).getLevel_active() == 1)
-//                navigateToQBankFragment(TextUtil.cutNull(notesModel.getData().get(position).getLevel_id()));
-//            else
-//                callBuyNowFragment();
+        binding.rvRecordedZoom.setLayoutManager(new LinearLayoutManager(getActivity()));
+        binding.rvRecordedZoom.setItemAnimator(new DefaultItemAnimator());
+        recordedZoomAdapter = new RecordedZoomAdapter(getActivity(), recordedDataModel.getData(), (int position) -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("video_url", recordedDataModel.getData().get(position).getVideoUrl());
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.recordedVideoPlayerFragment, bundle);
+
         });
-        binding.rvCompletedZoom.setAdapter(completedZoomAdapter);
+        binding.rvRecordedZoom.setAdapter(recordedZoomAdapter);
     }
 }

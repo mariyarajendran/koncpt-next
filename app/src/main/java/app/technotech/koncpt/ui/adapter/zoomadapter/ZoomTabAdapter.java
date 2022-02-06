@@ -13,7 +13,6 @@ import java.util.List;
 
 import app.technotech.koncpt.ui.fragments.zoomclass.CompletedZoomFragment;
 import app.technotech.koncpt.ui.fragments.zoomclass.OnLiveClassFragment;
-import app.technotech.koncpt.ui.fragments.liveclass.PausedFragment;
 
 public class ZoomTabAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
@@ -26,11 +25,9 @@ public class ZoomTabAdapter extends FragmentStatePagerAdapter {
         this.id = id;
     }
 
-
     public void add(String title) {
         fragmentTitle.add(title);
     }
-
 
     @Override
     public int getCount() {

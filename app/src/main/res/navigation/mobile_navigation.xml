@@ -654,6 +654,16 @@
         android:id="@+id/zoomFragment"
         android:name="app.technotech.koncpt.ui.fragments.zoomclass.ZoomFragment"
         android:label="@string/title_zoom_class" />
+
+    <fragment
+        android:id="@+id/recordedZoomListFragment"
+        android:name="app.technotech.koncpt.ui.fragments.zoomclass.RecordedZoomListFragment"
+        android:label="@string/title_zoom_recorded_video" />
+
+    <fragment
+        android:id="@+id/recordedVideoPlayerFragment"
+        android:name="app.technotech.koncpt.ui.fragments.zoomclass.RecordedVideoPlayerFragment"
+        android:label="@string/title_recorded_player" />
     <fragment
         android:id="@+id/onLiveClassFragmen"
         android:name="app.technotech.koncpt.ui.fragments.zoomclass.OnLiveClassFragment"

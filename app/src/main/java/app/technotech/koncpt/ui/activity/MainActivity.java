@@ -35,6 +35,7 @@ import com.razorpay.PaymentResultListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.technotech.koncpt.BuildConfig;
 import app.technotech.koncpt.R;
 import app.technotech.koncpt.databinding.ActivityMainBinding;
 import app.technotech.koncpt.ui.fragments.main.DailyHuntFragment;
@@ -82,7 +83,8 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        if (BuildConfig.IS_LIVE_BUILD)
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
         binding = DataBindingUtil.setContentView(MainActivity.this, R.layout.activity_main);
         binding.setLifecycleOwner(this);
         initViews();
