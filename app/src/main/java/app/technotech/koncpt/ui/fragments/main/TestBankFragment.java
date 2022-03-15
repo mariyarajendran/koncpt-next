@@ -35,22 +35,22 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.R;
 import app.technotech.koncpt.data.network.model.QBankModel;
 import app.technotech.koncpt.data.network.model.QuestionBank;
 import app.technotech.koncpt.data.network.model.QuestionBankGroup;
-import app.technotech.koncpt.databinding.FragmentQuestionBankBinding;
+import app.technotech.koncpt.databinding.FragmentTestBankBinding;
 import app.technotech.koncpt.ui.activity.MainActivity;
 import app.technotech.koncpt.ui.adapter.QBankAdapter;
 import app.technotech.koncpt.ui.callbacks.QuestionsBank;
 import app.technotech.koncpt.ui.viewmodels.QuestionsBankViewModel;
 import app.technotech.koncpt.utils.AppSharedPreference;
 import app.technotech.koncpt.utils.DebugLog;
+import app.technotech.koncpt.utils.EnumApiAction;
 import app.technotech.koncpt.utils.GeneralUtils;
 
-public class QuestionBankFragment extends Fragment {
-    private FragmentQuestionBankBinding binding;
+public class TestBankFragment extends Fragment {
+    private FragmentTestBankBinding binding;
     private QuestionsBankViewModel model;
     private GeneralUtils utils;
     private AlertDialog progressDialog;
@@ -78,7 +78,7 @@ public class QuestionBankFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_question_bank, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_test_bank, container, false);
         binding.setLifecycleOwner(this);
         model = new ViewModelProvider(getActivity()).get(QuestionsBankViewModel.class);
         binding.setQuesViewModel(model);
@@ -98,11 +98,13 @@ public class QuestionBankFragment extends Fragment {
     }
 
     private void setButtonClickListner() {
+
         binding.setQuesCallback(new QuestionsBank() {
             @Override
             public void onClickOne() {
                 Navigation.findNavController(binding.getRoot()).navigate(R.id.action_questionBankFragment_to_blookMarkFragment);
             }
+
             @Override
             public void onClickTwo() {
                 if (!new AppSharedPreference(getActivity()).isCustomModuleGenerated()) {

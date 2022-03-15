@@ -124,6 +124,14 @@
             app:popUpTo="@+id/homeFragment" />
     </fragment>
     <fragment
+        android:id="@+id/testLevelFragment"
+        android:name="app.technotech.koncpt.ui.fragments.main.TestLevelFragment"
+        android:label="@string/hint_test_levels" />
+    <fragment
+        android:id="@+id/testBankFragment"
+        android:name="app.technotech.koncpt.ui.fragments.main.TestBankFragment"
+        android:label="@string/hint_test_bank" />
+    <fragment
         android:id="@+id/liveClassesLevelFragment"
         android:name="app.technotech.koncpt.ui.fragments.liveclass.LiveClassesLevelFragment"
         android:label="@string/hint_video_levels">

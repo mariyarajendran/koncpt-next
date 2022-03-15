@@ -205,6 +205,8 @@
 
     <!--Qbank-->
     <string name="hint_qbank_levels">QBank levels</string>
+    <string name="hint_test_levels">Test levels</string>
+    <string name="hint_test_bank">Test Bank</string>
 
     <!--Live Classes-->
     <string name="hint_video_levels">Video levels</string>

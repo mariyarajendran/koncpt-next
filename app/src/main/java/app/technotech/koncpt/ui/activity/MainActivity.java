@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
         setSupportActionBar(binding.appBarMain.toolbar);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.homeFragment, R.id.questionBankLevelFragment,
-                /*R.id.testFragment,*/ R.id.dailyHuntFragment,
+                R.id.testLevelFragment, R.id.dailyHuntFragment,
                 R.id.liveClassesHomeFragment)
                 .setOpenableLayout(binding.drawerLayout)
                 .build();
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
         ids.add(R.id.homeFragment);
         ids.add(R.id.dailyHuntFragment);
         ids.add(R.id.questionBankLevelFragment);
-        /*ids.add(R.id.testFragment);*/
+        ids.add(R.id.testLevelFragment);
         ids.add(R.id.liveClassesHomeFragment);
         binding.appBarMain.bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @SuppressLint("NonConstantResourceId")
@@ -141,7 +141,6 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
                 if (item.getItemId() == mNavController.getCurrentBackStackEntry().getDestination().getId())
                     return false;
                 for (Integer val : ids) {
-
                     if (val == item.getItemId()) {
                         mNavController.navigate(val, null, new NavOptions.Builder()
                                 .setLaunchSingleTop(true)

@@ -107,7 +107,6 @@ public class LoginFragment extends Fragment {
         //  validation();
 
         DebugLog.e("Token : " + new AppSharedPreference(getActivity()).getSavedToken());
-
         if (new AppSharedPreference(getActivity()).getSavedToken() == null) {
             FirebaseMessaging.getInstance().getToken()
                     .addOnCompleteListener(new OnCompleteListener<String>() {

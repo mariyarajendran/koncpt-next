@@ -95,12 +95,10 @@ public class TestFragment extends Fragment implements TabLayout.OnTabSelectedLis
     }
 
     private void setTabLayout() {
-
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.test_tab_grand_test)));
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.test_tab_all_test)));
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.test_tab_mini_test)));
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getResources().getString(R.string.test_tab_subject_wise)));
-
         mPagerAdapter = new TestViewPagerAdapter(mContext, getChildFragmentManager(), binding.tabLayout.getTabCount(), mView);
         binding.viewPager.setAdapter(mPagerAdapter);
         binding.tabLayout.addOnTabSelectedListener(this);
