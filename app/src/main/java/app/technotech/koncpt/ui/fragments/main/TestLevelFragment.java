@@ -107,24 +107,19 @@ public class TestLevelFragment extends Fragment implements CustomBuyNowDialogFra
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
-        model.getBuyDetailsData(params).observe(getActivity(), new Observer<BuyDetailsModel>() {
+        model.getBuyDetailsData(params).observe(getActivity(), notesModel -> new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
-            public void onChanged(BuyDetailsModel notesModel) {
-                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (progressDialog.isShowing()) {
-                            progressDialog.dismiss();
-                        }
-                        if (notesModel != null) {
-                            if (notesModel.getData() != null && notesModel.getData().size() > 0) {
-                                loadData(notesModel);
-                            }
-                        }
+            public void run() {
+                if (progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                }
+                if (notesModel != null) {
+                    if (notesModel.getData() != null && notesModel.getData().size() > 0) {
+                        loadData(notesModel);
                     }
-                }, 500);
+                }
             }
-        });
+        }, 500));
     }
 
     private void loadData(BuyDetailsModel notesModel) {

@@ -373,6 +373,14 @@
             app:argType="string" />
     </fragment>
     <fragment
+        android:id="@+id/newTestDetailsFragment"
+        android:name="app.technotech.koncpt.ui.fragments.newtesttabs.NewTestDetailsFragment"
+        android:label="fragment_test_details">
+        <argument
+            android:name="tool_bar_title"
+            app:argType="string" />
+    </fragment>
+    <fragment
         android:id="@+id/allClassFragment"
         android:name="app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.AllClassFragment"
         android:label="fragment_all_class" />

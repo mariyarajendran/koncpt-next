@@ -42,6 +42,7 @@ import app.technotech.koncpt.data.network.model.QuestionBankGroup;
 import app.technotech.koncpt.databinding.FragmentTestBankBinding;
 import app.technotech.koncpt.ui.activity.MainActivity;
 import app.technotech.koncpt.ui.adapter.QBankAdapter;
+import app.technotech.koncpt.ui.adapter.newtestadapter.NewTestAdapter;
 import app.technotech.koncpt.ui.callbacks.QuestionsBank;
 import app.technotech.koncpt.ui.viewmodels.QuestionsBankViewModel;
 import app.technotech.koncpt.utils.AppSharedPreference;
@@ -54,7 +55,7 @@ public class TestBankFragment extends Fragment {
     private QuestionsBankViewModel model;
     private GeneralUtils utils;
     private AlertDialog progressDialog;
-    private QBankAdapter mAdapter;
+    private NewTestAdapter mAdapter;
     List<QuestionBankGroup> bankGroups = new ArrayList<>();
     private Context mContext;
     private BottomNavigationView navigationView;
@@ -128,14 +129,9 @@ public class TestBankFragment extends Fragment {
         menu.findItem(R.id.action_index).setVisible(false);
         menu.findItem(R.id.action_search).setVisible(false);
         menuItem = menu.findItem(R.id.action_search);
-
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.searchHomeFragment);
-                return false;
-            }
+        menuItem.setOnMenuItemClickListener(menuItem -> {
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.searchHomeFragment);
+            return false;
         });
         super.onPrepareOptionsMenu(menu);
 
@@ -239,7 +235,7 @@ public class TestBankFragment extends Fragment {
             ((DefaultItemAnimator) animator).setSupportsChangeAnimations(false);
         }
         AppCompatActivity activity = (AppCompatActivity) getContext();
-        mAdapter = new QBankAdapter(activity, bankGroups, levelId);
+        mAdapter = new NewTestAdapter(activity, bankGroups, levelId);
         binding.revQBank.setLayoutManager(new LinearLayoutManager(mContext));
         binding.revQBank.setAdapter(mAdapter);
         mAdapter.expandAllGroups();
