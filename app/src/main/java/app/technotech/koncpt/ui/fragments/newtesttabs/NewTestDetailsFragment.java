@@ -1,24 +1,20 @@
 package app.technotech.koncpt.ui.fragments.newtesttabs;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-
 import app.technotech.koncpt.R;
 import app.technotech.koncpt.databinding.FragmentNewTestDetailsBinding;
 import app.technotech.koncpt.databinding.FragmentTestDetailsBinding;
 import app.technotech.koncpt.ui.activity.MainActivity;
 import app.technotech.koncpt.ui.adapter.viewpageradapter.NewTestViewPagerAdapter;
 import app.technotech.koncpt.ui.adapter.viewpageradapter.SubjectDetailsViewPagerAdapter;
-
 
 public class NewTestDetailsFragment extends Fragment {
     private FragmentNewTestDetailsBinding binding;

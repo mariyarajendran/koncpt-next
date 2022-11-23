@@ -1,18 +1,13 @@
 package app.technotech.koncpt.ui.adapter.viewpageradapter;
-
 import android.content.Context;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-
 import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.AllClassFragment;
 import app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.CompleteClassesFragment;
 import app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.PauseClassesFragment;

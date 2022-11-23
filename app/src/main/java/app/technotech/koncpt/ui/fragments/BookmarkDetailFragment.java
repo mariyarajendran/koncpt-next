@@ -94,7 +94,7 @@ public class BookmarkDetailFragment extends Fragment {
         Map<String, String> params = new HashMap<>();
         params.put(EnumApiAction.action.getValue(), EnumApiAction.BookmarkSingleQuestion.getValue());
         params.put("question_id", Integer.toString(questionItem.getQuestionId()));
-        params.put("level_id",new AppSharedPreference(getActivity()).getLevelId());
+        params.put("level_id", new AppSharedPreference(getActivity()).getLevelId());
         if (!progressDialog.isShowing()) {
             progressDialog.show();
         }

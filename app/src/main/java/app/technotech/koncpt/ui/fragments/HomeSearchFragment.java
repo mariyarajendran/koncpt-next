@@ -103,14 +103,11 @@ public class HomeSearchFragment extends Fragment implements SearchRecyclerAdapte
 
 
     private void onCallSearchApi(String newText) {
-
         DebugLog.e("TEXT AS => " + newText);
-
         Map<String, String> params = new HashMap<>();
         params.put(EnumApiAction.action.getValue(), EnumApiAction.SearchHome.getValue());
         params.put("user_id", Integer.toString(new AppSharedPreference(getActivity()).getUserResponse().getId()));
         params.put("serach_text", newText);
-
         model.getSearchResult(params).observe(getActivity(), new Observer<SearchModel>() {
             @Override
             public void onChanged(SearchModel searchModel) {
