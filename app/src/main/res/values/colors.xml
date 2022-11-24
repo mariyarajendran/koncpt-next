@@ -4,7 +4,6 @@
     <color name="colorPrimaryDark">#699a00</color>
     <color name="colorAccent">#699a00</color>
     <!--<color name="colorAccent">#cffe72</color>-->
-    
     <color name="btn_yellow">#FED12D</color>
     <color name="btn_transparent_yellow">#55FED12D</color>
     <color name="btn_facebook">#3b5998</color>
@@ -24,9 +23,9 @@
     <color name="black">#000000</color>
     <color name="theme">#9bcb40</color>
     <color name="tab_background_unselected">#FFFFFF</color>
-
+    <color name="red">#ffcc0000</color>
     <color name="grey_600">#757575</color>
     <color name="colorPreviousButton">#DDDDDD</color>
-
-
+    <color name="teal_800">#00695C</color>
+    <color name="teal_600">#00897B</color>
 </resources>

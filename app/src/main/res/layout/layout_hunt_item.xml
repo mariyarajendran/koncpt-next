@@ -36,11 +36,11 @@
 
             <TextView
                 android:id="@+id/text_hunt_title"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_16sdp"
                 android:layout_marginTop="@dimen/_16sdp"
-                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:text="Dailu Motion Classes"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/_14ssp"

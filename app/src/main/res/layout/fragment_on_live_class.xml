@@ -23,8 +23,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/off_white"
-        tools:context=".ui.fragments.OnLiveClassFragment">
+        android:background="@color/bg_course"
+        tools:context=".ui.fragments.zoomclass.OnLiveClassFragment">
 
 
         <TextView
@@ -44,8 +44,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvHorizontalLive"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_margin="@dimen/_8sdp"
+            android:background="@color/bg_course"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewUpComing" />
@@ -55,12 +56,12 @@
             android:id="@+id/textViewEnroll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_16sdp"
             android:text="Enrolled Courses"
-            android:visibility="gone"
             android:textColor="@color/black"
             android:textSize="@dimen/_16ssp"
-            android:layout_margin="@dimen/_16sdp"
             android:textStyle="bold"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rvHorizontalLive" />
 
@@ -70,6 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="@dimen/_8sdp"
+            android:background="@color/bg_course"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -1,148 +1,681 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:id="@+id/mobile_navigation" app:startDestination="@+id/homeFragment">
-    <fragment android:label="@string/title_bottom_menu_home" android:name="app.technotech.koncpt.ui.fragments.main.HomeFragment" android:id="@+id/homeFragment">
-        <action android:id="@+id/action_homeFragment_To_grandExamTest" app:destination="@+id/grandExamTest" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
-        <action android:id="@+id/action_homeFragment_To_allClassFragmentt" app:destination="@+id/allClassFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
-        <action android:id="@+id/action_homeFragment_To_videoFragment" app:destination="@+id/videoFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
-        <action android:id="@+id/action_homeFragment_To_questionBankFragment" app:destination="@+id/questionBankFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
-        <action android:id="@+id/action_homeFragment_To_dailyHuntFragment" app:destination="@+id/dailyHuntFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
-        <action android:id="@+id/action_homeFragment_To_testFragment" app:destination="@+id/testFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
-        <action android:id="@+id/action_homeFragment_To_liveClassesFragment" app:destination="@+id/liveClassesFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
-        <action android:id="@+id/action_homeFragment_To_homeSearchFragment" app:destination="@+id/searchHomeFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
-        <action android:id="@+id/action_homeFragment_to_buyNowFragment" app:destination="@+id/buyNowFragment" app:enterAnim="@anim/fragment_open_enter" app:exitAnim="@anim/fragment_open_exit"/>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="app.technotech.koncpt.ui.fragments.main.HomeFragment"
+        android:label="@string/title_bottom_menu_home">
+        <action
+            android:id="@+id/action_homeFragment_To_grandExamTest"
+            app:destination="@+id/grandExamTest"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_To_allClassFragmentt"
+            app:destination="@+id/allClassFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_To_videoFragment"
+            app:destination="@+id/videoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_To_questionBankLevelFragment"
+            app:destination="@+id/questionBankLevelFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_To_dailyHuntFragment"
+            app:destination="@+id/dailyHuntFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_To_testFragment"
+            app:destination="@+id/testFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_To_liveClassesHomeFragment"
+            app:destination="@+id/liveClassesHomeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_To_homeSearchFragment"
+            app:destination="@+id/searchHomeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_buyNowFragment"
+            app:destination="@+id/buyNowFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit" />
     </fragment>
-    <fragment android:label="Profile" android:name="app.technotech.koncpt.ui.fragments.user.ProfileFragment" android:id="@+id/profileFragment"/>
-    <fragment android:label="Edit Profile" android:name="app.technotech.koncpt.ui.fragments.user.EditProfileFragment" android:id="@+id/editProfileFragment"/>
-    <fragment android:label="Buy Now" android:name="app.technotech.koncpt.ui.fragments.buynow.BuyNowDetailFragment" android:id="@+id/buyDetailsFragment"/>
-    <fragment android:label="@string/search" android:name="app.technotech.koncpt.ui.fragments.HomeSearchFragment" android:id="@+id/searchHomeFragment"/>
-    <fragment android:label="@string/title_bottom_menu_daily_hunt" android:name="app.technotech.koncpt.ui.fragments.main.DailyHuntFragment" android:id="@+id/dailyHuntFragment"/>
-    <fragment android:label="@string/title_bottom_menu_qbank" android:name="app.technotech.koncpt.ui.fragments.main.QuestionBankFragment" android:id="@+id/questionBankFragment">
-        <action android:id="@+id/action_questionBankFragment_to_customModuleFragment" app:destination="@+id/customModuleFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
-        <action android:id="@+id/action_questionBankFragment_to_blookMarkFragment" app:destination="@+id/navigation" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
-        <action android:id="@+id/action_questionBankFragment_to_customModuleStatus" app:destination="@+id/customModuleStatus" app:enterAnim="@anim/fragment_open_enter" app:exitAnim="@anim/fragment_open_exit"/>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="app.technotech.koncpt.ui.fragments.user.ProfileFragment"
+        android:label="Profile" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="app.technotech.koncpt.ui.fragments.user.EditProfileFragment"
+        android:label="Edit Profile" />
+    <fragment
+        android:id="@+id/buyDetailsFragment"
+        android:name="app.technotech.koncpt.ui.fragments.buynow.BuyNowDetailFragment"
+        android:label="Buy Now" />
+    <fragment
+        android:id="@+id/searchHomeFragment"
+        android:name="app.technotech.koncpt.ui.fragments.HomeSearchFragment"
+        android:label="@string/search" />
+    <fragment
+        android:id="@+id/dailyHuntFragment"
+        android:name="app.technotech.koncpt.ui.fragments.main.DailyHuntFragment"
+        android:label="@string/title_bottom_menu_daily_hunt" />
+    <fragment
+        android:id="@+id/questionBankFragment"
+        android:name="app.technotech.koncpt.ui.fragments.main.QuestionBankFragment"
+        android:label="@string/title_bottom_menu_qbank">
+        <action
+            android:id="@+id/action_questionBankFragment_to_customModuleFragment"
+            app:destination="@+id/customModuleFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_questionBankFragment_to_blookMarkFragment"
+            app:destination="@+id/navigation"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_questionBankFragment_to_customModuleStatus"
+            app:destination="@+id/customModuleStatus"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit" />
     </fragment>
-    <fragment android:label="@string/title_bottom_menu_test" android:name="app.technotech.koncpt.ui.fragments.main.TestFragment" android:id="@+id/testFragment">
-        <action android:id="@+id/action_GrandTestFragmentToGrandExamTest" app:destination="@+id/grandExamTest" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
-        <action android:id="@+id/action_GrandTestFragmentToResultFragment" app:destination="@+id/resultExamFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
+    <fragment
+        android:id="@+id/questionBankLevelFragment"
+        android:name="app.technotech.koncpt.ui.fragments.main.QuestionBankLevelFragment"
+        android:label="@string/hint_qbank_levels">
+        <action
+            android:id="@+id/action_buyNowFragment_to_homeFragment"
+            app:destination="@+id/homeFragment"
+            app:popUpTo="@+id/homeFragment" />
     </fragment>
-    <fragment android:label="@string/title_bottom_menu_classes" android:name="app.technotech.koncpt.ui.fragments.main.LiveClassesFragment" android:id="@+id/liveClassesFragment">
-        <action android:id="@+id/action_liveClassesFragment_to_subjectDetailsFragment" app:destination="@+id/subjectDetailsFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
+    <fragment
+        android:id="@+id/liveClassesLevelFragment"
+        android:name="app.technotech.koncpt.ui.fragments.liveclass.LiveClassesLevelFragment"
+        android:label="@string/hint_video_levels">
+        <action
+            android:id="@+id/action_liveClassesLevelFragment_to_homeFragment"
+            app:destination="@+id/homeFragment"
+            app:popUpTo="@+id/homeFragment" />
     </fragment>
-    <fragment android:label="@string/title_nav_menu_know_more" android:name="app.technotech.koncpt.ui.fragments.KnowMoreFragment" android:id="@+id/knowMoreFragment"/>
-    <fragment android:label="@string/title_nav_menu_buy_now" android:name="app.technotech.koncpt.ui.fragments.buynow.BuyNowFragment" android:id="@+id/buyNowFragment">
-        <action android:id="@+id/action_buyNowFragment_to_homeFragment" app:destination="@+id/homeFragment" app:popUpTo="@+id/homeFragment"/>
+    <fragment
+        android:id="@+id/LiveClassesFragment"
+        android:name="app.technotech.koncpt.ui.fragments.main.LiveClassesFragment"
+        android:label="@string/hint_subjects">
+        <action
+            android:id="@+id/action_LiveClassesFragment_to_liveClassesLevelFragment"
+            app:destination="@+id/liveClassesLevelFragment"
+            app:popUpTo="@+id/liveClassesLevelFragment" />
     </fragment>
-    <fragment android:label="@string/title_nav_menu_faculty" android:name="app.technotech.koncpt.ui.fragments.dailyhunt.FacultyFragment" android:id="@+id/facultyFragment"/>
-    <fragment android:label="@string/title_nav_menu_faq" android:name="app.technotech.koncpt.ui.fragments.FaqFragment" android:id="@+id/faqFragment"/>
-    <fragment android:label="@string/title_nav_menu_rate_us" android:name="app.technotech.koncpt.ui.fragments.RateUsFragment" android:id="@+id/rateUsFragment"/>
-    <fragment android:label="@string/title_nav_menu_share_the_app" android:name="app.technotech.koncpt.ui.fragments.ShareAppFragment" android:id="@+id/shareAppFragment"/>
-    <fragment android:label="@string/title_nav_menu_about_us" android:name="app.technotech.koncpt.ui.fragments.AboutUsFragment" android:id="@+id/aboutUsFragment"/>
-    <fragment android:label="@string/title_nav_menu_contact_us" android:name="app.technotech.koncpt.ui.fragments.ContactUsFragment" android:id="@+id/contactUsFragment"/>
-    <fragment android:label="@string/title_nav_menu_t_and_c" android:name="app.technotech.koncpt.ui.fragments.TermAndConditionFragment" android:id="@+id/termAndConditionFragment"/>
-    <fragment android:label="@string/title_nav_menu_log_out" android:name="app.technotech.koncpt.ui.fragments.LogoutFragment" android:id="@+id/logoutFragment"/>
-    <fragment android:label="fragment_welcome" android:name="app.technotech.koncpt.ui.fragments.user.WelcomeFragment" android:id="@+id/welcomeFragment">
-        <action android:id="@+id/action_welcomeFragment_to_loginFragment" app:destination="@+id/loginFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
-        <action android:id="@+id/action_welcomeFragment_to_otpVerificationFragment" app:destination="@+id/otpVerificationFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
+
+    <fragment
+        android:id="@+id/LiveClassesSubjectFragment"
+        android:name="app.technotech.koncpt.ui.fragments.main.LiveClassesSubjectFragment"
+        android:label="@string/hint_subjects"></fragment>
+
+
+    <fragment
+        android:id="@+id/testFragment"
+        android:name="app.technotech.koncpt.ui.fragments.main.TestFragment"
+        android:label="@string/title_bottom_menu_test">
+        <action
+            android:id="@+id/action_GrandTestFragmentToGrandExamTest"
+            app:destination="@+id/grandExamTest"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_GrandTestFragmentToResultFragment"
+            app:destination="@+id/resultExamFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
-    <fragment android:label="fragment_register" android:name="app.technotech.koncpt.ui.fragments.user.RegisterFragment" android:id="@+id/registerFragment"/>
-    <fragment android:label=" " android:name="app.technotech.koncpt.ui.fragments.user.OtpVerificationFragment" android:id="@+id/otpVerificationFragment">
-        <action android:id="@+id/action_otpVerificationFragment_to_homeFragment" app:destination="@+id/homeFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
+    <fragment
+        android:id="@+id/liveClassesHomeFragment"
+        android:name="app.technotech.koncpt.ui.fragments.main.LiveClassesHomeFragment"
+        android:label="@string/title_bottom_menu_classes">
+        <action
+            android:id="@+id/action_liveClassesHomeFragment_to_subjectDetailsFragment"
+            app:destination="@+id/subjectDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
-    <fragment android:label="fragment_forgot_password" android:name="app.technotech.koncpt.ui.fragments.ForgotPasswordFragment" android:id="@+id/forgotPasswordFragment"/>
-    <fragment android:label="fragment_login" android:name="app.technotech.koncpt.ui.fragments.user.LoginFragment" android:id="@+id/loginFragment">
-        <action android:id="@+id/action_loginFragment_to_forgotPasswordFragment" app:destination="@+id/forgotPasswordFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
-        <action android:id="@+id/action_loginFragment_to_registerFragment" app:destination="@+id/registerFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
+    <fragment
+        android:id="@+id/knowMoreFragment"
+        android:name="app.technotech.koncpt.ui.fragments.KnowMoreFragment"
+        android:label="@string/title_nav_menu_know_more" />
+    <fragment
+        android:id="@+id/buyNowFragment"
+        android:name="app.technotech.koncpt.ui.fragments.buynow.BuyNowFragment"
+        android:label="@string/title_nav_menu_buy_now">
+        <action
+            android:id="@+id/action_buyNowFragment_to_homeFragment"
+            app:destination="@+id/homeFragment"
+            app:popUpTo="@+id/homeFragment" />
     </fragment>
-    <fragment android:label="@string/title_fragment_custom_module" android:name="app.technotech.koncpt.ui.fragments.qbank.custommodule.CustomModuleFragment" android:id="@+id/customModuleFragment">
-        <action android:id="@+id/action_customModuleFragment_to_createCustomModuleOneFragment" app:destination="@+id/createCustomModuleOneFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
+    <fragment
+        android:id="@+id/facultyFragment"
+        android:name="app.technotech.koncpt.ui.fragments.dailyhunt.FacultyFragment"
+        android:label="@string/title_nav_menu_faculty" />
+    <fragment
+        android:id="@+id/faqFragment"
+        android:name="app.technotech.koncpt.ui.fragments.FaqFragment"
+        android:label="@string/title_nav_menu_faq" />
+    <fragment
+        android:id="@+id/rateUsFragment"
+        android:name="app.technotech.koncpt.ui.fragments.RateUsFragment"
+        android:label="@string/title_nav_menu_rate_us" />
+    <fragment
+        android:id="@+id/shareAppFragment"
+        android:name="app.technotech.koncpt.ui.fragments.ShareAppFragment"
+        android:label="@string/title_nav_menu_share_the_app" />
+    <fragment
+        android:id="@+id/aboutUsFragment"
+        android:name="app.technotech.koncpt.ui.fragments.AboutUsFragment"
+        android:label="@string/title_nav_menu_about_us" />
+    <fragment
+        android:id="@+id/contactUsFragment"
+        android:name="app.technotech.koncpt.ui.fragments.ContactUsFragment"
+        android:label="@string/title_nav_menu_contact_us" />
+    <fragment
+        android:id="@+id/termAndConditionFragment"
+        android:name="app.technotech.koncpt.ui.fragments.TermAndConditionFragment"
+        android:label="@string/title_nav_menu_t_and_c" />
+    <fragment
+        android:id="@+id/logoutFragment"
+        android:name="app.technotech.koncpt.ui.fragments.LogoutFragment"
+        android:label="@string/title_nav_menu_log_out" />
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="app.technotech.koncpt.ui.fragments.user.WelcomeFragment"
+        android:label="fragment_welcome">
+        <action
+            android:id="@+id/action_welcomeFragment_to_loginFragment"
+            app:destination="@+id/loginFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_otpVerificationFragment"
+            app:destination="@+id/otpVerificationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
-    <fragment android:label="@string/title_fragment_custom_module" android:name="app.technotech.koncpt.ui.fragments.qbank.custommodule.CreateCustomModuleOneFragment" android:id="@+id/createCustomModuleOneFragment">
-        <action android:id="@+id/action_createCustomModuleOneFragment_to_createCustomModuleTwoFragment" app:destination="@+id/createCustomModuleTwoFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="app.technotech.koncpt.ui.fragments.user.RegisterFragment"
+        android:label="fragment_register" />
+    <fragment
+        android:id="@+id/otpVerificationFragment"
+        android:name="app.technotech.koncpt.ui.fragments.user.OtpVerificationFragment"
+        android:label=" ">
+        <action
+            android:id="@+id/action_otpVerificationFragment_to_homeFragment"
+            app:destination="@+id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
-    <fragment android:label="@string/title_fragment_custom_module" android:name="app.technotech.koncpt.ui.fragments.qbank.custommodule.CreateCustomModuleTwoFragment" android:id="@+id/createCustomModuleTwoFragment">
-        <action android:id="@+id/action_createCustomModuleTwoFragment_to_createCustomModuleThreeFragment" app:destination="@+id/createCustomModuleThreeFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="app.technotech.koncpt.ui.fragments.ForgotPasswordFragment"
+        android:label="fragment_forgot_password" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="app.technotech.koncpt.ui.fragments.user.LoginFragment"
+        android:label="fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
+            app:destination="@+id/forgotPasswordFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@+id/registerFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
-    <fragment android:label="@string/title_fragment_custom_module" android:name="app.technotech.koncpt.ui.fragments.qbank.custommodule.CreateCustomModuleThreeFragment" android:id="@+id/createCustomModuleThreeFragment">
-        <action android:id="@+id/action_createCustomModuleThreeFragment_to_selectModuleFragment" app:destination="@+id/selectModuleFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
+    <fragment
+        android:id="@+id/customModuleFragment"
+        android:name="app.technotech.koncpt.ui.fragments.qbank.custommodule.CustomModuleFragment"
+        android:label="@string/title_fragment_custom_module">
+        <action
+            android:id="@+id/action_customModuleFragment_to_createCustomModuleOneFragment"
+            app:destination="@+id/createCustomModuleOneFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
-    <fragment android:label="@string/title_fragment_select_module" android:name="app.technotech.koncpt.ui.fragments.qbank.custommodule.SelectModuleFragment" android:id="@+id/selectModuleFragment">
-        <action android:id="@+id/action_customModuleFragment_to_customExamModuleFragment" app:destination="@+id/customExamModule" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
+    <fragment
+        android:id="@+id/createCustomModuleOneFragment"
+        android:name="app.technotech.koncpt.ui.fragments.qbank.custommodule.CreateCustomModuleOneFragment"
+        android:label="@string/title_fragment_custom_module">
+        <action
+            android:id="@+id/action_createCustomModuleOneFragment_to_createCustomModuleTwoFragment"
+            app:destination="@+id/createCustomModuleTwoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
-    <fragment android:label="mode" android:name="app.technotech.koncpt.ui.fragments.qbank.custommodule.CustomExamFragment" android:id="@+id/customExamModule"/>
-    <fragment android:label="Review Exam" android:name="app.technotech.koncpt.ui.fragments.qbank.custommodule.CustomReviewExamModelFragment" android:id="@+id/customReviewModule">
-        <action android:id="@+id/action_customReviewModule_to_questionBankFragment" app:destination="@+id/questionBankFragment" app:popUpTo="@+id/questionBankFragment" app:popUpToInclusive="true"/>
+    <fragment
+        android:id="@+id/createCustomModuleTwoFragment"
+        android:name="app.technotech.koncpt.ui.fragments.qbank.custommodule.CreateCustomModuleTwoFragment"
+        android:label="@string/title_fragment_custom_module">
+        <action
+            android:id="@+id/action_createCustomModuleTwoFragment_to_createCustomModuleThreeFragment"
+            app:destination="@+id/createCustomModuleThreeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
-    <fragment android:label="fragment_test_details" android:name="app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.SubjectDetailsFragment" android:id="@+id/subjectDetailsFragment">
-        <argument android:name="tool_bar_title" app:argType="string"/>
+    <fragment
+        android:id="@+id/createCustomModuleThreeFragment"
+        android:name="app.technotech.koncpt.ui.fragments.qbank.custommodule.CreateCustomModuleThreeFragment"
+        android:label="@string/title_fragment_custom_module">
+        <action
+            android:id="@+id/action_createCustomModuleThreeFragment_to_selectModuleFragment"
+            app:destination="@+id/selectModuleFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
-    <fragment android:label="fragment_all_class" android:name="app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.AllClassFragment" android:id="@+id/allClassFragment"/>
-    <fragment android:label="fragment_pause_classes" android:name="app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.PauseClassesFragment" android:id="@+id/pauseClassesFragment"/>
-    <fragment android:label="fragment_complete_classes" android:name="app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.CompleteClassesFragment" android:id="@+id/completeClassesFragment"/>
-    <fragment android:label="fragment_uattempted_classes" android:name="app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.UnAttemptedClassesFragment" android:id="@+id/uattemptedClassesFragment"/>
-    <fragment android:label="fragment_free_classes" android:name="app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.FreeClassesFragment" android:id="@+id/freeClassesFragment"/>
-    <fragment android:label="Test" android:name="app.technotech.koncpt.McqTestFragment" android:id="@+id/mcqTestFragment"/>
-    <fragment android:label="fragment_question" android:name="app.technotech.koncpt.QuestionFragment" android:id="@+id/questionFragment"/>
-    <dialog android:label="fragment_question_explanation_bottom" android:name="app.technotech.koncpt.QuestionExplanationBottomFragment" android:id="@+id/questionExplanationBottomFragment"/>
-    <dialog android:label="fragment_book_mark_dialog" android:name="app.technotech.koncpt.BookMarkDialogFragment" android:id="@+id/bookMarkDialogFragment"/>
-    <dialog android:label="Rating MCQs" android:name="app.technotech.koncpt.ui.fragments.RatingDialogFragment" android:id="@+id/ratingDialogFragment">
-        <action android:id="@+id/action_ratingDialogFragment_to_questionBankFragment" app:destination="@+id/questionBankFragment" app:enterAnim="@anim/fragment_close_enter" app:exitAnim="@anim/fragment_close_exit" app:popEnterAnim="@anim/fragment_close_enter" app:popExitAnim="@anim/fragment_close_exit" app:popUpTo="@+id/questionBankFragment" app:popUpToInclusive="false"/>
-        <action android:id="@+id/action_ratingDialogFragment_to_homeFragment" app:destination="@+id/homeFragment" app:enterAnim="@anim/fragment_open_enter" app:exitAnim="@anim/fragment_open_exit" app:popEnterAnim="@anim/popup_show" app:popExitAnim="@anim/popup_hide" app:popUpTo="@+id/homeFragment" app:popUpToInclusive="false"/>
+    <fragment
+        android:id="@+id/selectModuleFragment"
+        android:name="app.technotech.koncpt.ui.fragments.qbank.custommodule.SelectModuleFragment"
+        android:label="@string/title_fragment_select_module">
+        <action
+            android:id="@+id/action_customModuleFragment_to_customExamModuleFragment"
+            app:destination="@+id/customExamModule"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/customExamModule"
+        android:name="app.technotech.koncpt.ui.fragments.qbank.custommodule.CustomExamFragment"
+        android:label="mode" />
+    <fragment
+        android:id="@+id/customReviewModule"
+        android:name="app.technotech.koncpt.ui.fragments.qbank.custommodule.CustomReviewExamModelFragment"
+        android:label="Review Exam">
+        <action
+            android:id="@+id/action_customReviewModule_to_questionBankFragment"
+            app:destination="@+id/questionBankFragment"
+            app:popUpTo="@+id/questionBankFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/subjectDetailsFragment"
+        android:name="app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.SubjectDetailsFragment"
+        android:label="fragment_test_details">
+        <argument
+            android:name="tool_bar_title"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/allClassFragment"
+        android:name="app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.AllClassFragment"
+        android:label="fragment_all_class" />
+    <fragment
+        android:id="@+id/pauseClassesFragment"
+        android:name="app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.PauseClassesFragment"
+        android:label="fragment_pause_classes" />
+    <fragment
+        android:id="@+id/completeClassesFragment"
+        android:name="app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.CompleteClassesFragment"
+        android:label="fragment_complete_classes" />
+    <fragment
+        android:id="@+id/uattemptedClassesFragment"
+        android:name="app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.UnAttemptedClassesFragment"
+        android:label="fragment_uattempted_classes" />
+    <fragment
+        android:id="@+id/freeClassesFragment"
+        android:name="app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.FreeClassesFragment"
+        android:label="fragment_free_classes" />
+    <fragment
+        android:id="@+id/mcqTestFragment"
+        android:name="app.technotech.koncpt.McqTestFragment"
+        android:label="Test" />
+    <fragment
+        android:id="@+id/questionFragment"
+        android:name="app.technotech.koncpt.QuestionFragment"
+        android:label="fragment_question" />
+    <dialog
+        android:id="@+id/questionExplanationBottomFragment"
+        android:name="app.technotech.koncpt.QuestionExplanationBottomFragment"
+        android:label="fragment_question_explanation_bottom" />
+    <dialog
+        android:id="@+id/bookMarkDialogFragment"
+        android:name="app.technotech.koncpt.BookMarkDialogFragment"
+        android:label="fragment_book_mark_dialog" />
+    <dialog
+        android:id="@+id/ratingDialogFragment"
+        android:name="app.technotech.koncpt.ui.fragments.RatingDialogFragment"
+        android:label="Rating MCQs">
+        <action
+            android:id="@+id/action_ratingDialogFragment_to_questionBankFragment"
+            app:destination="@+id/questionBankFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@+id/questionBankFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_ratingDialogFragment_to_homeFragment"
+            app:destination="@+id/homeFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/popup_show"
+            app:popExitAnim="@anim/popup_hide"
+            app:popUpTo="@+id/homeFragment"
+            app:popUpToInclusive="false" />
     </dialog>
-    <fragment android:label="fragment_classes_details" android:name="app.technotech.koncpt.ClassesDetailsFragment" android:id="@+id/classesDetailsFragment"/>
-    <activity android:label="activity_user_authantication" android:name="app.technotech.koncpt.ui.activity.UserAuthanticationActivity" android:id="@+id/userAuthanticationActivity"/>
-    <fragment android:label="Exam Questions" android:name="app.technotech.koncpt.ui.fragments.testTabs.ExamQuestionFragment" android:id="@+id/examQuestionsFragment"/>
-    <fragment android:label="MCQ Exams" android:name="app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.MCQsFragments" android:id="@+id/mcqsFragment">
-        <action android:id="@+id/action_mcqsFragment_to_bookmarkTopicFragment" app:destination="@+id/bookmarkTopicFragment" app:enterAnim="@anim/fragment_open_enter" app:exitAnim="@anim/fragment_close_exit"/>
+    <fragment
+        android:id="@+id/classesDetailsFragment"
+        android:name="app.technotech.koncpt.ClassesDetailsFragment"
+        android:label="fragment_classes_details" />
+    <activity
+        android:id="@+id/userAuthanticationActivity"
+        android:name="app.technotech.koncpt.ui.activity.UserAuthanticationActivity"
+        android:label="activity_user_authantication" />
+    <fragment
+        android:id="@+id/examQuestionsFragment"
+        android:name="app.technotech.koncpt.ui.fragments.testTabs.ExamQuestionFragment"
+        android:label="Exam Questions" />
+    <fragment
+        android:id="@+id/mcqsFragment"
+        android:name="app.technotech.koncpt.ui.fragments.qbank.subjectdetauktabs.MCQsFragments"
+        android:label="MCQ Exams">
+        <action
+            android:id="@+id/action_mcqsFragment_to_bookmarkTopicFragment"
+            app:destination="@+id/bookmarkTopicFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
     </fragment>
-    <fragment android:label="MCQ Exams" android:name="app.technotech.koncpt.ui.fragments.qbank.custommodule.CustomModulStatusFragment" android:id="@+id/customModuleStatus">
-        <action android:id="@+id/action_customModuleStatus_to_customReviewModule" app:destination="@+id/customReviewModule" app:enterAnim="@anim/fragment_open_enter" app:exitAnim="@anim/fragment_open_exit"/>
+    <fragment
+        android:id="@+id/customModuleStatus"
+        android:name="app.technotech.koncpt.ui.fragments.qbank.custommodule.CustomModulStatusFragment"
+        android:label="MCQ Exams">
+        <action
+            android:id="@+id/action_customModuleStatus_to_customReviewModule"
+            app:destination="@+id/customReviewModule"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit" />
     </fragment>
-    <fragment android:label="Results" android:name="app.technotech.koncpt.ui.fragments.testTabs.ResultExamFragment" android:id="@+id/resultExamFragment">
-        <action android:id="@+id/action_resultExamToReviewExamFragment" app:destination="@+id/reviewQuestionsFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
+    <fragment
+        android:id="@+id/resultExamFragment"
+        android:name="app.technotech.koncpt.ui.fragments.testTabs.ResultExamFragment"
+        android:label="Results">
+        <action
+            android:id="@+id/action_resultExamToReviewExamFragment"
+            app:destination="@+id/reviewQuestionsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
-    <fragment android:label="fragment_all_test" android:name="app.technotech.koncpt.ui.fragments.testTabs.AllTestFragment" android:id="@+id/allTestFragment">
-        <action android:id="@+id/action_allTestFragmentToGrandTestFragemnt" app:destination="@+id/grandExamTest" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right" app:popUpTo="@+id/testFragment"/>
-        <action android:id="@+id/action_allTestFragmentToResultFragment" app:destination="@+id/resultExamFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right" app:popUpTo="@+id/testFragment"/>
+    <fragment
+        android:id="@+id/allTestFragment"
+        android:name="app.technotech.koncpt.ui.fragments.testTabs.AllTestFragment"
+        android:label="fragment_all_test">
+        <action
+            android:id="@+id/action_allTestFragmentToGrandTestFragemnt"
+            app:destination="@+id/grandExamTest"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@+id/testFragment" />
+        <action
+            android:id="@+id/action_allTestFragmentToResultFragment"
+            app:destination="@+id/resultExamFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@+id/testFragment" />
     </fragment>
-    <fragment android:label="fragment_grand_test" android:name="app.technotech.koncpt.ui.fragments.testTabs.GrandTestFragment" android:id="@+id/grandTestFragment">
-        <action android:id="@+id/action_grandTestFragment_to_customBuyNowDialogFragment" app:destination="@+id/customBuyNowDialogFragment" app:enterAnim="@anim/fragment_open_enter" app:exitAnim="@anim/fragment_open_exit"/>
+    <fragment
+        android:id="@+id/grandTestFragment"
+        android:name="app.technotech.koncpt.ui.fragments.testTabs.GrandTestFragment"
+        android:label="fragment_grand_test">
+        <action
+            android:id="@+id/action_grandTestFragment_to_customBuyNowDialogFragment"
+            app:destination="@+id/customBuyNowDialogFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit" />
     </fragment>
-    <fragment android:label="Grand Exam" android:name="app.technotech.koncpt.ui.fragments.testTabs.GrandExamFragment" android:id="@+id/grandExamTest">
-        <action android:id="@+id/actionGrandExamTest_to_homeFragment" app:enterAnim="@anim/slide_in_left" app:exitAnim="@anim/slide_out_right" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right" app:popUpTo="@+id/homeFragment" app:popUpToInclusive="false"/>
-        <action android:id="@+id/action_grandExamTest_to_testFragment" app:destination="@+id/testFragment" app:enterAnim="@anim/fragment_open_enter" app:exitAnim="@anim/fragment_open_exit" app:popEnterAnim="@anim/fragment_close_enter" app:popExitAnim="@anim/fragment_close_exit" app:popUpTo="@+id/testFragment" app:popUpToInclusive="true"/>
+    <fragment
+        android:id="@+id/grandExamTest"
+        android:name="app.technotech.koncpt.ui.fragments.testTabs.GrandExamFragment"
+        android:label="Grand Exam">
+        <action
+            android:id="@+id/actionGrandExamTest_to_homeFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@+id/homeFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_grandExamTest_to_testFragment"
+            app:destination="@+id/testFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@+id/testFragment"
+            app:popUpToInclusive="true" />
     </fragment>
-    <dialog android:label="Result Dialog" android:name="app.technotech.koncpt.ui.dialogs.ResultExamDialogFragment" android:id="@+id/ResultExamDialog">
-        <action android:id="@+id/action_ResultExamDialog_to_testFragment" app:destination="@+id/testFragment" app:enterAnim="@anim/fragment_open_enter" app:exitAnim="@anim/fragment_open_exit" app:popEnterAnim="@anim/fragment_close_enter" app:popExitAnim="@anim/fragment_fade_exit" app:popUpTo="@+id/testFragment" app:popUpToInclusive="true"/>
-        <action android:id="@+id/action_ResultExamDialog_to_reviewQuestionsFragment" app:destination="@+id/reviewQuestionsFragment" app:enterAnim="@anim/fragment_open_enter" app:exitAnim="@anim/fragment_open_exit" app:popEnterAnim="@anim/fragment_close_enter" app:popExitAnim="@anim/fragment_close_exit"/>
+    <dialog
+        android:id="@+id/ResultExamDialog"
+        android:name="app.technotech.koncpt.ui.dialogs.ResultExamDialogFragment"
+        android:label="Result Dialog">
+        <action
+            android:id="@+id/action_ResultExamDialog_to_testFragment"
+            app:destination="@+id/testFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"
+            app:popUpTo="@+id/testFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_ResultExamDialog_to_reviewQuestionsFragment"
+            app:destination="@+id/reviewQuestionsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </dialog>
-    <fragment android:label="Review Questions" android:name="app.technotech.koncpt.ui.fragments.testTabs.ReviewQuestionFragment" android:id="@+id/reviewQuestionsFragment">
-        <action android:id="@+id/action_reviewQuestionsFragment_to_testFragment" app:destination="@+id/testFragment" app:enterAnim="@anim/fragment_open_enter" app:exitAnim="@anim/fragment_open_exit" app:popEnterAnim="@anim/fragment_close_enter" app:popExitAnim="@anim/fragment_close_exit" app:popUpTo="@+id/testFragment" app:popUpToInclusive="true"/>
-        <action android:id="@+id/action_reviewQuestionsFragment_to_homeFragment" app:destination="@+id/homeFragment" app:enterAnim="@anim/fragment_open_enter" app:exitAnim="@anim/fragment_open_exit" app:popEnterAnim="@anim/fragment_close_enter" app:popExitAnim="@anim/fragment_close_exit" app:popUpTo="@+id/homeFragment" app:popUpToInclusive="true"/>
+    <fragment
+        android:id="@+id/reviewQuestionsFragment"
+        android:name="app.technotech.koncpt.ui.fragments.testTabs.ReviewQuestionFragment"
+        android:label="Review Questions">
+        <action
+            android:id="@+id/action_reviewQuestionsFragment_to_testFragment"
+            app:destination="@+id/testFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@+id/testFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_reviewQuestionsFragment_to_homeFragment"
+            app:destination="@+id/homeFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@+id/homeFragment"
+            app:popUpToInclusive="true" />
     </fragment>
-    <fragment android:label="Bookmark Questions" android:name="app.technotech.koncpt.ui.adapter.BookmarkQuestionsFragment" android:id="@+id/bookmarkTopicFragment">
-        <action android:id="@+id/action_bookmarkTopicFragment_to_bookmarkDetailFragment" app:destination="@+id/bookmarkDetailFragment" app:enterAnim="@anim/fragment_open_enter" app:exitAnim="@anim/fragment_open_exit"/>
+    <fragment
+        android:id="@+id/bookmarkTopicFragment"
+        android:name="app.technotech.koncpt.ui.adapter.BookmarkQuestionsFragment"
+        android:label="Bookmark Questions">
+        <action
+            android:id="@+id/action_bookmarkTopicFragment_to_bookmarkDetailFragment"
+            app:destination="@+id/bookmarkDetailFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit" />
     </fragment>
-    <fragment android:label="Bookmark Detail" android:name="app.technotech.koncpt.ui.fragments.BookmarkDetailFragment" android:id="@+id/bookmarkDetailFragment"/>
-    <navigation android:id="@+id/navigation" app:startDestination="@+id/blookMarkFragment">
-        <fragment android:label="Bookmark" android:name="app.technotech.koncpt.BlookMarkFragment" android:id="@+id/blookMarkFragment">
-            <action android:id="@+id/action_blookMarkFragment_to_bookmarkQuestionFragment" app:destination="@+id/bookmarkQuestionFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right" app:popUpToInclusive="false"/>
+    <fragment
+        android:id="@+id/bookmarkDetailFragment"
+        android:name="app.technotech.koncpt.ui.fragments.BookmarkDetailFragment"
+        android:label="Bookmark Detail" />
+    <navigation
+        android:id="@+id/navigation"
+        app:startDestination="@+id/blookMarkFragment">
+        <fragment
+            android:id="@+id/blookMarkFragment"
+            android:name="app.technotech.koncpt.BlookMarkFragment"
+            android:label="Bookmark">
+            <action
+                android:id="@+id/action_blookMarkFragment_to_bookmarkQuestionFragment"
+                app:destination="@+id/bookmarkQuestionFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"
+                app:popUpToInclusive="false" />
         </fragment>
-        <fragment android:label="Bookmark Questions" android:name="app.technotech.koncpt.ui.adapter.BookmarkQuestionsFragment" android:id="@+id/bookmarkQuestionFragment">
-            <action android:id="@+id/action_bookmarkQuestionFragment_to_bookmarkDetailFragment" app:destination="@+id/bookmarkDetailFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right" app:popUpToInclusive="false"/>
+        <fragment
+            android:id="@+id/bookmarkQuestionFragment"
+            android:name="app.technotech.koncpt.ui.adapter.BookmarkQuestionsFragment"
+            android:label="Bookmark Questions">
+            <action
+                android:id="@+id/action_bookmarkQuestionFragment_to_bookmarkDetailFragment"
+                app:destination="@+id/bookmarkDetailFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"
+                app:popUpToInclusive="false" />
         </fragment>
-        <fragment android:label="Bookmark Detail" android:name="app.technotech.koncpt.ui.fragments.BookmarkDetailFragment" android:id="@+id/bookmarkDetailFragment">
-            <action android:id="@+id/action_bookmarkDetailFragment_to_blookMarkFragment" app:destination="@+id/blookMarkFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right" app:popUpTo="@+id/blookMarkFragment" app:popUpToInclusive="false"/>
+        <fragment
+            android:id="@+id/bookmarkDetailFragment"
+            android:name="app.technotech.koncpt.ui.fragments.BookmarkDetailFragment"
+            android:label="Bookmark Detail">
+            <action
+                android:id="@+id/action_bookmarkDetailFragment_to_blookMarkFragment"
+                app:destination="@+id/blookMarkFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"
+                app:popUpTo="@+id/blookMarkFragment"
+                app:popUpToInclusive="false" />
         </fragment>
     </navigation>
-    <fragment android:label="Video" android:name="app.technotech.koncpt.ui.fragments.VideoFragment" android:id="@+id/videoFragment"/>
-    <fragment android:label="Main" android:name="app.technotech.koncpt.ui.fragments.liveclass.MainFragment" android:id="@+id/mainTabFragment"/>
-    <fragment android:label="Downloads" android:name="app.technotech.koncpt.ui.fragments.liveclass.DownloadFragment" android:id="@+id/downloadFragment"/>
-    <fragment android:label="All" android:name="app.technotech.koncpt.ui.fragments.liveclass.SubjectFragment" android:id="@+id/subjectAllFragment"/>
-    <fragment android:label="Change Phone Number" android:name="app.technotech.koncpt.ui.fragments.user.ChangePhoneFragment" android:id="@+id/changePhoneFrgament"/>
-    <fragment android:label="Update Password" android:name="app.technotech.koncpt.ui.fragments.user.UpdateFragment" android:id="@+id/updatePasswordFragment"/>
-    <fragment android:label=" " android:name="app.technotech.koncpt.ui.fragments.liveclass.ProUserFragment" android:id="@+id/proUsers"/>
-    <fragment android:label="Live Class" android:name="app.technotech.koncpt.ui.fragments.OnLiveClassFragment" android:id="@+id/onLiveClassFragmen"/>
-    <dialog android:label="CustomBuyNowDialogFragment" android:name="app.technotech.koncpt.ui.dialogs.CustomBuyNowDialogFragment" android:id="@+id/customBuyNowDialogFragment">
-        <action android:id="@+id/action_customBuyNowDialogFragment_to_buyNowFragment" app:destination="@+id/buyNowFragment" app:enterAnim="@anim/fragment_open_enter" app:exitAnim="@anim/fragment_close_exit"/>
+    <fragment
+        android:id="@+id/videoFragment"
+        android:name="app.technotech.koncpt.ui.fragments.VideoFragment"
+        android:label="Video" />
+    <fragment
+        android:id="@+id/mainTabFragment"
+        android:name="app.technotech.koncpt.ui.fragments.liveclass.MainFragment"
+        android:label="Main" />
+    <fragment
+        android:id="@+id/downloadFragment"
+        android:name="app.technotech.koncpt.ui.fragments.liveclass.DownloadFragment"
+        android:label="Downloads" />
+    <fragment
+        android:id="@+id/subjectAllFragment"
+        android:name="app.technotech.koncpt.ui.fragments.liveclass.SubjectFragment"
+        android:label="All" />
+    <fragment
+        android:id="@+id/changePhoneFrgament"
+        android:name="app.technotech.koncpt.ui.fragments.user.ChangePhoneFragment"
+        android:label="Change Phone Number" />
+    <fragment
+        android:id="@+id/updatePasswordFragment"
+        android:name="app.technotech.koncpt.ui.fragments.user.UpdateFragment"
+        android:label="Update Password" />
+    <fragment
+        android:id="@+id/proUsers"
+        android:name="app.technotech.koncpt.ui.fragments.liveclass.ProUserFragment"
+        android:label=" " />
+    <fragment
+        android:id="@+id/zoomFragment"
+        android:name="app.technotech.koncpt.ui.fragments.zoomclass.ZoomFragment"
+        android:label="@string/title_zoom_class" />
+
+    <fragment
+        android:id="@+id/recordedZoomListFragment"
+        android:name="app.technotech.koncpt.ui.fragments.zoomclass.RecordedZoomListFragment"
+        android:label="@string/title_zoom_recorded_video" />
+
+    <fragment
+        android:id="@+id/recordedVideoPlayerFragment"
+        android:name="app.technotech.koncpt.ui.fragments.zoomclass.RecordedVideoPlayerFragment"
+        android:label="@string/title_recorded_player" />
+    <fragment
+        android:id="@+id/onLiveClassFragmen"
+        android:name="app.technotech.koncpt.ui.fragments.zoomclass.OnLiveClassFragment"
+        android:label="Live Class" />
+    <dialog
+        android:id="@+id/customBuyNowDialogFragment"
+        android:name="app.technotech.koncpt.ui.dialogs.CustomBuyNowDialogFragment"
+        android:label="CustomBuyNowDialogFragment">
+        <action
+            android:id="@+id/action_customBuyNowDialogFragment_to_buyNowFragment"
+            app:destination="@+id/buyNowFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
     </dialog>
 </navigation>
