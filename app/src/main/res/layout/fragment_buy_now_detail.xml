@@ -36,7 +36,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_margin="@dimen/_20sdp"
+                    android:layout_margin="@dimen/_10sdp"
                     android:elevation="12dp"
                     android:innerRadius="0dp"
                     android:shape="ring"
@@ -53,11 +53,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="@dimen/_20sdp"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_18sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
                             android:gravity="center"
                             android:hint="Plan Name"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/_16ssp"
+                            android:textSize="@dimen/_15ssp"
                             android:textStyle="bold"
 
                             />
@@ -100,8 +102,6 @@
                                     android:textSize="@dimen/_10ssp"
                                     android:textStyle="bold" />
                             </LinearLayout>
-
-
                         </RelativeLayout>
 
                         <TextView
@@ -109,18 +109,20 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
                             android:gravity="center_horizontal"
                             android:hint="@string/plan_heading"
                             android:textColor="@android:color/black"
-                            android:textSize="@dimen/_14ssp"
+                            android:textSize="@dimen/_13ssp"
                             android:textStyle="bold" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recyclerViewDetails"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/_20sdp" />
+                            android:layout_marginTop="@dimen/_15sdp" />
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/btnBuyNow"
@@ -138,7 +140,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:text="@string/queries"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_13ssp" />
@@ -148,7 +150,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_margin="@dimen/_20sdp"
+                    android:layout_margin="@dimen/_10sdp"
                     android:elevation="12dp"
                     android:innerRadius="0dp"
                     android:shape="ring"

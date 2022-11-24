@@ -17,50 +17,50 @@
     </data>
 
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
-
     <LinearLayout
-        android:id="@+id/lnrClasses"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:orientation="vertical">
 
-        >
+        <LinearLayout
+            android:id="@+id/lnrClasses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="vertical"
+            android:visibility="gone"
+
+            >
 
 
-    <TextView
-        android:id="@+id/txtNoData"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="You haven't downloaded any Classes yet."
-        android:textSize="@dimen/_15ssp"
-        fontPath="fonts/OpenSans.ttf"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/_10sdp"
-        />
+            <TextView
+                android:id="@+id/txtNoData"
+                fontPath="fonts/OpenSans.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:text="You haven't downloaded any Classes yet."
+                android:textSize="@dimen/_15ssp" />
 
-        <ImageView
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
-            android:src="@drawable/check"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/_16sdp"
-            />
+            <ImageView
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:src="@drawable/check" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
 
     </LinearLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
-
-
-</LinearLayout>
 
 </layout>
