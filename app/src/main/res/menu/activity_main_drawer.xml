@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group
+        android:id="@+id/group_main"
+        android:checkableBehavior="single">
+
+        <!--        <item-->
+        <!--            android:id="@+id/knowMoreFragment"-->
+        <!--            android:icon="@drawable/ic_nav_menu_know_more"-->
+        <!--            android:title="@string/title_nav_menu_know_more" />-->
+        <item
+            android:id="@+id/buyNowFragment"
+            android:icon="@drawable/ic_nav_menu_buy_now"
+            android:title="@string/title_nav_menu_buy_now" />
+        <item
+            android:id="@+id/facultyFragment"
+            android:icon="@drawable/ic_nav_menu_faculty"
+            android:title="@string/title_nav_menu_faculty" />
+
+        <item
+            android:id="@+id/faqFragment"
+            android:icon="@drawable/ic_nav_menu_faq"
+            android:title="@string/title_nav_menu_faq" />
+
+    </group>
+
+    <group
+        android:id="@+id/group_settings"
+        android:checkableBehavior="single">
+
+
+        <item
+            android:id="@+id/rateUsFragment"
+            android:icon="@drawable/ic_nav_menu_rate_us"
+            android:title="@string/title_nav_menu_rate_us" />
+        <item
+            android:id="@+id/shareAppFragment"
+            android:icon="@drawable/ic_nav_menu_share"
+            android:title="@string/title_nav_menu_share_the_app" />
+        <item
+            android:id="@+id/aboutUsFragment"
+            android:icon="@drawable/ic_nav_menu_about_us"
+            android:title="@string/title_nav_menu_about_us" />
+
+<!--        <item-->
+<!--            android:id="@+id/contactUsFragment"-->
+<!--            android:icon="@drawable/ic_nav_menu_contact_us"-->
+<!--            android:title="@string/title_nav_menu_contact_us" />-->
+
+        <item
+            android:id="@+id/termAndConditionFragment"
+            android:icon="@drawable/ic_nav_menu_term_condition"
+            android:title="@string/title_nav_menu_t_and_c" />
+
+
+    </group>
+
+    <group
+        android:id="@+id/group_logout"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/logoutFragment"
+            android:icon="@drawable/ic_nav_menu_logout"
+            android:title="@string/title_nav_menu_log_out" />
+
+    </group>
+
+</menu>

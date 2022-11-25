@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+        <import type="android.view.View" alias="View"/>
+
+        <variable
+            name="explainCallback"
+            type="app.technotech.koncpt.ui.callbacks.ExplanationCallbacks" />
+
+        <variable
+            name="explainViewModel"
+            type="app.technotech.koncpt.ui.viewmodels.BookmarkViewModel" />
+
+    </data>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_gray"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        tools:context=".QuestionExplanationBottomFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_dialog"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+            <ImageView
+                android:id="@+id/img_close_dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:onClick="@{(v)-> explainCallback.onCloseDialog()}"
+                android:src="@drawable/ic_icon_close_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/lay_chart"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:visibility="gone"
+                android:background="@color/bg_course"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_close_dialog">
+
+                <ImageView
+                    android:id="@+id/img_chart_logo"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_pie_chart"
+                    android:padding="@dimen/_10sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+
+                <TextView
+                    android:id="@+id/txt_right_percentage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:text="60 % of the people got this right"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/img_chart_logo"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/txt_question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="Which of the following vessels are responsible for peripheral vascular resistance?"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lay_chart" />
+
+            <ImageView
+                android:id="@+id/img_question_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_10sdp"
+                android:visibility="gone"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:onClick="@{(v)-> explainCallback.onQuestionMSQs()}"
+                android:src="@drawable/icon_temp_question"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_question"/>
+
+            <TextView
+                android:id="@+id/txt_option_a"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/bg_round_edittext"
+                android:padding="@dimen/_8sdp"
+                android:visibility="gone"
+                android:text="Internal fixation"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/img_question_image" />
+
+            <TextView
+                android:id="@+id/txt_option_b"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/bg_round_edittext"
+                android:padding="@dimen/_8sdp"
+                android:visibility="gone"
+                android:text="Application of cast"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/txt_option_a" />
+
+
+            <TextView
+                android:id="@+id/txt_option_c"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/bg_round_edittext"
+                android:padding="@dimen/_8sdp"
+                android:visibility="gone"
+                android:text="External fixation"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/txt_option_b" />
+
+            <TextView
+                android:id="@+id/txt_option_d"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/bg_round_edittext"
+                android:padding="@dimen/_8sdp"
+                android:visibility="gone"
+                android:text="Stabilization and bone grafting"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/txt_option_c" />
+
+
+            <TextView
+                android:id="@+id/txt_mcq_id_tag"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/off_white"
+                android:gravity="center"
+                android:visibility="gone"
+                android:text="© koncpt QBank - March 2020 - MCQID MB3112 Krita@mail.com"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_option_d"/>
+
+
+            <WebView
+                android:id="@+id/web_view_answer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_mcq_id_tag"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/lay_report_error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/off_white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/web_view_answer">
+
+                <TextView
+                    android:id="@+id/txt_license"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:drawableRight="@drawable/icon_bottom_sheet_license"
+                    android:text="Image attributes and license"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:text="#ImageBased"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_license" />
+
+                <TextView
+                    android:id="@+id/txt_report_error"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:text="Report Error"
+                    android:drawableLeft="@drawable/icon_bottom_sheet_report_error"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textSize="18sp"
+                    android:onClick="@{(v)-> explainCallback.onReportError()}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_tag"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+                <TextView
+                    android:id="@+id/txt_share_mcq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:text="Share MCQ"
+                    android:drawableLeft="@drawable/icon_bottom_sheet_share"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp"
+                    android:onClick="@{(v)-> explainCallback.onShareMSQ()}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_tag"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/txt_mcq_id"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="MCQ ID : MB2562"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lay_report_error"/>
+
+            <View
+                android:id="@+id/view_separator"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/bg_gray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_mcq_id"/>
+
+            <TextView
+                android:id="@+id/txt_reference_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="Reference"
+                android:textSize="18sp"
+                android:visibility="visible"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_separator"/>
+
+            <TextView
+                android:id="@+id/rev_reference_book"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_24sdp"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_reference_label"/>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:visibility="gone"
+                android:background="@color/colorPrimaryDark"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rev_reference_book">
+
+                <TextView
+                    android:id="@+id/txt_bottom_book_mark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:text="Book Mark"
+                    android:drawableLeft="@drawable/icon_bottom_sheet_book_mark_white"
+                    android:textStyle="bold"
+                    android:onClick="@{(v)-> explainCallback.onBookmark()}"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <TextView
+                    android:id="@+id/txt_bottom_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:text="Share"
+                    android:drawableLeft="@drawable/icon_bottom_sheet_share_white"
+                    android:textStyle="bold"
+                    android:onClick="@{(v)-> explainCallback.onShare()}"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintStart_toEndOf="@+id/txt_bottom_book_mark"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_bottom_continue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:backgroundTint="@android:color/white"
+                    android:drawableRight="@drawable/icon_bottom_sheet_arrow"
+                    android:padding="@dimen/_10sdp"
+                    android:text="Continue"
+                    android:textColor="@color/colorPrimary"
+                    app:cornerRadius="4dp"
+                    android:onClick="@{(v)-> explainCallback.onContinue()}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

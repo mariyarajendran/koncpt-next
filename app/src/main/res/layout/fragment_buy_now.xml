@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?><!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import
+            alias="View"
+            type="android.view.View" />
+
+        <variable
+            name="planCallback"
+            type="app.technotech.koncpt.ui.callbacks.PlanCallbacks" />
+
+        <variable
+            name="buyViewModel"
+            type="app.technotech.koncpt.ui.viewmodels.BuyNowViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_light_gray"
+        android:layout_marginBottom="@dimen/_48sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_20sdp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pick_plan"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_18sdp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/suits"
+                        android:textAllCaps="true"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_18sdp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/doc_plan" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/card_plan_a_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="@dimen/_130sdp"
+                        android:layout_height="@dimen/_130sdp"
+                        android:layout_marginTop="@dimen/_14sdp"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        card_view:cardCornerRadius="4dp"
+                        card_view:cardElevation="0dp"
+                        card_view:cardUseCompatPadding="false">
+
+                        <RelativeLayout
+                            android:id="@+id/lnrOne"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="24dp">
+
+                            <TextView
+                                android:id="@+id/txtHeadingOne"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:hint="Plan A Description"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/_10ssp"
+
+                                />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btnView1"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_24sdp"
+                                android:layout_alignParentBottom="true"
+                                android:background="@drawable/drawable_button_yellow"
+                                android:text="@string/viewdetails"
+                                android:textAllCaps="false"
+                                android:onClick="@{(v)->planCallback.onPlanA()}"
+                                android:textColor="@android:color/white" />
+
+                        </RelativeLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnA"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_24sdp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/round_one"
+                        android:paddingStart="@dimen/_32sdp"
+                        android:paddingTop="@dimen/_4sdp"
+                        android:paddingEnd="@dimen/_32sdp"
+                        android:paddingBottom="@dimen/_4sdp"
+                        android:onClick="@{(v)->planCallback.onPlanA()}"
+                        android:text="Plan A"
+                        android:textColor="@android:color/white" />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/card_plan_b_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_alignParentRight="true">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="@dimen/_130sdp"
+                        android:layout_height="@dimen/_130sdp"
+                        android:layout_marginTop="@dimen/_14sdp"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        card_view:cardCornerRadius="4dp"
+                        card_view:cardElevation="0dp"
+                        card_view:cardUseCompatPadding="false">
+
+                        <RelativeLayout
+                            android:id="@+id/lnrTwo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="24dp">
+
+                            <TextView
+                                android:id="@+id/txtHeadingTwo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:hint="Plan B Description"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/_10ssp"
+
+                                />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btnView2"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_24sdp"
+                                android:layout_alignParentBottom="true"
+                                android:background="@drawable/drawable_button_yellow"
+                                android:text="@string/viewdetails"
+                                android:onClick="@{(v)->planCallback.onPlanB()}"
+                                android:textAllCaps="false"
+                                android:textColor="@android:color/white" />
+
+                        </RelativeLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_24sdp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/round_two"
+                        android:paddingStart="@dimen/_32sdp"
+                        android:paddingTop="@dimen/_4sdp"
+                        android:paddingEnd="@dimen/_32sdp"
+                        android:paddingBottom="@dimen/_4sdp"
+                        android:text="Plan B"
+                        android:textColor="@android:color/white" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/card_plan_c_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="@dimen/_130sdp"
+                        android:layout_height="@dimen/_130sdp"
+                        android:layout_marginTop="@dimen/_14sdp"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        card_view:cardCornerRadius="4dp"
+                        card_view:cardElevation="0dp"
+                        card_view:cardUseCompatPadding="false">
+
+                        <RelativeLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="24dp">
+
+                            <TextView
+                                android:id="@+id/txtHeadingThree"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:hint="Plan C Description"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/_10ssp"
+
+                                />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btnView3"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_24sdp"
+                                android:layout_alignParentBottom="true"
+                                android:background="@drawable/drawable_button_yellow"
+                                android:text="@string/viewdetails"
+                                android:onClick="@{(v)->planCallback.onPlanC()}"
+                                android:textAllCaps="false"
+                                android:textColor="@android:color/white" />
+
+                        </RelativeLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_24sdp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/round_three"
+                        android:paddingStart="@dimen/_32sdp"
+                        android:paddingTop="@dimen/_4sdp"
+                        android:paddingEnd="@dimen/_32sdp"
+                        android:paddingBottom="@dimen/_4sdp"
+                        android:text="Plan C"
+                        android:textColor="@android:color/white" />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/card_plan_d_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_alignParentRight="true"
+                    >
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="@dimen/_130sdp"
+                        android:layout_height="@dimen/_130sdp"
+                        android:layout_marginTop="@dimen/_14sdp"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        card_view:cardCornerRadius="4dp"
+                        card_view:cardElevation="0dp"
+                        card_view:cardUseCompatPadding="false">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="24dp">
+
+                            <TextView
+                                android:id="@+id/txtHeadingFour"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:hint="Plan D Description"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/_10ssp"
+
+                                />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btnView4"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_24sdp"
+                                android:layout_alignParentBottom="true"
+                                android:background="@drawable/drawable_button_yellow"
+                                android:text="@string/viewdetails"
+                                android:onClick="@{(v)->planCallback.onPlanD()}"
+                                android:textAllCaps="false"
+                                android:textColor="@android:color/white" />
+
+                        </RelativeLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnD"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_24sdp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/round_four"
+                        android:paddingStart="@dimen/_32sdp"
+                        android:paddingTop="@dimen/_4sdp"
+                        android:paddingEnd="@dimen/_32sdp"
+                        android:paddingBottom="@dimen/_4sdp"
+                        android:text="Plan D"
+                        android:textColor="@android:color/white" />
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</layout>

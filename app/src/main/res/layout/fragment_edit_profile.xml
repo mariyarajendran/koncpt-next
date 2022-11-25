@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import
+            alias="View"
+            type="android.view.View" />
+
+
+        <variable
+            name="editCallbacks"
+            type="app.technotech.koncpt.ui.callbacks.EditProfileCallbacks" />
+
+        <variable
+            name="editViewModel"
+            type="app.technotech.koncpt.ui.viewmodels.EditUserProfileViewModel" />
+    </data>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
+        tools:context=".ui.fragments.user.EditProfileFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/circularImageView"
+                android:layout_width="@dimen/_96sdp"
+                android:layout_height="@dimen/_96sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:src="@drawable/defaul_user"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_edit_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="Edit Photo"
+                android:onClick="@{(v)-> editCallbacks.onImageUpload()}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/circularImageView"
+                app:layout_constraintStart_toStartOf="@+id/circularImageView"
+                app:layout_constraintTop_toBottomOf="@+id/circularImageView" />
+
+
+            <LinearLayout
+                android:id="@+id/linear_edit_form"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_16sdp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_edit_profile">
+
+
+                <TextView
+                    android:id="@+id/text_edit_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="Full Name"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp" />
+
+
+                <EditText
+                    android:id="@+id/edit_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_36sdp"
+                    android:backgroundTint="@color/bg_gray"
+                    android:hint="Please enter name"
+                    android:padding="2sp"
+                    android:textColorHint="@color/bg_gray"
+                    android:textSize="@dimen/_14ssp" />
+
+
+                <TextView
+                    android:id="@+id/text_edit_mobile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="Mobile Number"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp" />
+
+
+                <EditText
+                    android:id="@+id/edit_mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_36sdp"
+                    android:backgroundTint="@color/bg_gray"
+                    android:hint="Please enter mobile number"
+                    android:padding="2sp"
+                    android:textColorHint="@color/bg_gray"
+                    android:textSize="@dimen/_14ssp" />
+
+
+                <TextView
+                    android:id="@+id/text_edit_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="Education Status"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp" />
+
+
+                <Spinner
+                    android:id="@+id/edit_status"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_36sdp"
+                    android:autofillHints="Please select current academic year"
+                    android:backgroundTint="@color/bg_gray"
+                    android:padding="2sp"
+                    android:textColorHint="@color/bg_gray"
+                    android:textSize="@dimen/_14ssp" />
+
+
+                <TextView
+                    android:id="@+id/text_edit_school_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="Which school didi you go?"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp" />
+
+
+                <EditText
+                    android:id="@+id/edit_school_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_36sdp"
+                    android:backgroundTint="@color/bg_gray"
+                    android:hint="Please enter school name"
+                    android:padding="2sp"
+                    android:textColorHint="@color/bg_gray"
+                    android:textSize="@dimen/_14ssp" />
+
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/drawable_button_yellow"
+                    android:layout_marginTop="@dimen/_36sdp"
+                    android:text="Save Profile"
+                    android:onClick="@{(v)-> editCallbacks.onSaveProfile()}"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="@dimen/_16sdp"/>
+
+            </LinearLayout>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</layout>
+
+

@@ -1,0 +1,230 @@
+<resources>
+    <string name="app_name">Koncpt NEXT</string>
+    <string name="app_name_dev">Koncpt DEV</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+
+    //Login
+    <string name="login_email">Please enter your Email ID</string>
+    <string name="login_password">Please enter your password</string>
+    <string name="login_forgot">Forgot Password?</string>
+
+
+    //Option Menu
+    <string name="title_option_menu_notification">Notification</string>
+    <string name="title_option_menu_search">Search</string>
+    <string name="title_option_menu_index">Index</string>
+
+    //Bottom Menu
+    <string name="title_bottom_menu_home">Home</string>
+    <string name="title_bottom_menu_daily_hunt">Daily Hunt</string>
+    <string name="title_bottom_menu_qbank">Qbank</string>
+    <string name="title_bottom_menu_test">Test</string>
+    <string name="title_bottom_menu_classes">Classes</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    //Navigation Side Menu
+    <string name="title_nav_menu_know_more">Know More</string>
+    <string name="title_nav_menu_buy_now">Buy Now</string>
+    <string name="title_nav_menu_faculty">Faculty</string>
+    <string name="title_nav_menu_faq">FaQ</string>
+    <string name="title_nav_menu_rate_us">Rate us</string>
+    <string name="title_nav_menu_share_the_app">Share the app</string>
+    <string name="title_nav_menu_about_us">About Us</string>
+    <string name="title_nav_menu_contact_us">Contact Us</string>
+    <string name="title_nav_menu_log_out">Log Out</string>
+    <string name="title_nav_menu_t_and_c"><![CDATA[T&C]]></string>
+
+    //Fragments
+    <string name="title_fragment_custom_module">Create Custom Module</string>
+    <string name="title_fragment_select_module">Select your Module</string>
+
+    // Test Tab
+    <string name="test_tab_grand_test">Grand Test</string>
+    <string name="test_tab_all_test">All Test</string>
+    <string name="test_tab_mini_test">Mini Test</string>
+    <string name="test_tab_subject_wise">Subject-wise tests</string>
+
+    // Subject Details Tab
+    <string name="subject_details_tab_all">All</string>
+    <string name="subject_details_tab_paused">Paused</string>
+    <string name="subject_details_tab_completed">Completed</string>
+    <string name="subject_details_tab_unattempted">Unattempted</string>
+    <string name="subject_details_tab_free">Free</string>
+
+    <string name="sx">sa</string>
+    <string name="search">Search</string>
+
+    <string name="image_description">Image_Description</string>
+    <string name="txt_welcome_terms_condition"><u><![CDATA[Terms & Condition]]></u></string>
+    <string name="dummy_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec accumsan eget augue viverra suscipit. Praesent ac justo non augue cursus aliquam venenatis quis felis. Nullam a enim odio. Nullam sem tortor, scelerisque in tortor gravida, ultrices lacinia diam. Nunc quis velit hendrerit metus sollicitudin vehicula. Quisque nulla erat, tristique sed dignissim ac, mollis quis arcu. Curabitur in ipsum vel nisl scelerisque viverra ut in tortor. Aliquam sollicitudin non sem ac volutpat. Sed quis finibus felis, sit amet tincidunt mauris. Duis finibus pretium lacus nec pellentesque. Integer eget tempor sem, vel tempus lorem. Vestibulum eget urna quis sapien tincidunt lobortis. Nulla accumsan arcu nec ex viverra auctor. Mauris sodales efficitur quam. Donec urna nisl, rutrum ut dui non, dictum pellentesque libero. Phasellus interdum at erat eu elementum.r\n</string>
+
+    //temp
+
+    <string-array name="tags">
+        <item>#AIIMS</item>
+        <item>#Numbers</item>
+        <item>#The Commons</item>
+        <item>#Image Base</item>
+        <item>#RecentUpdates</item>
+        <item>#controversial</item>
+        <item>#recentNEET</item>
+        <item>#Investigation_ofchoice</item>
+        <item>#Eponyms</item>
+        <item>#Drug_ofchoice</item>
+        <item>#Criteria</item>
+        <item>#controversial</item>
+        <item>#Instrument</item>
+        <item>#Slides</item>
+        <item>#Clinical</item>
+
+    </string-array>
+
+    <string-array name="degree">
+        <item>Please select current academic year</item>
+        <item>MBBS First Year</item>
+        <item>MBBS Second Year</item>
+        <item>MBBS Third Year</item>
+        <item>MBBS Fourth Year</item>
+        <item>Internship</item>
+        <item>Doctor</item>
+    </string-array>
+
+    <string-array name="course">
+        <item>None</item>
+        <item>NEET PG</item>
+        <item>NEET ss Medicine</item>
+    </string-array>
+
+
+    <string name="facebook_app_id">344801383357358</string>
+    <string name="fb_login_protocol_scheme">fb344801383357358</string>
+    <string name="email_error">Enter Valid Email</string>
+
+
+    //Buy Now
+    <string name="pick_plan">pick a plan \nthat best</string>
+    <string name="suits">suits your \nstudying style</string>
+    <string name="viewdetails">View Details</string>
+    <string name="plan_heading">Plan Heading</string>
+    <string name="queries">Have more Queries?</string>
+    <string name="faqs">Read our FAQ\s</string>
+    <string name="getcall">Get a call to know more about the PRO plans</string>
+    <string name="email">support@koncptnext.in</string>
+    <string name="phoneNo">Phone: 9840018010, 044-47410693</string>
+
+
+    // Chnage Password
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="type">Minimum 8 characters At least one capital letter At least one small letter At least one special charecter</string>
+    <string name="confirm_password">Confirm Password</string>
+
+    <string name="subject_class">Class</string>
+    <string name="subject_slides">Slides</string>
+    <string name="subject_notes">Notes</string>
+
+    <string name="pro_master">This master class is available for pro users.</string>
+    <string name="pro_plans">Want to check pro plans?</string>
+    <string name="view_plans">View Plans</string>
+    <string name="go_back">Go back</string>
+
+
+    //Master class
+
+
+    //Master class
+    <string name="enter_name">Enter Name</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="entet_mobile">Enter Mobile Number</string>
+    <string name="check_master">I authorised Koncept education to contact me overriding my registry on NDNC</string>
+    <string name="register">register</string>
+    <string name="markcomplete">Mark Complete</string>
+    <string name="masteclass">Master Class Completed</string>
+    <string name="pleaserate">Please rate the Master class</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="continues">Continue</string>
+    <string name="noclasses">You  don\'t have any classes</string>
+
+    //pro plans
+    <string name="prousers">This video is available for Pro users.Want to check Pro Plans?</string>
+    <string name="viewpln"> <u>View Plans</u></string>
+
+
+    //Questionbank pro
+    <string name="question_pro">This Module is available for Pro users.Want to check Pro Plan</string>
+    <string name="question_buynow">Buy now</string>
+    <string name="question_notnow">Not now</string>
+
+
+    //Home
+    <string name="link_phone_title">Please Link Your Phone No</string>
+    <string name="link_phone_message">This is to secure your account and help in future login</string>
+    <string name="link_phone_hiny">Mobile Number</string>
+
+
+    //contact-us
+    <string name="name">Name</string>
+    <string name="email_id">Email ID</string>
+    <string name="query">Write your query here</string>
+    <string name="send">Send</string>
+
+
+    //player test link
+    <string name="media_url_mp4">http://techslides.com/demos/sample-videos/small.mp4</string>
+
+
+    <!-- Connection dialogs -->
+    <string name="dialog_connection_title">Alert</string>
+    <string name="dialog_connection_description">No email id found associate with this facebook Account! \n\nPlease use another facebook account or update email address with your facebook account</string>
+    <!--    <string name="dialog_internet_title">No internet</string>-->
+    <!--    <string name="dialog_internet_description">You seem to have no internet connection, this app requires internet to get the latest content.\n\nYou can continue to see your favorite/offline items!</string>-->
+    <string name="title_activity_woo_commerce_login">Sign Up</string>
+    <string name="ok"> OK </string>
+
+
+    <!--    Download-->
+
+
+    <string name="download_permission_explaination">In order to download files, you need to grant us permission to your storage.\n\nAfter granting us access, you may go ahead and download the file.</string>
+    <string name="download_permission_grant">Grant permission</string>
+    <string name="download_unavailable">You can not download this content</string>
+    <string name="download_failed">Download failed</string>
+    <string name="download_open_failed">No app to handle file</string>
+    <string name="action_download">Download</string>
+
+    <!--Buy plans-->
+    <string name="message_buy"> Buy</string>
+
+    <!--Qbank-->
+    <string name="hint_qbank_levels">QBank levels</string>
+
+    <!--Live Classes-->
+    <string name="hint_video_levels">Video levels</string>
+    <string name="hint_video_class">Video Class</string>
+    <string name="hint_video">VIDEOS</string>
+    <string name="hint_subjects">Subjects</string>
+    <string name="lable_pro">Pro</string>
+    <string name="label_back">Back</string>
+    <string name="label_next">Next</string>
+    <string name="total_qa">TOTAL QA</string>
+    <string name="lable_completed">COMPLETED</string>
+    <string name="label_incompleted">IN COMPLETED</string>
+    <string name="msg_no_data">NO DATA FOUND</string>
+    <string name="hint_saved_videos">SAVED VIDEOS</string>
+    <string name="hint_live_classes">LIVE CLASSES</string>
+    <string name="hint_explorer">Explorer</string>
+    <string name="msg_start_download">Starting Download</string>
+    <string name="title_zoom_class">Zoom</string>
+    <string name="title_zoom_live_class_tab">Live Classes</string>
+    <string name="title_zoom_completed_class_tab">Completed Classes</string>
+    <string name="title_zoom_recorded_video">Recorded Videos</string>
+    <string name="title_recorded_player">Video Player</string>
+</resources>
