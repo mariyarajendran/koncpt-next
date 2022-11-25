@@ -38,7 +38,6 @@ public class QuestionBankEntity {
     public QuestionBankEntity(@NonNull String mQBankId, @NonNull String mQBankYearId, 
                               String mQuestionBankImage, String mQuestionBankSubject, 
                               String mQuestionBankTotal, String mQuestionBankComplete) {
-        
         this.mQBankId = mQBankId;
         this.mQBankYearId = mQBankYearId;
         this.mQuestionBankImage = mQuestionBankImage;

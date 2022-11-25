@@ -126,7 +126,8 @@ public class RecordedVideoPlayerFragment extends Fragment {
         }
     }
 
-    private class PlaybackStateListener implements Player.EventListener {
+
+    private class PlaybackStateListener implements Player.Listener {
         @Override
         public void onPlaybackStateChanged(int playbackState) {
             String stateString;

@@ -66,9 +66,7 @@
             app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_homeFragment_to_buyNowFragment"
-            app:destination="@+id/buyNowFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit" />
+            app:destination="@+id/buyNowFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -110,9 +108,8 @@
             app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_questionBankFragment_to_customModuleStatus"
-            app:destination="@+id/customModuleStatus"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit" />
+            app:destination="@+id/customModuleStatus" />
+
     </fragment>
     <fragment
         android:id="@+id/questionBankLevelFragment"
@@ -407,17 +404,11 @@
         <action
             android:id="@+id/action_ratingDialogFragment_to_questionBankFragment"
             app:destination="@+id/questionBankFragment"
-            app:enterAnim="@anim/fragment_close_enter"
-            app:exitAnim="@anim/fragment_close_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit"
             app:popUpTo="@+id/questionBankFragment"
             app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_ratingDialogFragment_to_homeFragment"
             app:destination="@+id/homeFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/popup_show"
             app:popExitAnim="@anim/popup_hide"
             app:popUpTo="@+id/homeFragment"
@@ -441,9 +432,7 @@
         android:label="MCQ Exams">
         <action
             android:id="@+id/action_mcqsFragment_to_bookmarkTopicFragment"
-            app:destination="@+id/bookmarkTopicFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_close_exit" />
+            app:destination="@+id/bookmarkTopicFragment" />
     </fragment>
     <fragment
         android:id="@+id/customModuleStatus"
@@ -451,9 +440,7 @@
         android:label="MCQ Exams">
         <action
             android:id="@+id/action_customModuleStatus_to_customReviewModule"
-            app:destination="@+id/customReviewModule"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit" />
+            app:destination="@+id/customReviewModule" />
     </fragment>
     <fragment
         android:id="@+id/resultExamFragment"
@@ -494,9 +481,7 @@
         android:label="fragment_grand_test">
         <action
             android:id="@+id/action_grandTestFragment_to_customBuyNowDialogFragment"
-            app:destination="@+id/customBuyNowDialogFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit" />
+            app:destination="@+id/customBuyNowDialogFragment" />
     </fragment>
     <fragment
         android:id="@+id/grandExamTest"
@@ -513,10 +498,6 @@
         <action
             android:id="@+id/action_grandExamTest_to_testFragment"
             app:destination="@+id/testFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit"
             app:popUpTo="@+id/testFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -527,19 +508,11 @@
         <action
             android:id="@+id/action_ResultExamDialog_to_testFragment"
             app:destination="@+id/testFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_fade_exit"
             app:popUpTo="@+id/testFragment"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_ResultExamDialog_to_reviewQuestionsFragment"
-            app:destination="@+id/reviewQuestionsFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit" />
+            app:destination="@+id/reviewQuestionsFragment" />
     </dialog>
     <fragment
         android:id="@+id/reviewQuestionsFragment"
@@ -548,19 +521,11 @@
         <action
             android:id="@+id/action_reviewQuestionsFragment_to_testFragment"
             app:destination="@+id/testFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit"
             app:popUpTo="@+id/testFragment"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_reviewQuestionsFragment_to_homeFragment"
             app:destination="@+id/homeFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit"
             app:popUpTo="@+id/homeFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -570,9 +535,7 @@
         android:label="Bookmark Questions">
         <action
             android:id="@+id/action_bookmarkTopicFragment_to_bookmarkDetailFragment"
-            app:destination="@+id/bookmarkDetailFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit" />
+            app:destination="@+id/bookmarkDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/bookmarkDetailFragment"
@@ -674,8 +637,6 @@
         android:label="CustomBuyNowDialogFragment">
         <action
             android:id="@+id/action_customBuyNowDialogFragment_to_buyNowFragment"
-            app:destination="@+id/buyNowFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_close_exit" />
+            app:destination="@+id/buyNowFragment" />
     </dialog>
 </navigation>

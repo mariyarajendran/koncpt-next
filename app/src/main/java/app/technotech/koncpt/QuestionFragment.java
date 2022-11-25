@@ -31,7 +31,6 @@ import app.technotech.koncpt.utils.DebugLog;
 import app.technotech.koncpt.utils.GeneralUtils;
 
 
-
 public class QuestionFragment extends Fragment {
 
     private static final String ARG_PARAM = "param";
